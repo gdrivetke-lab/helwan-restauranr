@@ -186,7 +186,6 @@
         .social-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 15px; color: var(--white); transition: all 0.3s; position: relative; overflow: hidden; }
         .social-btn.facebook { background: #1877F2; box-shadow: 0 5px 15px rgba(24, 119, 242, 0.3); border: 1px solid rgba(255,255,255,0.1); }
         .social-btn.tiktok { background: #000000; box-shadow: 0 5px 15px rgba(105, 201, 208, 0.3); border: 1px solid #69C9D0; }
-        .social-btn.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); box-shadow: 0 5px 15px rgba(220, 39, 67, 0.3); border: 1px solid rgba(255,255,255,0.1); }
         .social-btn:active { transform: scale(0.92); }
         .footer-name { font-size: 17px; font-weight: 900; color: var(--gold); margin-bottom: 6px; }
         .footer-copy { font-size: 13px; color: rgba(255,179,71,0.4); }
@@ -518,8 +517,8 @@
             📘 فيسبوك
         </a>
         
-        <!-- زر تيك توك -->
-        <a href="#" https://www.tiktok.com/@halwan2002?_r=1&_t=ZS-97OjEjMRz53target="_blank" class="social-btn tiktok ripple-element haptic-btn">
+        <!-- رابط التيك توك الجديد -->
+        <a href="https://www.tiktok.com/@halwan2002?_r=1&_t=ZS-97OjEjMRz53" target="_blank" class="social-btn tiktok ripple-element haptic-btn">
             🎵 تيك توك
         </a>
     </div>
@@ -559,7 +558,7 @@
     document.getElementById('heroIslamicBtn').addEventListener('click', showIslamicQuote);
     document.getElementById('closeIslamic').addEventListener('click', () => { modalIslamic.classList.remove('active'); });
 
-    // 2. نظام إرسال الطلب الذكي للواتساب
+    // 2. نظام إرسال الطلب الذكي للواتساب والقصاصات
     function shootConfetti() {
       const colors = ['#ffd700', '#ffb347', '#ff3333', '#ffffff', '#28a745'];
       for(let i=0; i<80; i++) {
@@ -663,7 +662,30 @@
       btn.addEventListener('touchstart', () => { if (navigator.vibrate) navigator.vibrate(40); }, { passive: true });
     });
 
-    // 8. شرارات النار الواجهة
+    // 8. الماوس السحري للحواسيب 
+    if (window.matchMedia("(pointer: fine)").matches) {
+      const cursor = document.getElementById('magic-cursor');
+      const trail = document.getElementById('cursor-trail');
+      let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
+      document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px'; });
+      function animateTrail() { trailX += (mouseX - trailX) * 0.15; trailY += (mouseY - trailY) * 0.15; trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px'; requestAnimationFrame(animateTrail); }
+      animateTrail();
+      document.querySelectorAll('a, .food-card, .cake-card, .contact-card, .salad-option, .submit-order-btn, select, input, textarea, .img-zoom-trigger, button').forEach(el => {
+        el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%, -50%) scale(1.5)'; trail.style.borderColor = 'var(--red-bright)'; });
+        el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%, -50%) scale(1)'; trail.style.borderColor = 'rgba(255, 215, 0, 0.5)'; });
+      });
+      document.querySelectorAll('.food-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+          const rotateX = ((y - rect.height/2) / (rect.height/2)) * -12; const rotateY = ((x - rect.width/2) / (rect.width/2)) * 12;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+          card.style.borderColor = 'rgba(255,215,0,0.8)';
+        });
+        card.addEventListener('mouseleave', () => { card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`; card.style.borderColor = 'rgba(255,215,0,0.15)'; });
+      });
+    }
+
+    // 9. شرارات النار الواجهة
     (function(){
       const container = document.getElementById('particles');
       const colors = ['#ff4400','#ff6600','#ff8800','#ffaa00','#ffd700','#ff2200'];
@@ -674,7 +696,7 @@
       }
     })();
 
-    // 9. كشف النزول (Scroll Reveal)
+    // 10. كشف النزول (Scroll Reveal)
     (function(){
       const els = document.querySelectorAll('.reveal');
       const obs = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); },{threshold:0.1});
