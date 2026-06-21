@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مطعم وجاتوه حلوان اخوان - قلقيلية</title>
-  <meta name="description" content="مطعم وجاتوه حلوان اخوان في قلقيلية - شاورما، بيتا، توست، وجاتوهات مميزة للمناسبات">
+  <meta name="description" content="مطعم وجاتوه حلوان اخوان في قلقيلية - شاورما دجاج، شاورما لحم، بيتا، توست، مشروبات، وجاتوهات للمناسبات">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -12,67 +12,73 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --purple-deep: #12002b;
-      --purple-dark: #1e0040;
-      --purple-mid: #3d0080;
-      --purple-bright: #7b2fbe;
-      --purple-light: #b47fe0;
-      --purple-pale: #e8d5ff;
-      --gold: #ffd700;
-      --gold-warm: #ffb347;
-      --pink: #ff6bba;
-      --white: #ffffff;
-      --text-muted: #c9a0ff;
+      --red-deep:    #1a0000;
+      --red-dark:    #2d0000;
+      --red-mid:     #8b0000;
+      --red-vivid:   #cc1111;
+      --red-bright:  #e63030;
+      --gold:        #ffd700;
+      --gold-light:  #ffe566;
+      --gold-warm:   #ffb347;
+      --cream:       #fff8e7;
+      --white:       #ffffff;
+      --text-muted:  #ffcca0;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Tajawal', sans-serif;
-      background: var(--purple-deep);
+      background: var(--red-deep);
       color: var(--white);
-      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* ---- NAV ---- */
+    /* ===== NAV ===== */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(18, 0, 43, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(180, 127, 224, 0.25);
-      padding: 14px 24px;
+      background: rgba(26, 0, 0, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,215,0,0.3);
+      padding: 14px 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
     .nav-logo {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 900;
       color: var(--gold);
-      text-shadow: 0 0 16px rgba(255,215,0,0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      gap: 28px;
       list-style: none;
     }
 
     .nav-links a {
       text-decoration: none;
-      color: var(--purple-pale);
+      color: rgba(255,255,255,0.8);
       font-size: 15px;
       font-weight: 500;
       transition: color 0.2s;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
     }
 
-    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
 
-    /* ---- HERO ---- */
+    /* ===== HERO ===== */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -80,677 +86,733 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 100px 24px 60px;
+      padding: 110px 24px 60px;
       position: relative;
       overflow: hidden;
       background:
-        radial-gradient(ellipse at 30% 20%, rgba(123,47,190,0.45) 0%, transparent 55%),
-        radial-gradient(ellipse at 75% 75%, rgba(255,107,186,0.22) 0%, transparent 50%),
-        radial-gradient(ellipse at 60% 10%, rgba(255,179,71,0.15) 0%, transparent 40%),
-        linear-gradient(180deg, #12002b 0%, #1e0040 60%, #12002b 100%);
+        radial-gradient(ellipse at 25% 30%, rgba(204,17,17,0.5) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 70%, rgba(255,179,71,0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 10%, rgba(139,0,0,0.6) 0%, transparent 50%),
+        linear-gradient(180deg, #2d0000 0%, #1a0000 100%);
     }
 
-    .stars-canvas {
+    /* fire particles */
+    .fire-particle {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
       pointer-events: none;
+      animation: rise linear infinite;
     }
 
-    .hero-crown {
-      font-size: 64px;
-      display: block;
-      margin-bottom: 16px;
-      animation: float 3.5s ease-in-out infinite;
-      filter: drop-shadow(0 0 24px rgba(255,215,0,0.5));
+    @keyframes rise {
+      0%   { transform: translateY(0) scale(1); opacity: 0.9; }
+      100% { transform: translateY(-120px) scale(0); opacity: 0; }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,215,0,0.12);
+      border: 1px solid rgba(255,215,0,0.4);
+      border-radius: 40px;
+      padding: 7px 20px;
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin-bottom: 22px;
       position: relative;
-      z-index: 1;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(-3deg); }
-      50% { transform: translateY(-12px) rotate(3deg); }
+      z-index: 2;
     }
 
     .hero-title {
-      font-size: clamp(28px, 7vw, 52px);
+      font-size: clamp(30px, 8vw, 58px);
       font-weight: 900;
-      line-height: 1.15;
+      line-height: 1.1;
       color: var(--white);
       position: relative;
-      z-index: 1;
-      text-shadow: 0 4px 32px rgba(123,47,190,0.7);
+      z-index: 2;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.6);
     }
 
-    .hero-title .accent { color: var(--gold); }
+    .hero-title .gold { color: var(--gold); }
+    .hero-title .red  { color: var(--red-bright); }
 
     .hero-location {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-muted);
-      margin-top: 12px;
+      margin-top: 14px;
       position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    .hero-location::before {
-      content: '📍';
-      font-size: 18px;
+      z-index: 2;
     }
 
     .hero-divider {
-      width: 80px;
-      height: 3px;
+      width: 100px;
+      height: 2px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 22px auto;
-      border-radius: 2px;
+      margin: 24px auto;
+      position: relative;
+      z-index: 2;
     }
 
-    .hero-slogan {
+    .hero-sub {
       font-size: 18px;
-      color: var(--purple-pale);
-      font-weight: 500;
-      max-width: 440px;
-      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+      max-width: 480px;
+      line-height: 1.8;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .hero-cta {
       margin-top: 36px;
-      position: relative;
-      z-index: 1;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
     }
 
-    .btn-order {
+    .btn-wa {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: linear-gradient(135deg, #ff6bba, #ffb347, #ffd700);
-      color: #12002b;
-      font-family: 'Tajawal', sans-serif;
-      font-size: 20px;
-      font-weight: 900;
-      padding: 18px 52px;
-      border-radius: 60px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 8px 40px rgba(255,107,186,0.4);
-      animation: pulse-glow 2.4s ease-in-out infinite;
-      transition: transform 0.15s, box-shadow 0.15s;
-      text-decoration: none;
-    }
-
-    .btn-order:hover {
-      transform: scale(1.06) translateY(-2px);
-      box-shadow: 0 14px 52px rgba(255,179,71,0.55);
-    }
-
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 8px 40px rgba(255,107,186,0.4); }
-      50% { box-shadow: 0 12px 56px rgba(255,215,0,0.6); }
-    }
-
-    .btn-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
       background: #25d366;
       color: #fff;
       font-family: 'Tajawal', sans-serif;
       font-size: 17px;
       font-weight: 700;
-      padding: 13px 36px;
+      padding: 15px 38px;
       border-radius: 60px;
       text-decoration: none;
       transition: background 0.2s, transform 0.15s;
     }
 
-    .btn-whatsapp:hover { background: #1aab52; transform: scale(1.04); }
+    .btn-wa:hover { background: #1aab52; transform: scale(1.04); }
 
-    /* ---- TOAST ---- */
-    .toast {
-      position: fixed;
-      top: 90px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-20px);
-      background: linear-gradient(135deg, #3d0080, #ff6bba);
-      color: #fff;
-      padding: 14px 36px;
-      border-radius: 60px;
+    .btn-call {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Tajawal', sans-serif;
       font-size: 17px;
       font-weight: 700;
-      z-index: 200;
-      box-shadow: 0 8px 36px rgba(180,80,255,0.5);
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s, transform 0.35s;
+      padding: 15px 38px;
+      border-radius: 60px;
+      border: 2px solid var(--gold);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
     }
 
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
+    .btn-call:hover { background: var(--gold); color: #1a0000; transform: scale(1.04); }
 
-    /* ---- SECTION WRAPPER ---- */
+    /* ===== SECTION SHELL ===== */
     .section {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
       padding: 70px 24px;
     }
 
-    .section-eyebrow {
-      font-size: 13px;
+    .section-header {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
       font-weight: 700;
-      text-transform: uppercase;
       letter-spacing: 3px;
       color: var(--gold);
+      text-transform: uppercase;
+      display: block;
       margin-bottom: 10px;
     }
 
     .section-title {
-      font-size: clamp(22px, 5vw, 34px);
+      font-size: clamp(22px, 5vw, 36px);
       font-weight: 900;
       color: var(--white);
-      margin-bottom: 40px;
-      line-height: 1.25;
     }
 
-    .section-title span { color: var(--purple-light); }
+    .section-title span { color: var(--red-bright); }
 
-    /* ---- MENU CARDS ---- */
+    .title-bar {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red-vivid), var(--gold));
+      border-radius: 2px;
+      margin: 14px auto 0;
+    }
+
+    /* ===== MENU GRID ===== */
     .menu-bg {
-      background: linear-gradient(180deg, #1e0040 0%, #12002b 100%);
-      border-top: 1px solid rgba(123,47,190,0.3);
-      border-bottom: 1px solid rgba(123,47,190,0.3);
+      background: linear-gradient(180deg, #200000 0%, #1a0000 100%);
+      border-top:    1px solid rgba(255,215,0,0.15);
+      border-bottom: 1px solid rgba(255,215,0,0.15);
     }
 
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 18px;
+    .category-row {
+      margin-bottom: 52px;
     }
 
-    .menu-card {
-      background: rgba(61,0,128,0.35);
-      border: 1px solid rgba(180,127,224,0.25);
-      border-radius: 20px;
-      padding: 28px 20px;
-      text-align: center;
-      transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
-      cursor: default;
-    }
+    .category-row:last-child { margin-bottom: 0; }
 
-    .menu-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(255,215,0,0.4);
-      box-shadow: 0 12px 40px rgba(123,47,190,0.35);
-    }
-
-    .menu-card .icon {
-      font-size: 46px;
-      display: block;
-      margin-bottom: 14px;
-      filter: drop-shadow(0 2px 8px rgba(255,179,71,0.3));
-    }
-
-    .menu-card .name {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--white);
-    }
-
-    .menu-card .desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
-
-    .category-label {
+    .cat-label {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255,215,0,0.12);
+      background: linear-gradient(90deg, rgba(204,17,17,0.3), rgba(255,215,0,0.1));
       border: 1px solid rgba(255,215,0,0.25);
       border-radius: 30px;
-      padding: 7px 18px;
+      padding: 7px 20px;
       font-size: 15px;
       font-weight: 700;
       color: var(--gold);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
-    /* ---- CAKE SECTION ---- */
-    .cake-bg {
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(255,107,186,0.18) 0%, transparent 60%),
-        linear-gradient(180deg, #12002b 0%, #1a0035 100%);
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      justify-items: center;
     }
 
-    .cake-banner {
-      background: linear-gradient(135deg, rgba(61,0,128,0.6), rgba(255,107,186,0.2));
-      border: 1px solid rgba(255,107,186,0.3);
-      border-radius: 24px;
-      padding: 36px 28px;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
+    /* centering single items */
+    .items-grid.single { grid-template-columns: repeat(3, 1fr); }
+
+    .food-card {
+      background: linear-gradient(160deg, rgba(80,0,0,0.5), rgba(40,0,0,0.7));
+      border: 1px solid rgba(255,215,0,0.18);
+      border-radius: 20px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 280px;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
     }
 
-    .cake-banner .big-icon {
-      font-size: 60px;
+    .food-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(255,215,0,0.5);
+      box-shadow: 0 16px 48px rgba(200,0,0,0.3);
+    }
+
+    .food-img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
       display: block;
-      margin-bottom: 16px;
-      animation: float 4s ease-in-out infinite;
+      background: #2d0000;
     }
 
-    .cake-banner h3 {
+    .food-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 190px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #3d0000, #200000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .food-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .food-card:hover .food-img-wrap img {
+      transform: scale(1.07);
+    }
+
+    .food-info {
+      padding: 18px 16px 20px;
+      text-align: center;
+    }
+
+    .food-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .food-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ===== CAKE SECTION ===== */
+    .cake-bg {
+      background: linear-gradient(180deg, #1a0000 0%, #220000 100%);
+    }
+
+    .cake-card {
+      max-width: 680px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(139,0,0,0.4), rgba(45,0,0,0.7));
+      border: 1px solid rgba(255,215,0,0.25);
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .cake-img-wrap {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+    }
+
+    .cake-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cake-body {
+      padding: 32px 28px;
+      text-align: center;
+    }
+
+    .cake-body h3 {
       font-size: 26px;
       font-weight: 900;
-      color: var(--white);
+      color: var(--gold);
       margin-bottom: 12px;
     }
 
-    .cake-banner p {
+    .cake-body p {
       font-size: 16px;
-      color: var(--text-muted);
-      line-height: 1.8;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.9;
     }
 
-    .cake-banner .highlight {
-      color: var(--pink);
-      font-weight: 700;
+    .cake-body .hl { color: var(--red-bright); font-weight: 700; }
+
+    /* ===== DRINKS ===== */
+    .drinks-bg {
+      background: linear-gradient(180deg, #220000 0%, #1a0000 100%);
+      border-top: 1px solid rgba(255,215,0,0.12);
     }
 
-    /* ---- CONTACT ---- */
+    /* ===== CONTACT ===== */
     .contact-bg {
-      background: linear-gradient(180deg, #1a0035 0%, #12002b 100%);
-      border-top: 1px solid rgba(123,47,190,0.3);
+      background: linear-gradient(180deg, #1a0000 0%, #0d0000 100%);
+      border-top: 1px solid rgba(255,215,0,0.15);
     }
 
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-      margin-bottom: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
     }
 
     .contact-card {
-      background: rgba(61,0,128,0.3);
-      border: 1px solid rgba(180,127,224,0.2);
+      background: rgba(139,0,0,0.2);
+      border: 1px solid rgba(255,215,0,0.18);
       border-radius: 18px;
-      padding: 24px 20px;
+      padding: 22px 18px;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       transition: border-color 0.2s, transform 0.2s;
     }
 
     .contact-card:hover {
-      border-color: rgba(255,215,0,0.35);
+      border-color: rgba(255,215,0,0.45);
       transform: translateY(-3px);
     }
 
-    .contact-icon {
-      width: 50px; height: 50px;
+    .c-icon {
+      width: 48px; height: 48px;
       border-radius: 14px;
-      background: rgba(255,215,0,0.12);
+      background: rgba(255,215,0,0.1);
+      border: 1px solid rgba(255,215,0,0.2);
       display: flex; align-items: center; justify-content: center;
-      font-size: 24px;
+      font-size: 22px;
       flex-shrink: 0;
     }
 
-    .contact-info .label {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
+    .c-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+    .c-value { font-size: 15px; font-weight: 700; color: var(--white); }
+    .c-value a { color: var(--gold); text-decoration: none; direction: ltr; display: inline-block; }
+    .c-value a:hover { text-decoration: underline; }
 
-    .contact-info .value {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--white);
-    }
-
-    .contact-info a {
-      color: var(--gold);
-      text-decoration: none;
-      direction: ltr;
-      display: inline-block;
-    }
-
-    .contact-info a:hover { text-decoration: underline; }
-
-    .map-placeholder {
-      background: rgba(61,0,128,0.25);
-      border: 1px solid rgba(180,127,224,0.2);
-      border-radius: 18px;
-      padding: 28px;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 15px;
-      line-height: 1.8;
-    }
-
-    .map-placeholder .map-icon { font-size: 36px; display: block; margin-bottom: 10px; }
-
-    /* ---- FOOTER ---- */
+    /* ===== FOOTER ===== */
     footer {
-      background: #0a0015;
-      border-top: 1px solid rgba(123,47,190,0.2);
-      padding: 28px 24px;
+      background: #080000;
+      border-top: 1px solid rgba(255,215,0,0.15);
+      padding: 26px 24px;
       text-align: center;
     }
 
-    .footer-logo {
+    .footer-name {
       font-size: 17px;
       font-weight: 900;
       color: var(--gold);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .footer-copy {
       font-size: 13px;
-      color: rgba(180,127,224,0.5);
+      color: rgba(255,179,71,0.4);
     }
 
     .footer-links {
-      margin-top: 14px;
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 22px;
+      margin-top: 14px;
     }
 
     .footer-links a {
-      color: var(--text-muted);
-      font-size: 14px;
+      color: rgba(255,255,255,0.5);
       text-decoration: none;
+      font-size: 14px;
       transition: color 0.2s;
     }
 
     .footer-links a:hover { color: var(--gold); }
 
-    /* ---- SCROLL REVEAL ---- */
+    /* ===== REVEAL ===== */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(28px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 620px) {
+      .nav-links { display: none; }
+      .items-grid { grid-template-columns: 1fr 1fr; }
+      .items-grid.single { grid-template-columns: 1fr; }
+      .hero-cta { flex-direction: column; align-items: center; }
     }
 
-    /* ---- RESPONSIVE ---- */
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .btn-order { font-size: 17px; padding: 16px 32px; }
-      .menu-grid { grid-template-columns: 1fr 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
+    @media (max-width: 420px) {
+      .items-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ========== NAV ========== -->
+<!-- NAV -->
 <nav>
-  <div class="nav-logo">👑 وجاتوه حلوان اخوان</div>
+  <div class="nav-logo">🔥 وجاتوه حلوان اخوان</div>
   <ul class="nav-links">
-    <li><a href="#menu">قائمتنا</a></li>
+    <li><a href="#shawarma">الشاورما</a></li>
+    <li><a href="#pita">البيتا والتوست</a></li>
+    <li><a href="#drinks">المشروبات</a></li>
     <li><a href="#cakes">الجاتوه</a></li>
     <li><a href="#contact">تواصل معنا</a></li>
   </ul>
 </nav>
 
-<!-- ========== TOAST ========== -->
-<div class="toast" id="toast">🔔 طلبك في الطريق! سنتواصل معك قريباً 🌟</div>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div id="particles"></div>
 
-<!-- ========== HERO ========== -->
-<section class="hero">
-  <canvas class="stars-canvas" id="starsCanvas"></canvas>
-
-  <span class="hero-crown">👑</span>
+  <div class="hero-badge">✨ قلقيلية — شارع الملعب ✨</div>
 
   <h1 class="hero-title">
-    مطعم <span class="accent">وجاتوه</span><br>حلوان اخوان
+    مطعم <span class="gold">وجاتوه</span><br>
+    <span class="red">حلوان</span> اخوان
   </h1>
 
-  <p class="hero-location">قلقيلية · شارع الملعب · بجانب الشنطي للمحروقات</p>
+  <p class="hero-location">📍 بجانب الشنطي للمحروقات</p>
 
   <div class="hero-divider"></div>
 
-  <p class="hero-slogan">
-    أشهى الشاورما 🌯 وأجمل الجاتوهات 🎂<br>
-    لكل مناسباتكم وأفراحكم السعيدة ✨
+  <p class="hero-sub">
+    أشهى الشاورما 🌯 وألذ التوست 🍞<br>
+    وأجمل الجاتوهات 🎂 لكل مناسباتكم
   </p>
 
   <div class="hero-cta">
-    <button class="btn-order" id="orderBtn">
-      🌟 اطلب الآن يا وتدلل يا غالي 🌟
-    </button>
-    <a class="btn-whatsapp" href="https://wa.me/00972599100513" target="_blank" rel="noopener">
-      💬 واتساب — اطلب مباشرة
+    <a class="btn-wa" href="https://wa.me/00972599100513" target="_blank" rel="noopener">
+      💬 اطلب عبر واتساب
+    </a>
+    <a class="btn-call" href="tel:0599100513">
+      📞 اتصل الآن
     </a>
   </div>
 </section>
 
-<!-- ========== MENU ========== -->
-<div class="menu-bg" id="menu">
+<!-- SHAWARMA -->
+<div class="menu-bg" id="shawarma">
   <div class="section">
-    <div class="section-eyebrow reveal">قائمة المطعم</div>
-    <h2 class="section-title reveal">ألذ ما <span>طبخته</span> أيدٍ ماهرة</h2>
-
-    <div class="category-label reveal">🥙 الشاورما والبيتا</div>
-    <div class="menu-grid" style="margin-bottom: 36px;">
-      <div class="menu-card reveal">
-        <span class="icon">🌯</span>
-        <div class="name">شاورما بجيت</div>
-        <div class="desc">شاورما لحم طازجة بخبز البجيت</div>
-      </div>
-      <div class="menu-card reveal">
-        <span class="icon">🫓</span>
-        <div class="name">شاورما حبشلفة</div>
-        <div class="desc">شاورما بالخبز الحبشي اللذيذ</div>
-      </div>
-      <div class="menu-card reveal">
-        <span class="icon">🥙</span>
-        <div class="name">بيتا بجيت</div>
-        <div class="desc">خبز البيتا الهش مع أشهى الحشوات</div>
-      </div>
+    <div class="section-header reveal">
+      <span class="eyebrow">قائمة الشاورما</span>
+      <h2 class="section-title">شاورما <span>لا مثيل لها</span></h2>
+      <div class="title-bar"></div>
     </div>
 
-    <div class="category-label reveal">🍞 التوست</div>
-    <div class="menu-grid">
-      <div class="menu-card reveal">
-        <span class="icon">🥪</span>
-        <div class="name">توست دجاج بجيت</div>
-        <div class="desc">دجاج مشوي + خبز بجيت مقرمش</div>
-      </div>
-      <div class="menu-card reveal">
-        <span class="icon">🥖</span>
-        <div class="name">توست حبش</div>
-        <div class="desc">توست بالخبز الحبشي الأصيل</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ========== CAKES ========== -->
-<div class="cake-bg" id="cakes">
-  <div class="section" style="text-align: center;">
-    <div class="section-eyebrow reveal">الجاتوهات</div>
-    <h2 class="section-title reveal" style="text-align:center;">حلاوتكم <span>بأيدينا</span></h2>
-    <div class="cake-banner reveal">
-      <span class="big-icon">🎂</span>
-      <h3>جاتوهات مميزة لكل مناسبة</h3>
-      <p>
-        نصنع لكم <span class="highlight">أجمل الكيكات</span> بأرقى الأذواق<br>
-        لأعراسكم 💒 وأعياد ميلادكم 🎉 وكل مناسباتكم السعيدة<br><br>
-        تواصلوا معنا للطلب المسبق وسنحضّر لكم<br>
-        <span class="highlight">تحفةً فنيةً شهيةً</span> لا تُنسى
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- ========== CONTACT ========== -->
-<div class="contact-bg" id="contact">
-  <div class="section">
-    <div class="section-eyebrow reveal">تواصل معنا</div>
-    <h2 class="section-title reveal">نحن في <span>خدمتكم</span></h2>
-
-    <div class="contact-grid">
-      <div class="contact-card reveal">
-        <div class="contact-icon">📍</div>
-        <div class="contact-info">
-          <div class="label">العنوان</div>
-          <div class="value">قلقيلية، شارع الملعب<br>بجانب الشنطي للمحروقات</div>
+    <div class="category-row">
+      <div class="cat-label reveal">🍗 شاورما الدجاج</div>
+      <div class="items-grid">
+        <div class="food-card reveal">
+          <div class="food-img-wrap">
+            <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600&q=80" alt="شاورما دجاج بجيت" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="food-info">
+            <div class="food-name">شاورما دجاج بجيت</div>
+            <div class="food-desc">دجاج مشوي طازج بخبز البجيت مع الصوص</div>
+          </div>
         </div>
-      </div>
-      <div class="contact-card reveal">
-        <div class="contact-icon">📞</div>
-        <div class="contact-info">
-          <div class="label">الهاتف الأرضي</div>
-          <div class="value"><a href="tel:092946906" dir="ltr">09-2946906</a></div>
-        </div>
-      </div>
-      <div class="contact-card reveal">
-        <div class="contact-icon">📱</div>
-        <div class="contact-info">
-          <div class="label">الجوال</div>
-          <div class="value"><a href="tel:0599100513" dir="ltr">0599-100513</a></div>
-        </div>
-      </div>
-      <div class="contact-card reveal">
-        <div class="contact-icon">💬</div>
-        <div class="contact-info">
-          <div class="label">واتساب</div>
-          <div class="value">
-            <a href="https://wa.me/00972599100513" target="_blank" dir="ltr">00972-599-100513</a>
+        <div class="food-card reveal">
+          <div class="food-img-wrap">
+            <img src="https://images.unsplash.com/photo-1561651188-d207bbec4ec3?w=600&q=80" alt="شاورما دجاج حبشلفة" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="food-info">
+            <div class="food-name">شاورما دجاج </div>
+            <div class="food-desc">دجاج مشوي بالخبز  </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="map-placeholder reveal">
-      <span class="map-icon">🗺️</span>
-      <strong>قلقيلية — شارع الملعب</strong><br>
-      بجانب الشنطي للمحروقات<br>
-      يمكنكم الاتصال بنا للحصول على توجيهات دقيقة
+    <div class="category-row">
+      <div class="cat-label reveal">🥩 شاورما الحبش</div>
+      <div class="items-grid">
+        <div class="food-card reveal">
+          <div class="food-img-wrap">
+            <img src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=600&q=80" alt="شاورما حبش بجيت" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="food-info">
+            <div class="food-name">شاورما لحم بجيت</div>
+            <div class="food-desc">حبش مشوي طري بخبز البجيت الذهبي</div>
+          </div>
+        </div>
+        <div class="food-card reveal">
+          <div class="food-img-wrap">
+            <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="شاورما لحم حبشلفة" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="food-info">
+            <div class="food-name">شاورما لحم حبشلفة</div>
+            <div class="food-desc">حبش مشوي بالخبز  الشهي</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ========== FOOTER ========== -->
+<!-- PITA & TOAST -->
+<div style="background: linear-gradient(180deg,#1a0000,#200000); border-bottom: 1px solid rgba(255,215,0,0.12);" id="pita">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="eyebrow">البيتا والتوست</span>
+      <h2 class="section-title">خبز <span>أحلى</span> من الحلم</h2>
+      <div class="title-bar"></div>
+    </div>
+
+    <div class="category-row">
+      <div class="cat-label reveal">🥙 البيتا</div>
+      <div class="items-grid single">
+        <div></div>
+        <div class="food-card reveal" style="margin: 0 auto;">
+          <div class="food-img-wrap">
+            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="بيتا بجيت" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="food-info">
+            <div class="food-name">بيتا بجيت</div>
+            <div class="food-desc">خبز بيتا طازج 
+        </div>
+        <div></div>
+      </div>
+    </div>
+
+    <div class="category-row" style="margin-bottom:0">
+      <div class="cat-label reveal">🍞 التوست</div>
+      <div class="items-grid">
+        <div class="food-card reveal">
+          <div class="food-img-wrap">
+            <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80" alt="توست دجاج بجيت" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="food-info">
+            <div class="food-name">توست دجاج </div>
+            <div class="food-desc">توست مقرمش بالدجاج وخبز البجيت</div>
+          </div>
+        </div>
+        <div class="food-card reveal">
+          <div class="food-img-wrap">
+            <img src="https://images.unsplash.com/photo-1528736235302-52922df5c122?w=600&q=80" alt="توست حبش" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="food-info">
+            <div class="food-name">توست حبش</div>
+            <div class="food-desc">توست </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRINKS -->
+<div class="drinks-bg" id="drinks">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="eyebrow">المشروبات</span>
+      <h2 class="section-title">مشروبات <span>منعشة</span></h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="items-grid">
+      <div class="food-card reveal">
+        <div class="food-img-wrap">
+          <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80" alt="عصائر طازجة" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="food-info">
+          <div class="food-name">عصائر طازجة</div>
+          <div class="food-desc">عصائر </div>
+        </div>
+      </div>
+      <div class="food-card reveal">
+        <div class="food-img-wrap">
+          <img src="https://images.unsplash.com/photo-1581636625402-29b2a704ef13?w=600&q=80" alt="مشروبات غازية" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="food-info">
+          <div class="food-name">مشروبات غازية</div>
+          <div class="food-desc">تشكيلة متنوعة من المشروبات الباردة</div>
+        </div>
+      </div>
+      <div class="food-card reveal">
+        <div class="food-img-wrap">
+          <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&q=80" alt="مشروبات ساخنة" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="food-info">
+          <div class="food-name">مشروبات </div>
+          <div class="food-desc"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CAKES -->
+<div class="cake-bg" id="cakes">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="eyebrow">الجاتوهات والحلويات</span>
+      <h2 class="section-title">حلاوتكم <span>فن</span> وإبداع</h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="cake-card reveal">
+      <div class="cake-img-wrap">
+        <img src="https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=900&q=80" alt="جاتوهات مميزة للمناسبات" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      <div class="cake-body">
+        <h3>🎂 جاتوهات مميزة لكل مناسبة</h3>
+        <p>
+          نصنع لكم <span class="hl">أجمل الكيكات</span> بأرقى الأذواق<br>
+          لأعراسكم 💒 · وأعياد ميلادكم 🎉 · وكل مناسباتكم السعيدة<br><br>
+          تواصلوا معنا للطلب المسبق وسنحضّر لكم<br>
+          <span class="hl">تحفةً شهيةً</span> لا تُنسى بإذن الله
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-bg" id="contact">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="eyebrow">تواصل معنا</span>
+      <h2 class="section-title">نحن في <span>خدمتكم</span></h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <div class="c-icon">📍</div>
+        <div>
+          <div class="c-label">العنوان</div>
+          <div class="c-value">قلقيلية · شارع الملعب<br>بجانب الشنطي للمحروقات</div>
+        </div>
+      </div>
+      <div class="contact-card reveal">
+        <div class="c-icon">📞</div>
+        <div>
+          <div class="c-label">الهاتف الأرضي</div>
+          <div class="c-value"><a href="tel:092946906" dir="ltr">09-2946906</a></div>
+        </div>
+      </div>
+      <div class="contact-card reveal">
+        <div class="c-icon">📱</div>
+        <div>
+          <div class="c-label">الجوال</div>
+          <div class="c-value"><a href="tel:0599100513" dir="ltr">0599-100513</a></div>
+        </div>
+      </div>
+      <div class="contact-card reveal">
+        <div class="c-icon">💬</div>
+        <div>
+          <div class="c-label">واتساب</div>
+          <div class="c-value"><a href="https://wa.me/00972599100513" target="_blank" dir="ltr">00972-599-100513</a></div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 28px;" class="reveal">
+      <a class="btn-wa" href="https://wa.me/00972599100513" target="_blank" rel="noopener" style="display:inline-flex;">
+        💬 اطلب عبر واتساب الآن
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">👑 مطعم وجاتوه حلوان اخوان</div>
+  <div class="footer-name">🔥 مطعم وجاتوه حلوان اخوان</div>
   <div class="footer-copy">جميع الحقوق محفوظة © 2026 — قلقيلية، فلسطين</div>
   <div class="footer-links">
-    <a href="tel:092946906">📞 اتصل بنا</a>
+    <a href="tel:092946906">📞 اتصل</a>
     <a href="https://wa.me/00972599100513" target="_blank">💬 واتساب</a>
-    <a href="#menu">🥙 قائمتنا</a>
-    <a href="#cakes">🎂 الجاتوه</a>
+    <a href="#shawarma">🌯 شاورما</a>
+    <a href="#cakes">🎂 جاتوه</a>
   </div>
 </footer>
 
 <script>
-  /* ---- Stars canvas ---- */
-  (function() {
-    const canvas = document.getElementById('starsCanvas');
-    const ctx = canvas.getContext('2d');
-    let stars = [];
-    function resize() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
-    function initStars() {
-      stars = [];
-      for (let i = 0; i < 120; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          r: Math.random() * 2.2 + 0.3,
-          a: Math.random(),
-          speed: Math.random() * 0.008 + 0.003,
-          phase: Math.random() * Math.PI * 2,
-          color: ['#ffd700','#ff6bba','#c9a0ff','#ffffff','#ffb347'][Math.floor(Math.random()*5)]
-        });
-      }
-    }
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const t = Date.now() / 1000;
-      stars.forEach(s => {
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.globalAlpha = 0.2 + 0.7 * (0.5 + 0.5 * Math.sin(t * s.speed * 10 + s.phase));
-        ctx.fillStyle = s.color;
-        ctx.fill();
-      });
-      ctx.globalAlpha = 1;
-      requestAnimationFrame(draw);
-    }
-    resize();
-    initStars();
-    draw();
-    window.addEventListener('resize', () => { resize(); initStars(); });
-  })();
+/* fire particles in hero */
+(function(){
+  const container = document.getElementById('particles');
+  const colors = ['#ff4400','#ff6600','#ff8800','#ffaa00','#ffd700','#ff2200'];
+  for(let i=0;i<40;i++){
+    const p = document.createElement('div');
+    p.className = 'fire-particle';
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      bottom:${Math.random()*30}%;
+      width:${2+Math.random()*5}px;
+      height:${2+Math.random()*5}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${1.5+Math.random()*3}s;
+      animation-delay:${Math.random()*3}s;
+    `;
+    container.appendChild(p);
+  }
+})();
 
-  /* ---- Order button & ringtone ---- */
-  (function() {
-    const btn = document.getElementById('orderBtn');
-    const toast = document.getElementById('toast');
-
-    function playRingtone() {
-      try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const notes = [523, 659, 784, 1047, 784, 880, 1047];
-        const times = [0, 0.18, 0.34, 0.52, 0.70, 0.90, 1.10];
-        notes.forEach((freq, i) => {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(freq, ctx.currentTime + times[i]);
-          gain.gain.setValueAtTime(0, ctx.currentTime + times[i]);
-          gain.gain.linearRampToValueAtTime(0.25, ctx.currentTime + times[i] + 0.05);
-          gain.gain.linearRampToValueAtTime(0, ctx.currentTime + times[i] + 0.16);
-          osc.start(ctx.currentTime + times[i]);
-          osc.stop(ctx.currentTime + times[i] + 0.2);
-        });
-      } catch(e) {}
-    }
-
-    btn.addEventListener('click', function() {
-      playRingtone();
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 4000);
+/* scroll reveal */
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
     });
-  })();
-
-  /* ---- Scroll reveal ---- */
-  (function() {
-    const els = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    els.forEach(el => observer.observe(el));
-  })();
+  },{threshold:0.1});
+  els.forEach(el=>obs.observe(el));
+})();
 </script>
 </body>
 </html>
