@@ -665,5 +665,60 @@
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
+  <section style="padding:20px; text-align:center;">
+  <h2>اطلب الآن</h2>
+
+  <textarea id="orderText" placeholder="اكتب طلبك هنا..."
+    style="width:80%; height:120px; padding:10px; font-size:16px;"></textarea>
+
+  <br><br>
+
+  <button onclick="sendOrder()"
+    style="padding:10px 25px; background:#C8973A; color:white; border:none; border-radius:6px; cursor:pointer;">
+    إرسال الطلب
+  </button>
+
+  <p id="status"></p>
+</section>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "PUT_YOUR_KEY",
+    authDomain: "PUT_YOUR_DOMAIN",
+    projectId: "PUT_YOUR_PROJECT_ID",
+    storageBucket: "PUT_YOUR_BUCKET",
+    messagingSenderId: "PUT_YOUR_ID",
+    appId: "PUT_YOUR_APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window.sendOrder = async function () {
+    const order = document.getElementById("orderText").value;
+    const status = document.getElementById("status");
+
+    if (!order.trim()) {
+      status.innerText = "اكتب طلب أولاً";
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "orders"), {
+        order: order,
+        time: new Date().toLocaleString()
+      });
+
+      status.innerText = "تم إرسال الطلب بنجاح 👍";
+      document.getElementById("orderText").value = "";
+    } catch (e) {
+      status.innerText = "حدث خطأ في الإرسال";
+      console.error(e);
+    }
+  }
+</script>
 </body>
 </html>
