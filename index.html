@@ -26,66 +26,92 @@
     html { scroll-behavior: smooth; cursor: none; -webkit-tap-highlight-color: transparent; }
 
     body {
-      font-family: 'Tajawal', sans-serif;
-      background: var(--red-deep);
-      color: var(--white);
-      overflow-x: hidden;
-      user-select: none;
+      font-family: 'Tajawal', sans-serif; background: var(--red-deep);
+      color: var(--white); overflow-x: hidden; user-select: none;
+    }
+
+    /* ===== شاشة التحميل السينمائية ===== */
+    #loader {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: var(--red-deep); z-index: 999999;
+      display: flex; justify-content: center; align-items: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    .loader-logo {
+      font-size: 32px; font-weight: 900; color: var(--gold);
+      animation: gold-glow 1.5s ease-in-out infinite alternate, float 2s ease-in-out infinite;
     }
 
     /* ===== شريط التقدم ===== */
     #scroll-progress {
-      position: fixed; top: 0; left: 0; height: 3px;
-      background: linear-gradient(90deg, var(--red-vivid), var(--gold), #ffffff);
+      position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--red-vivid), var(--gold), #ffffff);
       z-index: 10000; width: 0%; box-shadow: 0 0 10px var(--gold); transition: width 0.1s;
     }
 
-    /* ===== تأثيرات اللمس ===== */
-    .touch-spark {
-      position: absolute; width: 5px; height: 5px; background: var(--gold);
-      border-radius: 50%; pointer-events: none; z-index: 9999;
-      box-shadow: 0 0 8px var(--gold);
-      animation: spark-fall 0.8s ease-out forwards;
+    /* ===== شريط العروض المتحرك (Marquee) ===== */
+    .marquee-container {
+      background: rgba(255, 215, 0, 0.1); border-bottom: 1px solid rgba(255,215,0,0.2);
+      color: var(--gold); font-size: 14px; font-weight: 700; padding: 8px 0;
+      overflow: hidden; white-space: nowrap; position: relative;
     }
-    @keyframes spark-fall { 0% { transform: scale(1.5) translateY(0); opacity: 1; } 100% { transform: scale(0) translateY(40px); opacity: 0; } }
+    .marquee-text {
+      display: inline-block; padding-left: 100%;
+      animation: marquee 25s linear infinite;
+    }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
-    .ripple {
-      position: absolute; border-radius: 50%; background: rgba(255, 215, 0, 0.4);
-      transform: scale(0); animation: ripple-anim 0.6s linear; pointer-events: none;
+    /* ===== زر الواتساب العائم ===== */
+    .fab-wa {
+      position: fixed; bottom: 24px; left: 24px; width: 60px; height: 60px;
+      background: linear-gradient(135deg, #25d366, #128c7e); border-radius: 50%;
+      display: flex; justify-content: center; align-items: center; font-size: 30px;
+      color: white; text-decoration: none; z-index: 9000;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+      animation: pulse-green 2s infinite; transition: transform 0.3s;
     }
+    .fab-wa:active { transform: scale(0.9); }
+    @media (pointer: fine) { .fab-wa:hover { transform: scale(1.1) rotate(-10deg); } }
+
+    /* ===== تأثيرات اللمس والقصاصات ===== */
+    .touch-spark { position: absolute; width: 5px; height: 5px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; box-shadow: 0 0 8px var(--gold); animation: spark-fall 0.8s ease-out forwards; }
+    @keyframes spark-fall { 0% { transform: scale(1.5) translateY(0); opacity: 1; } 100% { transform: scale(0) translateY(40px); opacity: 0; } }
+    .ripple { position: absolute; border-radius: 50%; background: rgba(255, 215, 0, 0.4); transform: scale(0); animation: ripple-anim 0.6s linear; pointer-events: none; }
     @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
+
+    .confetti { position: fixed; width: 10px; height: 10px; pointer-events: none; z-index: 99999; animation: confetti-fall 2.5s ease-out forwards; }
+    @keyframes confetti-fall { 0% { transform: translateY(-100px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+
+    /* ===== تكبير الصور (Lightbox) ===== */
+    .zoom-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9); z-index: 99998;
+      display: none; justify-content: center; align-items: center;
+      opacity: 0; transition: opacity 0.3s; cursor: zoom-out;
+    }
+    .zoom-overlay.active { display: flex; opacity: 1; }
+    .zoomed-img {
+      max-width: 90%; max-height: 90%; border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(255,215,0,0.3);
+      transform: scale(0.5); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .zoom-overlay.active .zoomed-img { transform: scale(1); }
 
     /* ===== الماوس السحري ===== */
     #magic-cursor, #cursor-trail { display: none; }
     @media (pointer: fine) {
-      #magic-cursor {
-        display: block; position: fixed; top: 0; left: 0; width: 8px; height: 8px;
-        background: var(--gold); border-radius: 50%; pointer-events: none;
-        z-index: 9999; transform: translate(-50%, -50%);
-        box-shadow: 0 0 15px 4px rgba(255, 215, 0, 0.6); transition: width 0.2s, height 0.2s;
-      }
-      #cursor-trail {
-        display: block; position: fixed; top: 0; left: 0; width: 30px; height: 30px;
-        border: 1px solid rgba(255, 215, 0, 0.5); border-radius: 50%;
-        pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
-        transition: top 0.1s ease-out, left 0.1s ease-out, width 0.2s, height 0.2s;
-      }
+      #magic-cursor { display: block; position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 0 0 15px 4px rgba(255, 215, 0, 0.6); transition: width 0.2s, height 0.2s; }
+      #cursor-trail { display: block; position: fixed; top: 0; left: 0; width: 30px; height: 30px; border: 1px solid rgba(255, 215, 0, 0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: top 0.1s ease-out, left 0.1s ease-out, width 0.2s, height 0.2s; }
     }
 
     /* ===== KEYFRAMES ===== */
     @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
     @keyframes gold-glow { 0%, 100% { text-shadow: 0 0 10px rgba(255,215,0,0.5), 0 0 20px rgba(255,215,0,0.3); } 50% { text-shadow: 0 0 20px rgba(255,215,0,0.9), 0 0 30px rgba(255,215,0,0.6); } }
     @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
-    @keyframes shine { 100% { left: 125%; } }
     @keyframes text-gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
     /* ===== NAV ===== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(26, 0, 0, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,215,0,0.2); padding: 14px 32px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(26, 0, 0, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,215,0,0.2); transition: all 0.4s ease; }
+    nav { padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { font-size: 17px; font-weight: 900; color: var(--gold); display: flex; align-items: center; gap: 8px; text-shadow: 0 0 8px rgba(255,215,0,0.4); }
     .nav-links { display: flex; gap: 24px; list-style: none; }
     .nav-links a { text-decoration: none; color: rgba(255,255,255,0.8); font-size: 15px; font-weight: 500; transition: color 0.3s; padding-bottom: 2px; border-bottom: 2px solid transparent; cursor: pointer; }
@@ -93,11 +119,7 @@
     .nav-order-btn { background: var(--gold); color: #1a0000 !important; padding: 4px 12px; border-radius: 20px; font-weight: 700 !important; border: none !important; box-shadow: 0 0 10px rgba(255,215,0,0.4); }
 
     /* ===== HERO ===== */
-    .hero {
-      min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 110px 24px 60px; position: relative; overflow: hidden;
-      background: radial-gradient(ellipse at 25% 30%, rgba(204,17,17,0.4) 0%, transparent 55%), radial-gradient(ellipse at 75% 70%, rgba(255,179,71,0.15) 0%, transparent 50%), radial-gradient(ellipse at 50% 10%, rgba(139,0,0,0.5) 0%, transparent 50%), linear-gradient(180deg, #2d0000 0%, #1a0000 100%);
-    }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 140px 24px 60px; position: relative; overflow: hidden; background: radial-gradient(ellipse at 25% 30%, rgba(204,17,17,0.4) 0%, transparent 55%), radial-gradient(ellipse at 75% 70%, rgba(255,179,71,0.15) 0%, transparent 50%), radial-gradient(ellipse at 50% 10%, rgba(139,0,0,0.5) 0%, transparent 50%), linear-gradient(180deg, #2d0000 0%, #1a0000 100%); }
     .fire-particle { position: absolute; width: 4px; height: 4px; border-radius: 50%; pointer-events: none; animation: rise linear infinite; }
     @keyframes rise { 0% { transform: translateY(0) scale(1); opacity: 0.9; } 100% { transform: translateY(-120px) scale(0); opacity: 0; } }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,215,0,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,215,0,0.4); border-radius: 40px; padding: 7px 20px; font-size: 13px; color: var(--gold); font-weight: 700; margin-bottom: 22px; position: relative; z-index: 2; box-shadow: 0 0 20px rgba(255,215,0,0.2); }
@@ -123,47 +145,24 @@
     .section-title span { color: var(--red-bright); }
     .title-bar { width: 60px; height: 3px; background: linear-gradient(90deg, var(--red-vivid), var(--gold)); border-radius: 2px; margin: 14px auto 0; }
 
-    /* ===== ORDER ONLINE FORM (القسم الجديد) ===== */
+    /* ===== ORDER ONLINE FORM ===== */
     .order-bg { background: linear-gradient(180deg, #110000 0%, #1a0000 100%); border-top: 1px solid rgba(255,215,0,0.15); }
     .order-container { background: rgba(30, 0, 0, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,215,0,0.2); border-radius: 24px; padding: 32px 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); max-width: 700px; margin: 0 auto; }
-    
     .form-group { margin-bottom: 24px; text-align: right; }
     .form-label { display: block; font-size: 15px; font-weight: 700; color: var(--gold); margin-bottom: 10px; }
-    .form-input, .form-select, .form-textarea {
-      width: 100%; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,215,0,0.3);
-      border-radius: 12px; padding: 14px 16px; color: var(--white); font-family: 'Tajawal', sans-serif;
-      font-size: 16px; /* 16px يمنع الزووم التلقائي في الآيفون */
-      transition: all 0.3s; outline: none; cursor: pointer;
-    }
+    .form-input, .form-select, .form-textarea { width: 100%; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 14px 16px; color: var(--white); font-family: 'Tajawal', sans-serif; font-size: 16px; transition: all 0.3s; outline: none; cursor: pointer; }
     .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.4); }
     .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); box-shadow: 0 0 15px rgba(255,215,0,0.2); background: rgba(26,0,0,0.8); }
-    
-    /* تصميم السلطات (Checkboxes) */
     .salads-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; }
-    .salad-option {
-      display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.3);
-      border: 1px solid rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 10px;
-      cursor: pointer; transition: all 0.2s; user-select: none;
-    }
+    .salad-option { display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 10px; cursor: pointer; transition: all 0.2s; user-select: none; }
     .salad-option:active { transform: scale(0.95); }
-    .salad-option input[type="checkbox"] { display: none; } /* إخفاء المربع الافتراضي */
-    .custom-checkbox {
-      width: 20px; height: 20px; border: 2px solid rgba(255,215,0,0.5); border-radius: 6px;
-      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
-    }
+    .salad-option input[type="checkbox"] { display: none; }
+    .custom-checkbox { width: 20px; height: 20px; border: 2px solid rgba(255,215,0,0.5); border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
     .salad-option input[type="checkbox"]:checked + .custom-checkbox { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 10px rgba(255,215,0,0.5); }
     .salad-option input[type="checkbox"]:checked + .custom-checkbox::after { content: '✔'; color: #1a0000; font-size: 14px; font-weight: bold; }
     .salad-option input[type="checkbox"]:checked ~ .salad-name { color: var(--gold); font-weight: 700; }
     .salad-name { font-size: 14px; color: rgba(255,255,255,0.8); transition: color 0.2s; }
-
-    .submit-order-btn {
-      width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px;
-      background: linear-gradient(135deg, #ffd700, #ffb347); color: #1a0000;
-      font-size: 18px; font-weight: 900; border: none; border-radius: 14px;
-      padding: 18px; margin-top: 10px; cursor: pointer; transition: all 0.3s;
-      box-shadow: 0 10px 25px rgba(255,215,0,0.3); position: relative; overflow: hidden;
-      font-family: 'Tajawal', sans-serif;
-    }
+    .submit-order-btn { width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px; background: linear-gradient(135deg, #ffd700, #ffb347); color: #1a0000; font-size: 18px; font-weight: 900; border: none; border-radius: 14px; padding: 18px; margin-top: 10px; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 25px rgba(255,215,0,0.3); position: relative; overflow: hidden; font-family: 'Tajawal', sans-serif; }
     .submit-order-btn:active { transform: scale(0.96); box-shadow: 0 5px 15px rgba(255,215,0,0.2); }
 
     /* ===== MENU GRID & CARDS ===== */
@@ -176,8 +175,13 @@
 
     .food-card { background: linear-gradient(160deg, rgba(80,0,0,0.4), rgba(30,0,0,0.8)); backdrop-filter: blur(5px); border: 1px solid rgba(255,215,0,0.15); border-radius: 20px; overflow: hidden; width: 100%; max-width: 280px; position: relative; transform-style: preserve-3d; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s, box-shadow 0.4s; cursor: pointer; }
     .food-card:active { transform: scale(0.95); border-color: rgba(255,215,0,0.8); box-shadow: 0 0 20px rgba(255, 30, 0, 0.5), inset 0 0 15px rgba(255,215,0,0.3); }
-    @media (pointer: fine) { .food-card:hover { transform: translateY(-12px); border-color: rgba(255,215,0,0.8); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 30, 0, 0.3), inset 0 0 15px rgba(255,215,0,0.1); } .food-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,215,0,0.2) 50%, rgba(255,255,255,0) 100%); transform: skewX(-25deg); z-index: 10; transition: none; } .food-card:hover::before { animation: shine 0.8s; } }
+    @media (pointer: fine) { .food-card:hover { transform: translateY(-12px); border-color: rgba(255,215,0,0.8); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 30, 0, 0.3), inset 0 0 15px rgba(255,215,0,0.1); } }
     .food-img-wrap { position: relative; width: 100%; height: 190px; overflow: hidden; background: #110000; display: flex; align-items: center; justify-content: center; transform: translateZ(30px); }
+    
+    /* علامة العدسة (تكبير) تظهر على الصور */
+    .food-img-wrap::after { content: '🔍'; position: absolute; font-size: 24px; opacity: 0; transition: opacity 0.3s; z-index: 5; pointer-events: none; }
+    .food-card:hover .food-img-wrap::after { opacity: 1; }
+    
     .food-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease, filter 0.6s ease; filter: brightness(0.9); }
     .food-card:active .food-img-wrap img, .food-card:hover .food-img-wrap img { transform: scale(1.12); filter: brightness(1.1); }
     .food-info { padding: 18px 16px 20px; text-align: center; position: relative; z-index: 2; transform: translateZ(20px); }
@@ -189,7 +193,9 @@
     .cake-bg { background: linear-gradient(180deg, #1a0000 0%, #220000 100%); }
     .cake-card { max-width: 680px; margin: 0 auto; background: linear-gradient(135deg, rgba(139,0,0,0.4), rgba(45,0,0,0.7)); border: 1px solid rgba(255,215,0,0.3); border-radius: 28px; overflow: hidden; box-shadow: 0 15px 45px rgba(0,0,0,0.6), 0 0 30px rgba(255,215,0,0.1); animation: float 5s ease-in-out infinite; cursor: pointer; position: relative; }
     .cake-card:active { transform: scale(0.97); }
-    .cake-img-wrap { width: 100%; height: 320px; overflow: hidden; }
+    .cake-img-wrap { width: 100%; height: 320px; overflow: hidden; position: relative;}
+    .cake-img-wrap::after { content: '🔍'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+    .cake-card:hover .cake-img-wrap::after { opacity: 1; }
     .cake-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.9); transition: transform 0.8s ease; }
     .cake-body { padding: 32px 28px; text-align: center; }
     .cake-body h3 { font-size: 26px; font-weight: 900; color: var(--gold); margin-bottom: 12px; }
@@ -215,8 +221,6 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      /* إظهار زر "اطلب اونلاين" في الجوال بدلاً من الروابط */
       .nav-links { display: flex; gap: 10px; }
       .nav-links li.desktop-only { display: none; }
     }
@@ -232,20 +236,41 @@
 </head>
 <body>
 
+<!-- شاشة التحميل السينمائية -->
+<div id="loader">
+  <div class="loader-logo">🔥 حلوان اخوان</div>
+</div>
+
 <div id="scroll-progress"></div>
 <div id="magic-cursor"></div>
 <div id="cursor-trail"></div>
 
+<!-- أداة تكبير الصور (Lightbox) -->
+<div class="zoom-overlay" id="zoomOverlay">
+  <img src="" alt="Zoomed" class="zoomed-img" id="zoomedImg">
+</div>
+
+<!-- زر الواتساب العائم -->
+<a href="https://wa.me/00972599100513" target="_blank" class="fab-wa haptic-btn" title="تواصل عبر واتساب">💬</a>
+
 <!-- NAV -->
-<nav>
-  <div class="nav-logo">🔥 حلوان اخوان</div>
-  <ul class="nav-links">
-    <li class="desktop-only"><a href="#shawarma">شاورما</a></li>
-    <li class="desktop-only"><a href="#pita">توست</a></li>
-    <li class="desktop-only"><a href="#cakes">جاتوه</a></li>
-    <li><a href="#order-online" class="nav-order-btn haptic-btn">🛒 اطلب أونلاين</a></li>
-  </ul>
-</nav>
+<header>
+  <!-- الشريط الإخباري (Marquee) -->
+  <div class="marquee-container">
+    <div class="marquee-text">
+      🔥 أهلاً بكم في مطعم وجاتوه حلوان اخوان في قلقيلية! 🎁 عروضنا ما بتخلص: طعم الشاورما الأصيل، وألذ توست محمص، وجاتوهات بتجمّل كل مناسباتكم... اطلب أونلاين الآن! 🛵
+    </div>
+  </div>
+  <nav>
+    <div class="nav-logo">🔥 حلوان اخوان</div>
+    <ul class="nav-links">
+      <li class="desktop-only"><a href="#shawarma">شاورما</a></li>
+      <li class="desktop-only"><a href="#pita">توست</a></li>
+      <li class="desktop-only"><a href="#cakes">جاتوه</a></li>
+      <li><a href="#order-online" class="nav-order-btn haptic-btn">🛒 اطلب أونلاين</a></li>
+    </ul>
+  </nav>
+</header>
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -269,7 +294,7 @@
   </div>
 </section>
 
-<!-- ORDER ONLINE SECTION (القسم الجديد السحري) -->
+<!-- ORDER ONLINE SECTION -->
 <div class="order-bg" id="order-online">
   <div class="section">
     <div class="section-header reveal">
@@ -280,102 +305,45 @@
     
     <div class="order-container reveal">
       <form id="custom-order-form">
-        <!-- 1. الاسم -->
         <div class="form-group">
           <label class="form-label">الاسم الكريم:</label>
           <input type="text" id="custName" class="form-input" placeholder="اكتب اسمك هنا..." required>
         </div>
 
-        <!-- 2. اختيار الوجبة -->
         <div class="form-group">
           <label class="form-label">اختر وجبتك الأساسية:</label>
           <select id="mealType" class="form-select" required>
             <option value="" disabled selected>-- اضغط لاختيار الوجبة --</option>
             <option value="شاورما دجاج بجيت">شاورما دجاج (بجيت)</option>
-            <option value="شاورما دجاج لفة">شاورما دجاج (لفة) </option>
-            <option value="بيتا دجاج">(بيتا) دجاج</option>
+            <option value="شاورما دجاج لفة (صاج)">شاورما دجاج (لفة صاج)</option>
             <option value="شاورما حبش بجيت">شاورما حبش (بجيت)</option>
-            <option value="شاورما حبش لفة ">شاورما حبش (لفة )</option>
-            <option value=" بيتا حبش"> بيتا حبش<//option>
-            <option value=" توست حبش"> توست حبش</option>
-            <option value="توست دجاج"> توست دجاج</option>
+            <option value="شاورما حبش لفة (صاج)">شاورما حبش (لفة صاج)</option>
+            <option value="ساندويش توست دجاج">ساندويش توست دجاج</option>
+            <option value="ساندويش توست حبش">ساندويش توست حبش</option>
+            <option value="بيتا دجاج">بيتا دجاج</option>
           </select>
         </div>
 
-        <!-- 3. اختيار السلطات والإضافات -->
         <div class="form-group">
           <label class="form-label">السلطات والإضافات (اختر ما تحب):</label>
           <div class="salads-grid">
-            <label class="salad-option haptic-btn">
-              <input type="checkbox" name="salads" value="ملفوف أحمر">
-              <div class="custom-checkbox"></div>
-              <span class="salad-name">ملفوف أحمر</span>
-            </label>
-            <label class="salad-option haptic-btn">
-              <input type="checkbox" name="salads" value="ملفوف أبيض">
-              <div class="custom-checkbox"></div>
-              <span class="salad-name">ملفوف أبيض</span>
-            </label>
-            <label class="salad-option haptic-btn">
-              <input type="checkbox" name="salads" value="عمبة">
-              <div class="custom-checkbox"></div>
-              <span class="salad-name">عمبة</span>
-            </label>
-            <label class="salad-option haptic-btn">
-              <input type="checkbox" name="salads" value="طحينية">
-              <div class="custom-checkbox"></div>
-              <span class="salad-name">طحينية</span>
-            </label>
-            <label class="salad-option haptic-btn">
-              <input type="checkbox" name="salads" value="بصل">
-              <div class="custom-checkbox"></div>
-              <span class="salad-name">بصل</span>
-            </label>
-            <label class="salad-option haptic-btn">
-              <input type="checkbox" name="salads" value="مخلل خيار">
-              <div class="custom-checkbox"></div>
-              <span class="salad-name">مخلل خيار</span>
-            </label>
-            <label class="salad-option haptic-btn">
-              <input type="checkbox" name="salads" value="سلطة تركية">
-              <div class="custom-checkbox"></div>
-              <span class="salad-name">تركية</span>
-            </label>
-            <label class="salad-option haptic-btn">
-              <input type="checkbox" name="salads" value="جزر">
-              <div class="custom-checkbox"></div>
-              <span class="salad-name">جزر</span>
-            </label>
-            <label class="salad-option haptic-btn">
-              <input type="checkbox" name="salads" value="سلطة عربية">
-              <div class="custom-checkbox"></div>
-              <span class="salad-name">سلطة عربي</span>
-            </label>
-            <label class="salad-option haptic-btn">
-              <input type="checkbox" name="salads" value="شطة">
-              <div class="custom-checkbox"></div>
-              <span class="salad-name">شطة</span>
-            </label>
-            <label class="salad-option haptic-btn">     
-              <input type="checkbox" name="salads" value="لفت">
-              <div class="custom-checkbox"></div>
-              <span class="salad-name">لفت</span>
-            </label>             
-            <label class="salad-option haptic-btn">     
-              <input type="checkbox" name="salads" value="سلطة مايونيز">
-              <div class="custom-checkbox"></div>
-              <span class="salad-name">سلطة مايونيز</span>
-            </label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="ملفوف أحمر"><div class="custom-checkbox"></div><span class="salad-name">ملفوف أحمر</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="ملفوف أبيض"><div class="custom-checkbox"></div><span class="salad-name">ملفوف أبيض</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="عمبة"><div class="custom-checkbox"></div><span class="salad-name">عمبة</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="طحينية"><div class="custom-checkbox"></div><span class="salad-name">طحينية</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="بصل"><div class="custom-checkbox"></div><span class="salad-name">بصل</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="مخلل خيار"><div class="custom-checkbox"></div><span class="salad-name">مخلل خيار</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="سلطة تركية"><div class="custom-checkbox"></div><span class="salad-name">تركية</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="جزر"><div class="custom-checkbox"></div><span class="salad-name">جزر</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="سلطة عربية"><div class="custom-checkbox"></div><span class="salad-name">سلطة عربي</span></label>
           </div>
         </div>
-     </div>  
-        <!-- 4. الملاحظات -->
+
         <div class="form-group">
           <label class="form-label">ملاحظات إضافية (اختياري):</label>
           <textarea id="orderNotes" class="form-textarea" rows="2" placeholder="مثال: بدون شطة، محمص زيادة..."></textarea>
         </div>
 
-        <!-- 5. زر الإرسال -->
         <button type="submit" class="submit-order-btn ripple-element haptic-btn">
           📲 إرسال الطلب عبر واتساب
         </button>
@@ -395,26 +363,26 @@
     <div class="category-row">
       <div class="cat-label reveal">🍗 شاورما الدجاج</div>
       <div class="items-grid">
-        <div class="food-card reveal ripple-element" onclick="document.getElementById('mealType').value='شاورما دجاج بجيت'; location.href='#order-online';">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600&q=80" alt="شاورما دجاج بجيت" loading="lazy"></div>
-          <div class="food-info"><div class="food-name">شاورما دجاج بجيت</div><div class="food-desc">اطلبها الآن بالتفصيل الذي تحبه!</div></div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600&q=80" alt="شاورما دجاج بجيت" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('شاورما دجاج بجيت')"><div class="food-name">شاورما دجاج بجيت</div><div class="food-desc">اطلبها الآن بالتفصيل الذي تحبه!</div></div>
         </div>
-        <div class="food-card reveal ripple-element" onclick="document.getElementById('mealType').value='شاورما دجاج لفة (صاج)'; location.href='#order-online';">
-          <div class="food-img-wrap"><img src="https://www.atyabtabkha.com/tachyon/sites/2/2025/12/%D8%B4%D8%A7%D9%88%D8%B1%D9%85%D8%A7-2.jpg" alt="لفة دجاج" loading="lazy"></div>
-          <div class="food-info"><div class="food-name"> لفـــة دجاج </div><div class="food-desc">اضغط لطلب اللفة بخبز الصاج</div></div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://www.atyabtabkha.com/tachyon/sites/2/2025/12/%D8%B4%D8%A7%D9%88%D8%B1%D9%85%D8%A7-2.jpg" alt="لفة دجاج" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('شاورما دجاج لفة (صاج)')"><div class="food-name"> لفـــة دجاج </div><div class="food-desc">اضغط لطلب اللفة بخبز الصاج</div></div>
         </div>
       </div>
     </div>
     <div class="category-row">
       <div class="cat-label reveal">🥩 شاورما الحبش</div>
       <div class="items-grid">
-        <div class="food-card reveal ripple-element" onclick="document.getElementById('mealType').value='شاورما حبش بجيت'; location.href='#order-online';">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=600&q=80" alt="شاورما حبش بجيت" loading="lazy"></div>
-          <div class="food-info"><div class="food-name">شاورما بجيت حبـش</div><div class="food-desc">حبش مشوي وشهي بخبز البجيت</div></div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=600&q=80" alt="شاورما حبش بجيت" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('شاورما حبش بجيت')"><div class="food-name">شاورما بجيت حبـش</div><div class="food-desc">حبش مشوي وشهي بخبز البجيت</div></div>
         </div>
-        <div class="food-card reveal ripple-element" onclick="document.getElementById('mealType').value='شاورما حبش لفة (صاج)'; location.href='#order-online';">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="شاورما حبش لفة" loading="lazy"></div>
-          <div class="food-info"><div class="food-name">شاورما حبش لفة</div><div class="food-desc">حبش محشي بخبز الصاج الطازج</div></div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="شاورما حبش لفة" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('شاورما حبش لفة (صاج)')"><div class="food-name">شاورما حبش لفة</div><div class="food-desc">حبش محشي بخبز الصاج الطازج</div></div>
         </div>
       </div>
     </div>
@@ -432,17 +400,17 @@
     <div class="category-row">
       <div class="cat-label reveal">🍞 التوست والبيتا</div>
       <div class="items-grid">
-        <div class="food-card reveal ripple-element" onclick="document.getElementById('mealType').value='ساندويش توست دجاج'; location.href='#order-online';">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80" alt="توست دجاج" loading="lazy"></div>
-          <div class="food-info"><div class="food-name">توست دجاج </div><div class="food-desc">اضغط للطلب مع الإضافات</div></div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80" alt="توست دجاج" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('ساندويش توست دجاج')"><div class="food-name">توست دجاج </div><div class="food-desc">اضغط للطلب مع الإضافات</div></div>
         </div>
-        <div class="food-card reveal ripple-element" onclick="document.getElementById('mealType').value='ساندويش توست حبش'; location.href='#order-online';">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1528736235302-52922df5c122?w=600&q=80" alt="توست حبش" loading="lazy"></div>
-          <div class="food-info"><div class="food-name">توست حبش </div><div class="food-desc">اضغط لطلب التوست المحمص</div></div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1528736235302-52922df5c122?w=600&q=80" alt="توست حبش" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('ساندويش توست حبش')"><div class="food-name">توست حبش </div><div class="food-desc">اضغط لطلب التوست المحمص</div></div>
         </div>
-        <div class="food-card reveal ripple-element" onclick="document.getElementById('mealType').value='بيتا دجاج'; location.href='#order-online';">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="بيتا الدجاج" loading="lazy"></div>
-          <div class="food-info"><div class="food-name">بيتا الدجاج</div><div class="food-desc">بخبز البيتا الطازج</div></div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="بيتا الدجاج" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بيتا دجاج')"><div class="food-name">بيتا الدجاج</div><div class="food-desc">بخبز البيتا الطازج</div></div>
         </div>
       </div>
     </div>
@@ -459,11 +427,11 @@
     </div>
     <div class="items-grid">
       <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80" alt="عصائر طازجة" loading="lazy"></div>
+        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80" alt="عصائر طازجة" loading="lazy"></div>
         <div class="food-info"><div class="food-name">عصائر </div><div class="food-desc">عصائر طبيعية منعشة ومثلجة</div></div>
       </div>
       <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1581636625402-29b2a704ef13?w=600&q=80" alt="مشروبات غازية" loading="lazy"></div>
+        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1581636625402-29b2a704ef13?w=600&q=80" alt="مشروبات غازية" loading="lazy"></div>
         <div class="food-info"><div class="food-name">مشروبات غازية</div><div class="food-desc">تشكيلة متنوعة من المشروبات المبردة</div></div>
       </div>
     </div>
@@ -478,17 +446,13 @@
       <h2 class="section-title">صنعناه <span>بجمال</span> ارائكــم</h2>
       <div class="title-bar"></div>
     </div>
-    <div class="cake-card reveal ripple-element" onclick="location.href='https://wa.me/00972599100513?text=مرحباً، أود الاستفسار عن طلب جاتوه للمناسبات.'">
-      <div class="cake-img-wrap">
+    <div class="cake-card reveal ripple-element">
+      <div class="cake-img-wrap img-zoom-trigger">
         <img src="https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=900&q=80" alt="جاتوهات مميزة للمناسبات הפاخرة" loading="lazy">
       </div>
-      <div class="cake-body">
+      <div class="cake-body" onclick="location.href='https://wa.me/00972599100513?text=مرحباً، أود الاستفسار عن طلب جاتوه للمناسبات.'">
         <h3>🎂 جاتوهات مميزة لكل مناسبة</h3>
-        <p>
-          نصنع لكم <span class="hl">أجمل الكيكات</span> بأرقى الأذواق<br>
-          لأعراسكم 💒 · وأعياد ميلادكم 🎉 · وكل مناسباتكم السعيدة<br><br>
-          <span class="hl">اضغط هنا للتواصل معنا وحجز الجاتوه</span>
-        </p>
+        <p>نصنع لكم <span class="hl">أجمل الكيكات</span> بأرقى الأذواق<br>لأعراسكم 💒 · وأعياد ميلادكم 🎉 · وكل مناسباتكم السعيدة<br><br><span class="hl">اضغط هنا للتواصل معنا وحجز الجاتوه</span></p>
       </div>
     </div>
   </div>
@@ -503,15 +467,9 @@
       <div class="title-bar"></div>
     </div>
     <div class="contact-grid">
-      <div class="contact-card reveal ripple-element">
-        <div class="c-icon">📍</div><div><div class="c-label">العنوان</div><div class="c-value">قلقيلية · شارع الملعب</div></div>
-      </div>
-      <div class="contact-card reveal ripple-element">
-        <div class="c-icon">📞</div><div><div class="c-label">الهاتف الأرضي</div><div class="c-value"><a href="tel:092946906" dir="ltr">09-2946906</a></div></div>
-      </div>
-      <div class="contact-card reveal ripple-element">
-        <div class="c-icon">📱</div><div><div class="c-label">الجوال</div><div class="c-value"><a href="tel:0599100513" dir="ltr">0599-100513</a></div></div>
-      </div>
+      <div class="contact-card reveal ripple-element"><div class="c-icon">📍</div><div><div class="c-label">العنوان</div><div class="c-value">قلقيلية · شارع الملعب</div></div></div>
+      <div class="contact-card reveal ripple-element"><div class="c-icon">📞</div><div><div class="c-label">الهاتف الأرضي</div><div class="c-value"><a href="tel:092946906" dir="ltr">09-2946906</a></div></div></div>
+      <div class="contact-card reveal ripple-element"><div class="c-icon">📱</div><div><div class="c-label">الجوال</div><div class="c-value"><a href="tel:0599100513" dir="ltr">0599-100513</a></div></div></div>
     </div>
   </div>
 </div>
@@ -523,41 +481,89 @@
 </footer>
 
 <script>
-// 1. نظام إرسال الطلب الذكي (Smart Order System)
+// 0. إزالة شاشة التحميل عند اكتمال الموقع
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    setTimeout(() => { loader.style.display = 'none'; }, 600);
+  }, 1000); // عرض الشعار لثانية واحدة كحد أدنى
+});
+
+// 1. نظام إرسال الطلب الذكي + قصاصات الاحتفال (Confetti)
+function shootConfetti() {
+  const colors = ['#ffd700', '#ffb347', '#ff3333', '#ffffff'];
+  for(let i=0; i<80; i++) {
+    const conf = document.createElement('div');
+    conf.className = 'confetti';
+    conf.style.left = Math.random() * 100 + 'vw';
+    conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    conf.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+    document.body.appendChild(conf);
+    setTimeout(() => conf.remove(), 4000);
+  }
+}
+
 document.getElementById('custom-order-form').addEventListener('submit', function(e) {
-  e.preventDefault(); // منع تحديث الصفحة
+  e.preventDefault();
   
   const name = document.getElementById('custName').value;
   const meal = document.getElementById('mealType').value;
   const notes = document.getElementById('orderNotes').value;
   
-  // جمع السلطات المختارة
   const saladElements = document.querySelectorAll('input[name="salads"]:checked');
   let salads = [];
   saladElements.forEach(el => salads.push(el.value));
-  
   let saladsText = salads.length > 0 ? salads.join('، ') : "بدون إضافات";
   let notesText = notes.trim() !== "" ? notes : "لا يوجد";
 
-  // تكوين رسالة الواتساب
   const waMessage = `🔥 *طلب جديد من الموقع* 🔥\n\n👤 *الاسم:* ${name}\n🍔 *الوجبة:* ${meal}\n🥗 *السلطات والإضافات:* ${saladsText}\n📝 *ملاحظات إضافية:* ${notesText}`;
-  
-  // تحويل النص ليدعمه رابط الواتساب
   const encodedMessage = encodeURIComponent(waMessage);
   const waLink = `https://wa.me/00972599100513?text=${encodedMessage}`;
   
-  // توجيه الزبون للواتساب
-  window.open(waLink, '_blank');
+  // إطلاق الاحتفال
+  shootConfetti();
+  
+  // تأخير التحويل للواتساب قليلاً ليرى الزبون الاحتفال!
+  setTimeout(() => { window.open(waLink, '_blank'); }, 1200);
 });
 
-// 2. شريط تقدم القراءة
+// وظيفة اختيار الوجبة من القائمة السفلية والصعود للنموذج
+function selectMeal(mealName) {
+  document.getElementById('mealType').value = mealName;
+  location.href = '#order-online';
+  // لفت الانتباه للمربع
+  const selectBox = document.getElementById('mealType');
+  selectBox.style.boxShadow = '0 0 20px var(--gold)';
+  setTimeout(() => { selectBox.style.boxShadow = 'none'; }, 1500);
+}
+
+// 2. ميزة تكبير الصور (Lightbox)
+const zoomTriggers = document.querySelectorAll('.img-zoom-trigger');
+const zoomOverlay = document.getElementById('zoomOverlay');
+const zoomedImg = document.getElementById('zoomedImg');
+
+zoomTriggers.forEach(trigger => {
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation(); // منع تفعيل الروابط الأخرى خلف الصورة
+    const imgSrc = trigger.querySelector('img').src;
+    zoomedImg.src = imgSrc;
+    zoomOverlay.classList.add('active');
+  });
+});
+
+zoomOverlay.addEventListener('click', () => {
+  zoomOverlay.classList.remove('active');
+});
+
+// 3. شريط تقدم القراءة
 window.addEventListener('scroll', () => {
   const scrollTotal = document.documentElement.scrollTop || document.body.scrollTop;
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   document.getElementById('scroll-progress').style.width = ((scrollTotal / height) * 100) + '%';
 });
 
-// 3. سحر اللمس (Touch Sparkles)
+// 4. سحر اللمس (Touch Sparkles)
 let lastSparkTime = 0;
 document.addEventListener('touchmove', (e) => {
   const now = Date.now();
@@ -572,7 +578,7 @@ document.addEventListener('touchmove', (e) => {
   setTimeout(() => spark.remove(), 800);
 }, { passive: true });
 
-// 4. تأثير الموجة (Ripple)
+// 5. تأثير الموجة (Ripple)
 function createRipple(event) {
   const element = event.currentTarget;
   const circle = document.createElement('span');
@@ -589,17 +595,17 @@ function createRipple(event) {
   if (existing) existing.remove();
   element.appendChild(circle);
 }
-document.querySelectorAll('.btn-wa, .btn-call, .ripple-element, .submit-order-btn').forEach(el => {
+document.querySelectorAll('.btn-wa, .btn-call, .ripple-element, .submit-order-btn, .fab-wa').forEach(el => {
   el.addEventListener('mousedown', createRipple);
   el.addEventListener('touchstart', createRipple, { passive: true });
 });
 
-// 5. اهتزاز التفاعل الجوال (Haptic Feedback)
+// 6. اهتزاز التفاعل الجوال
 document.querySelectorAll('.haptic-btn').forEach(btn => {
   btn.addEventListener('touchstart', () => { if (navigator.vibrate) navigator.vibrate(40); }, { passive: true });
 });
 
-// 6. الماوس السحري للحواسيب
+// 7. الماوس السحري للحواسيب
 if (window.matchMedia("(pointer: fine)").matches) {
   const cursor = document.getElementById('magic-cursor');
   const trail = document.getElementById('cursor-trail');
@@ -607,7 +613,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
   document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px'; });
   function animateTrail() { trailX += (mouseX - trailX) * 0.15; trailY += (mouseY - trailY) * 0.15; trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px'; requestAnimationFrame(animateTrail); }
   animateTrail();
-  document.querySelectorAll('a, .food-card, .cake-card, .contact-card, .salad-option, .submit-order-btn, select, input, textarea').forEach(el => {
+  document.querySelectorAll('a, .food-card, .cake-card, .contact-card, .salad-option, .submit-order-btn, select, input, textarea, .img-zoom-trigger').forEach(el => {
     el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%, -50%) scale(1.5)'; trail.style.borderColor = 'var(--red-bright)'; });
     el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%, -50%) scale(1)'; trail.style.borderColor = 'rgba(255, 215, 0, 0.5)'; });
   });
@@ -623,7 +629,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
   });
 }
 
-// 7. شرارات النار الواجهة
+// 8. شرارات النار الواجهة
 (function(){
   const container = document.getElementById('particles');
   const colors = ['#ff4400','#ff6600','#ff8800','#ffaa00','#ffd700','#ff2200'];
@@ -634,7 +640,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
   }
 })();
 
-// 8. كشف النزول (Scroll Reveal)
+// 9. كشف النزول (Scroll Reveal)
 (function(){
   const els = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); },{threshold:0.1});
