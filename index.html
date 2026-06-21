@@ -30,13 +30,12 @@
       color: var(--white); overflow-x: hidden; user-select: none;
     }
 
-    /* ===== شاشة التحميل السينمائية الملتهبة (CSS ONLY - مضمونة 100%) ===== */
     #loader {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: #0d0000; z-index: 999999;
       display: flex; flex-direction: column; justify-content: center; align-items: center;
-      animation: forceHideLoader 2.5s forwards; /* ستختفي إجبارياً بعد 2.5 ثانية */
-      pointer-events: none; /* حتى لو علقت، لن تمنعك من الضغط على الموقع */
+      animation: forceHideLoader 2.5s forwards;
+      pointer-events: none;
     }
     
     @keyframes forceHideLoader {
@@ -62,22 +61,18 @@
       100% { text-shadow: 0 2px 6px rgba(255, 255, 255, 1), 0 -5px 15px rgba(255, 179, 71, 1), 0 -12px 25px rgba(255, 68, 0, 1), 0 -18px 35px rgba(204, 17, 17, 1), 0 -22px 45px rgba(139, 0, 0, 0.8); transform: scale(1.02); }
     }
 
-    /* ===== شريط التقدم ===== */
     #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--red-vivid), var(--gold), #ffffff); z-index: 10000; width: 0%; box-shadow: 0 0 10px var(--gold); transition: width 0.1s; }
 
-    /* ===== شريط العروض المتحرك ===== */
     .marquee-container { background: rgba(255, 215, 0, 0.1); border-bottom: 1px solid rgba(255,215,0,0.2); color: var(--gold); font-size: 14px; font-weight: 700; padding: 8px 0; overflow: hidden; white-space: nowrap; position: relative; }
     .marquee-text { display: inline-block; padding-left: 100%; animation: marquee 25s linear infinite; }
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
-    /* ===== الأزرار العائمة ===== */
     .fab-islamic { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: linear-gradient(135deg, #28a745, #1e7e34); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; color: white; border: none; cursor: pointer; z-index: 9000; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.5); animation: pulse-green-islamic 2.5s infinite; transition: transform 0.3s; }
     .fab-islamic:active { transform: scale(0.9); }
     @media (pointer: fine) { .fab-islamic:hover { transform: scale(1.1) rotate(-10deg); } }
 
     @keyframes pulse-green-islamic { 0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(40, 167, 69, 0); } 100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); } }
 
-    /* ===== نافذة النفحات الإيمانية (Popup) ===== */
     .islamic-modal {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       background: rgba(0, 0, 0, 0.85); z-index: 100000;
@@ -98,7 +93,6 @@
     .islamic-icon { font-size: 55px; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
     .islamic-text { font-size: 24px; color: var(--white); line-height: 1.8; font-weight: 700; text-shadow: 0 2px 10px rgba(255,215,0,0.3); }
 
-    /* ===== تأثيرات اللمس والقصاصات ===== */
     .touch-spark { position: absolute; width: 5px; height: 5px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; box-shadow: 0 0 8px var(--gold); animation: spark-fall 0.8s ease-out forwards; }
     @keyframes spark-fall { 0% { transform: scale(1.5) translateY(0); opacity: 1; } 100% { transform: scale(0) translateY(40px); opacity: 0; } }
     .ripple { position: absolute; border-radius: 50%; background: rgba(255, 215, 0, 0.4); transform: scale(0); animation: ripple-anim 0.6s linear; pointer-events: none; }
@@ -106,21 +100,18 @@
     .confetti { position: fixed; width: 10px; height: 10px; pointer-events: none; z-index: 99999; animation: confetti-fall 2.5s ease-out forwards; }
     @keyframes confetti-fall { 0% { transform: translateY(-100px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
 
-    /* ===== تكبير الصور ===== */
     .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 99998; display: none; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s; cursor: zoom-out; }
     .zoom-overlay.active { display: flex; opacity: 1; }
     .zoomed-img { max-width: 90%; max-height: 90%; border-radius: 20px; box-shadow: 0 10px 40px rgba(255,215,0,0.3); transform: scale(0.5); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     .zoom-overlay.active .zoomed-img { transform: scale(1); }
 
-    /* ===== الماوس السحري ===== */
     #magic-cursor, #cursor-trail { display: none; }
     @media (pointer: fine) { #magic-cursor { display: block; position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 0 0 15px 4px rgba(255, 215, 0, 0.6); transition: width 0.2s, height 0.2s; } #cursor-trail { display: block; position: fixed; top: 0; left: 0; width: 30px; height: 30px; border: 1px solid rgba(255, 215, 0, 0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: top 0.1s ease-out, left 0.1s ease-out, width 0.2s, height 0.2s; } }
 
-    /* ===== KEYFRAMES ===== */
     @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
+    @keyframes gold-glow { 0% { text-shadow: 0 0 10px rgba(255,215,0,0.5); } 100% { text-shadow: 0 0 25px rgba(255,215,0,1), 0 0 50px rgba(255,179,71,0.8); } }
     @keyframes text-gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-    /* ===== NAV ===== */
     header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(26, 0, 0, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,215,0,0.2); transition: all 0.4s ease; }
     nav { padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { font-size: 17px; font-weight: 900; color: var(--gold); display: flex; align-items: center; gap: 8px; text-shadow: 0 0 8px rgba(255,215,0,0.4); }
@@ -129,7 +120,6 @@
     .nav-links a:hover, .nav-links a:active { color: var(--gold); border-bottom-color: var(--gold); }
     .nav-order-btn { background: var(--gold); color: #1a0000 !important; padding: 4px 12px; border-radius: 20px; font-weight: 700 !important; border: none !important; box-shadow: 0 0 10px rgba(255,215,0,0.4); }
 
-    /* ===== HERO ===== */
     .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 140px 24px 60px; position: relative; overflow: hidden; background: radial-gradient(ellipse at 25% 30%, rgba(204,17,17,0.4) 0%, transparent 55%), radial-gradient(ellipse at 75% 70%, rgba(255,179,71,0.15) 0%, transparent 50%), radial-gradient(ellipse at 50% 10%, rgba(139,0,0,0.5) 0%, transparent 50%), linear-gradient(180deg, #2d0000 0%, #1a0000 100%); }
     .fire-particle { position: absolute; width: 4px; height: 4px; border-radius: 50%; pointer-events: none; animation: rise linear infinite; }
     @keyframes rise { 0% { transform: translateY(0) scale(1); opacity: 0.9; } 100% { transform: translateY(-120px) scale(0); opacity: 0; } }
@@ -144,14 +134,14 @@
     .hero-sub { font-size: 18px; color: rgba(255,255,255,0.85); line-height: 1.8; position: relative; z-index: 2; }
     
     .hero-cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 2; }
-    .btn-primary, .btn-call, .btn-islamic-hero { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; font-family: 'Tajawal', sans-serif; font-size: 17px; font-weight: 700; padding: 15px 38px; border-radius: 60px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; }
+    .btn-primary, .btn-call, .btn-islamic-hero, .btn-download { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; font-family: 'Tajawal', sans-serif; font-size: 17px; font-weight: 700; padding: 15px 38px; border-radius: 60px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; }
     .btn-primary { background: linear-gradient(135deg, #ffd700, #ffb347); color: #1a0000; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); }
     .btn-islamic-hero { background: linear-gradient(135deg, #28a745, #1e7e34); color: #fff; animation: pulse-green-islamic 2.5s infinite; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4); }
     .btn-call { background: rgba(255, 215, 0, 0.05); backdrop-filter: blur(5px); color: var(--gold); border: 2px solid var(--gold); }
-    .btn-primary:active, .btn-call:active, .btn-islamic-hero:active { transform: scale(0.92); }
-    @media (pointer: fine) { .btn-primary:hover { transform: scale(1.05) translateY(-3px); } .btn-islamic-hero:hover { transform: scale(1.05) translateY(-3px); } .btn-call:hover { background: var(--gold); color: #1a0000; transform: scale(1.05) translateY(-3px); box-shadow: 0 0 25px rgba(255,215,0,0.5); } }
+    .btn-download { background: linear-gradient(135deg, #1565c0, #0d47a1); color: #fff; box-shadow: 0 4px 15px rgba(21, 101, 192, 0.4); }
+    .btn-primary:active, .btn-call:active, .btn-islamic-hero:active, .btn-download:active { transform: scale(0.92); }
+    @media (pointer: fine) { .btn-primary:hover { transform: scale(1.05) translateY(-3px); } .btn-islamic-hero:hover { transform: scale(1.05) translateY(-3px); } .btn-call:hover { background: var(--gold); color: #1a0000; transform: scale(1.05) translateY(-3px); box-shadow: 0 0 25px rgba(255,215,0,0.5); } .btn-download:hover { transform: scale(1.05) translateY(-3px); box-shadow: 0 0 25px rgba(21,101,192,0.6); } }
 
-    /* ===== SECTIONS ===== */
     .section { max-width: 960px; margin: 0 auto; padding: 70px 24px; }
     .section-header { text-align: center; margin-bottom: 44px; }
     .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 10px; }
@@ -159,7 +149,6 @@
     .section-title span { color: var(--red-bright); }
     .title-bar { width: 60px; height: 3px; background: linear-gradient(90deg, var(--red-vivid), var(--gold)); border-radius: 2px; margin: 14px auto 0; }
 
-    /* ===== ORDER ONLINE FORM ===== */
     .order-bg { background: linear-gradient(180deg, #110000 0%, #1a0000 100%); border-top: 1px solid rgba(255,215,0,0.15); }
     .order-container { background: rgba(30, 0, 0, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,215,0,0.2); border-radius: 24px; padding: 32px 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); max-width: 700px; margin: 0 auto; }
     .form-group { margin-bottom: 24px; text-align: right; }
@@ -167,7 +156,6 @@
     .form-input, .form-select, .form-textarea { width: 100%; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 14px 16px; color: var(--white); font-family: 'Tajawal', sans-serif; font-size: 16px; transition: all 0.3s; outline: none; cursor: pointer; }
     .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.4); }
     .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); box-shadow: 0 0 15px rgba(255,215,0,0.2); background: rgba(26,0,0,0.8); }
-    
     .form-select optgroup { background: #2d0000; color: var(--gold); font-weight: bold; }
     .form-select option { background: #1a0000; color: var(--white); font-weight: normal; }
 
@@ -183,7 +171,6 @@
     .submit-order-btn { width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px; background: linear-gradient(135deg, #ffd700, #ffb347); color: #1a0000; font-size: 18px; font-weight: 900; border: none; border-radius: 14px; padding: 18px; margin-top: 10px; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 25px rgba(255,215,0,0.3); position: relative; overflow: hidden; font-family: 'Tajawal', sans-serif; }
     .submit-order-btn:active { transform: scale(0.96); box-shadow: 0 5px 15px rgba(255,215,0,0.2); }
 
-    /* ===== MENU GRID & CARDS ===== */
     .menu-bg { background: linear-gradient(180deg, #200000 0%, #1a0000 100%); border-top: 1px solid rgba(255,215,0,0.15); border-bottom: 1px solid rgba(255,215,0,0.15); }
     .category-row { margin-bottom: 52px; }
     .category-row:last-child { margin-bottom: 0; }
@@ -204,7 +191,6 @@
     .food-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
     .food-price { display: inline-block; background: rgba(255, 215, 0, 0.15); color: var(--gold); padding: 4px 12px; border-radius: 20px; font-weight: 900; font-size: 15px; margin-top: 8px; border: 1px solid rgba(255, 215, 0, 0.3); }
 
-    /* ===== CAKES & OTHERS ===== */
     .cake-bg { background: linear-gradient(180deg, #1a0000 0%, #220000 100%); }
     .cake-card { max-width: 680px; margin: 0 auto; background: linear-gradient(135deg, rgba(139,0,0,0.4), rgba(45,0,0,0.7)); border: 1px solid rgba(255,215,0,0.3); border-radius: 28px; overflow: hidden; box-shadow: 0 15px 45px rgba(0,0,0,0.6), 0 0 30px rgba(255,215,0,0.1); animation: float 5s ease-in-out infinite; cursor: pointer; position: relative; }
     .cake-card:active { transform: scale(0.97); }
@@ -228,6 +214,20 @@
     .c-value { font-size: 15px; font-weight: 700; color: var(--white); }
     .c-value a { color: var(--gold); text-decoration: none; direction: ltr; display: inline-block; cursor: pointer; }
 
+    /* ===== زر التحميل في الفوتر ===== */
+    .footer-download-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #1565c0, #0d47a1);
+      color: #fff; font-family: 'Tajawal', sans-serif;
+      font-size: 14px; font-weight: 700; padding: 10px 24px;
+      border-radius: 30px; text-decoration: none; margin-top: 14px;
+      box-shadow: 0 4px 15px rgba(21, 101, 192, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .footer-download-btn:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 8px 25px rgba(21,101,192,0.6); }
+    .footer-download-btn:active { transform: scale(0.95); }
+
     footer { background: #080000; border-top: 1px solid rgba(255,215,0,0.15); padding: 26px 24px; text-align: center; }
     .footer-name { font-size: 17px; font-weight: 900; color: var(--gold); margin-bottom: 6px; }
     .footer-copy { font-size: 13px; color: rgba(255,179,71,0.4); }
@@ -242,7 +242,6 @@
 </head>
 <body>
 
-<!-- شاشة التحميل السينمائية الملتهبة -->
 <div id="loader">
   <div class="loader-logo">🔥 حلوان اخوان</div>
   <div class="fire-text">مرحباً بــكم في  موقعنا </div>
@@ -252,12 +251,10 @@
 <div id="magic-cursor"></div>
 <div id="cursor-trail"></div>
 
-<!-- أداة تكبير الصور (Lightbox) -->
 <div class="zoom-overlay" id="zoomOverlay">
   <img src="" alt="Zoomed" class="zoomed-img" id="zoomedImg">
 </div>
 
-<!-- نافذة النفحات الإيمانية (Modal) -->
 <div class="islamic-modal" id="islamicModal">
   <div class="islamic-content">
     <span class="close-islamic" id="closeIslamic">&times;</span>
@@ -266,10 +263,8 @@
   </div>
 </div>
 
-<!-- الزر الأخضر العائم للنفحات الإيمانية -->
 <button class="fab-islamic haptic-btn" id="fabIslamicBtn" title="نفحات إيمانية">📖</button>
 
-<!-- NAV -->
 <header>
   <div class="marquee-container">
     <div class="marquee-text">
@@ -288,7 +283,6 @@
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero" id="hero">
   <div id="particles"></div>
   <div class="hero-badge">✨ قلقيلية — شارع الملعب ✨</div>
@@ -306,10 +300,10 @@
     <a class="btn-primary haptic-btn" href="#order-online">🍔 اختــر طلبك أونلاين</a>
     <a class="btn-call haptic-btn" href="tel:0599100513">📞 اتصل الآن</a>
     <button class="btn-islamic-hero haptic-btn" id="heroIslamicBtn">📖 نفحات إيمانية</button>
+    <a class="btn-download haptic-btn" href="https://drive.google.com/file/d/1dMU2WZPqDjvboACaJFvgJWqPl-9UBt_U/view?usp=drive_link" target="_blank">📲 حمل التطبيق الآن</a>
   </div>
 </section>
 
-<!-- ORDER ONLINE SECTION -->
 <div class="order-bg" id="order-online">
   <div class="section">
     <div class="section-header reveal">
@@ -365,11 +359,8 @@
             <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value=" تركية"><div class="custom-checkbox"></div><span class="salad-name">تركية</span></label>
             <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="جزر"><div class="custom-checkbox"></div><span class="salad-name">جزر</span></label>
             <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value=" عربية"><div class="custom-checkbox"></div><span class="salad-name">سلطة عربي</span></label>
-           <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="زتون"><div class="custom-checkbox"></div><span class="salad-name">زتون</span></label>
-                  <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="لفت"><div class="custom-checkbox"></div><span class="salad-name">لفت</span></label>
-             
-
-          </div>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="زتون"><div class="custom-checkbox"></div><span class="salad-name">زتون</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="لفت"><div class="custom-checkbox"></div><span class="salad-name">لفت</span></label>
           </div>
         </div>
 
@@ -386,7 +377,6 @@
   </div>
 </div>
 
-<!-- CHICKEN SECTION -->
 <div class="menu-bg" id="chicken">
   <div class="section">
     <div class="section-header reveal">
@@ -396,42 +386,36 @@
     </div>
     <div class="category-row">
       <div class="items-grid">
-        <!-- 1 -->
         <div class="food-card reveal ripple-element">
           <div class="food-img-wrap img-zoom-trigger"><img src="https://burger-rito.com/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-20-at-11.28.16-AM-3.jpeg" alt="بجيت دجاج" loading="lazy"></div>
           <div class="food-info" onclick="selectMeal('بجيت دجاج (17 شيكل)')">
             <div class="food-name">بجيت دجاج</div><div class="food-desc">بجيت الدجاج الشهي المميز</div><div class="food-price">17 ₪</div>
           </div>
         </div>
-        <!-- 2 -->
         <div class="food-card reveal ripple-element">
           <div class="food-img-wrap img-zoom-trigger"><img src="https://images.deliveryhero.io/image/talabat/MenuItems/Alos_%D8%B4%D8%A7%D9%88%D8%B1%D9%85%D8%A7_%D8%AF%D8%AC%D8%A7%D8%AC_%D8%B5%D9%85%D9%88%D9%86_%D8%AA%D8%B1%D9%83638749527865695194.jpg" alt="بجيت دجاج دبل" loading="lazy"></div>
           <div class="food-info" onclick="selectMeal('بجيت دجاج دبل (25 شيكل)')">
             <div class="food-name">بجيت دجاج دبل</div><div class="food-desc">كمية مضاعفة لمعدتك الخاوية</div><div class="food-price">25 ₪</div>
           </div>
         </div>
-        <!-- 3 -->
         <div class="food-card reveal ripple-element">
           <div class="food-img-wrap img-zoom-trigger"><img src="https://www.optifast-me.com/sites/default/files/2020-09/Warm%20Chicken%20Pita%20Wrap.jpg" alt="لفة دجاج" loading="lazy"></div>
           <div class="food-info" onclick="selectMeal('لفة دجاج (17 شيكل)')">
-            <div class="food-name">لفة دجاج</div><div class="food-desc">شاورما دجاج بالبهار المميز </div><div class="food-price">17 ₪</div>
+            <div class="food-name">لفة دجاج</div><div class="food-desc">شاورما دجاج بالبهار المميز</div><div class="food-price">17 ₪</div>
           </div>
         </div>
-        <!-- 4 -->
         <div class="food-card reveal ripple-element">
           <div class="food-img-wrap img-zoom-trigger"><img src="https://shbeeklbeek.com/uploads/images/1594142800shawafel-blog-1.jpg" alt="لفة دجاج دبل" loading="lazy"></div>
           <div class="food-info" onclick="selectMeal('لفة دجاج دبل (25 شيكل)')">
             <div class="food-name">لفة دجاج دبل</div><div class="food-desc">لفة مضاعفة ومليئة تسد جوعك</div><div class="food-price">25 ₪</div>
           </div>
         </div>
-        <!-- 5 -->
         <div class="food-card reveal ripple-element">
           <div class="food-img-wrap img-zoom-trigger"><img src="https://imageproxy.wolt.com/assets/65d330bb1588ce5746fbacd9" alt="بيتا دجاج" loading="lazy"></div>
           <div class="food-info" onclick="selectMeal('بيتا دجاج (15 شيكل)')">
             <div class="food-name">بيتا دجاج</div><div class="food-desc">دجاج مشوي بخبز البيتا الطازج</div><div class="food-price">15 ₪</div>
           </div>
         </div>
-        <!-- 6 -->
         <div class="food-card reveal ripple-element">
           <div class="food-img-wrap img-zoom-trigger"><img src="https://www.visitdubai.com/-/media/gathercontent/article/d/dubais-best-shawarmas/media/dubaibestshawarmaalmallah1shutterstockjpg.jpg?rev=2ee9acb3eb534e9097460a5598470229&cx=0.5&cy=0.5&cw=1420&ch=710" alt="بيتا دجاج دبل" loading="lazy"></div>
           <div class="food-info" onclick="selectMeal('بيتا دجاج دبل (18 شيكل)')">
@@ -443,7 +427,6 @@
   </div>
 </div>
 
-<!-- HABASH SECTION -->
 <div style="background: linear-gradient(180deg,#1a0000,#200000); border-bottom: 1px solid rgba(255,215,0,0.12);" id="habash">
   <div class="section">
     <div class="section-header reveal">
@@ -453,21 +436,18 @@
     </div>
     <div class="category-row">
       <div class="items-grid">
-        <!-- 1 -->
         <div class="food-card reveal ripple-element">
           <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?w=600&q=80" alt="بجيت حبش" loading="lazy"></div>
           <div class="food-info" onclick="selectMeal('بجيت حبش (22 شيكل)')">
             <div class="food-name">بجيت حبش</div><div class="food-desc">شاورما حبش مميزة بخبز البجيت</div><div class="food-price">22 ₪</div>
           </div>
         </div>
-        <!-- 2 -->
         <div class="food-card reveal ripple-element">
           <div class="food-img-wrap img-zoom-trigger"><img src="https://imageproxy.wolt.com/assets/65d330bb1588ce5746fbacd8" alt="لفة حبش" loading="lazy"></div>
           <div class="food-info" onclick="selectMeal('لفة حبش (22 شيكل)')">
-            <div class="food-name">لفة حبش</div><div class="food-desc">حبش محشي </div><div class="food-price">22 ₪</div>
+            <div class="food-name">لفة حبش</div><div class="food-desc">حبش محشي</div><div class="food-price">22 ₪</div>
           </div>
         </div>
-        <!-- 3 -->
         <div class="food-card reveal ripple-element">
           <div class="food-img-wrap img-zoom-trigger"><img src="https://imageproxy.wolt.com/menu/menu-images/shared/e8f658fa-227d-11ef-b20f-be3d8b9af8f9____________.jpg" alt="بيتا حبش" loading="lazy"></div>
           <div class="food-info" onclick="selectMeal('بيتا حبش (18 شيكل)')">
@@ -479,7 +459,6 @@
   </div>
 </div>
 
-<!-- TOAST & BASHKA SECTION -->
 <div class="menu-bg" id="toast-bashka">
   <div class="section">
     <div class="section-header reveal">
@@ -489,14 +468,12 @@
     </div>
     <div class="category-row">
       <div class="items-grid">
-        <!-- 1 -->
         <div class="food-card reveal ripple-element">
           <div class="food-img-wrap img-zoom-trigger"><img src="https://img.ananinja.com/media/ninja-catalog-42/restaurants/688pfliinnm5i85ipm7a31lisldg/%D8%A8%D8%A7%D8%B4%D9%83%D8%A7.jpeg?w=1080&q=75" alt="توست" loading="lazy"></div>
           <div class="food-info" onclick="selectMeal('توست (25 شيكل)')">
             <div class="food-name">توست</div><div class="food-desc">توست محمص غني بالطعم والإضافات</div><div class="food-price">25 ₪</div>
           </div>
         </div>
-        <!-- 2 -->
         <div class="food-card reveal ripple-element">
           <div class="food-img-wrap img-zoom-trigger"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTluWAFmtd_yr1NP2zTjCnbR26dSbi39ujGgw&s" alt="باشكا" loading="lazy"></div>
           <div class="food-info" onclick="selectMeal('باشكا (25 شيكل)')">
@@ -508,7 +485,6 @@
   </div>
 </div>
 
-<!-- DRINKS -->
 <div class="drinks-bg" id="drinks">
   <div class="section">
     <div class="section-header reveal">
@@ -533,7 +509,6 @@
   </div>
 </div>
 
-<!-- CAKES -->
 <div class="cake-bg" id="cakes">
   <div class="section">
     <div class="section-header reveal">
@@ -553,7 +528,6 @@
   </div>
 </div>
 
-<!-- CONTACT -->
 <div class="contact-bg" id="contact">
   <div class="section">
     <div class="section-header reveal">
@@ -562,7 +536,6 @@
       <div class="title-bar"></div>
     </div>
     <div class="contact-grid">
-      <!-- زر خرائط جوجل الجديد -->
       <a href="https://www.google.com/maps/search/?api=1&query=32.192059732330684,34.966379284951145" target="_blank" class="contact-card reveal ripple-element" title="اضغط لفتح الخريطة">
         <div class="c-icon">📍</div>
         <div>
@@ -570,21 +543,23 @@
           <div class="c-value"><span style="color: var(--gold);">قلقيلية · شارع الملعب</span></div>
         </div>
       </a>
-      
       <div class="contact-card reveal ripple-element"><div class="c-icon">📞</div><div><div class="c-label">الهاتف الأرضي</div><div class="c-value"><a href="tel:092946906" dir="ltr">09-2946906</a></div></div></div>
       <div class="contact-card reveal ripple-element"><div class="c-icon">📱</div><div><div class="c-label">الجوال</div><div class="c-value"><a href="tel:0599100513" dir="ltr">0599-100513</a></div></div></div>
     </div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-name">🔥 مطعم وجاتوه حلوان أخوان</div>
   <div class="footer-copy">جميع الحقوق محفوظة © 2026 — قلقيلية، فلسطين</div>
+  <div style="margin-top: 16px;">
+    <a class="footer-download-btn" href="https://drive.google.com/file/d/1dMU2WZPqDjvboACaJFvgJWqPl-9UBt_U/view?usp=drive_link" target="_blank">
+      📲 حمل التطبيق الآن للأندرويد
+    </a>
+  </div>
 </footer>
 
 <script>
-// 1. نظام الزر الأخضر (النفحات الإيمانية)
 const islamicQuotes = [
   "۞ إِنَّ مَعَ الْعُسْرِ يُسْرًا ۞",
   "۞ وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَى ۞",
@@ -616,7 +591,6 @@ document.getElementById('closeIslamic').addEventListener('click', () => {
   modalIslamic.classList.remove('active');
 });
 
-// 2. نظام إرسال الطلب الذكي للواتساب
 function shootConfetti() {
   const colors = ['#ffd700', '#ffb347', '#ff3333', '#ffffff', '#28a745'];
   for(let i=0; i<80; i++) {
@@ -632,21 +606,17 @@ function shootConfetti() {
 
 document.getElementById('custom-order-form').addEventListener('submit', function(e) {
   e.preventDefault(); 
-  
   const name = document.getElementById('custName').value;
   const meal = document.getElementById('mealType').value;
   const notes = document.getElementById('orderNotes').value;
-  
   const saladElements = document.querySelectorAll('input[name="salads"]:checked');
   let salads = [];
   saladElements.forEach(el => salads.push(el.value));
   let saladsText = salads.length > 0 ? salads.join('، ') : "بدون إضافات";
   let notesText = notes.trim() !== "" ? notes : "لا يوجد";
-
   const waMessage = `🔥 *طلب جديد من الموقع* 🔥\n\n👤 *الاسم:* ${name}\n🍔 *الوجبة:* ${meal}\n🥗 *السلطات والإضافات:* ${saladsText}\n📝 *ملاحظات إضافية:* ${notesText}`;
   const encodedMessage = encodeURIComponent(waMessage);
   const waLink = `https://wa.me/972599100513?text=${encodedMessage}`;
-  
   shootConfetti(); 
   window.location.href = waLink;
 });
@@ -659,7 +629,6 @@ function selectMeal(mealName) {
   setTimeout(() => { selectBox.style.boxShadow = 'none'; }, 1500);
 }
 
-// 3. ميزة تكبير الصور (Lightbox)
 const zoomTriggers = document.querySelectorAll('.img-zoom-trigger');
 const zoomOverlay = document.getElementById('zoomOverlay');
 const zoomedImg = document.getElementById('zoomedImg');
@@ -675,14 +644,12 @@ zoomTriggers.forEach(trigger => {
 
 zoomOverlay.addEventListener('click', () => { zoomOverlay.classList.remove('active'); });
 
-// 4. شريط تقدم القراءة
 window.addEventListener('scroll', () => {
   const scrollTotal = document.documentElement.scrollTop || document.body.scrollTop;
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   document.getElementById('scroll-progress').style.width = ((scrollTotal / height) * 100) + '%';
 });
 
-// 5. سحر اللمس (Touch Sparkles)
 let lastSparkTime = 0;
 document.addEventListener('touchmove', (e) => {
   const now = Date.now();
@@ -697,7 +664,6 @@ document.addEventListener('touchmove', (e) => {
   setTimeout(() => spark.remove(), 800);
 }, { passive: true });
 
-// 6. تأثير الموجة (Ripple)
 function createRipple(event) {
   const element = event.currentTarget;
   const circle = document.createElement('span');
@@ -719,12 +685,10 @@ document.querySelectorAll('.btn-primary, .btn-call, .btn-islamic-hero, .fab-isla
   el.addEventListener('touchstart', createRipple, { passive: true });
 });
 
-// 7. اهتزاز التفاعل الجوال
 document.querySelectorAll('.haptic-btn').forEach(btn => {
   btn.addEventListener('touchstart', () => { if (navigator.vibrate) navigator.vibrate(40); }, { passive: true });
 });
 
-// 8. الماوس السحري للحواسيب
 if (window.matchMedia("(pointer: fine)").matches) {
   const cursor = document.getElementById('magic-cursor');
   const trail = document.getElementById('cursor-trail');
@@ -747,7 +711,6 @@ if (window.matchMedia("(pointer: fine)").matches) {
   });
 }
 
-// 9. شرارات النار الواجهة
 (function(){
   const container = document.getElementById('particles');
   const colors = ['#ff4400','#ff6600','#ff8800','#ffaa00','#ffd700','#ff2200'];
@@ -758,7 +721,6 @@ if (window.matchMedia("(pointer: fine)").matches) {
   }
 })();
 
-// 10. كشف النزول (Scroll Reveal)
 (function(){
   const els = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); },{threshold:0.1});
