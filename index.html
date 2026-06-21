@@ -64,10 +64,9 @@
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
     /* ===== الأزرار العائمة ===== */
-    .fab-wa { position: fixed; bottom: 24px; left: 24px; width: 60px; height: 60px; background: linear-gradient(135deg, #25d366, #128c7e); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; color: white; text-decoration: none; z-index: 9000; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5); animation: pulse-green 2s infinite; transition: transform 0.3s; }
     .fab-islamic { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: linear-gradient(135deg, #28a745, #1e7e34); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; color: white; border: none; cursor: pointer; z-index: 9000; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.5); animation: pulse-green-islamic 2.5s infinite; transition: transform 0.3s; }
-    .fab-wa:active, .fab-islamic:active { transform: scale(0.9); }
-    @media (pointer: fine) { .fab-wa:hover, .fab-islamic:hover { transform: scale(1.1) rotate(-10deg); } }
+    .fab-islamic:active { transform: scale(0.9); }
+    @media (pointer: fine) { .fab-islamic:hover { transform: scale(1.1) rotate(-10deg); } }
 
     @keyframes pulse-green-islamic { 0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(40, 167, 69, 0); } 100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); } }
 
@@ -136,12 +135,12 @@
     .hero-sub { font-size: 18px; color: rgba(255,255,255,0.85); line-height: 1.8; position: relative; z-index: 2; }
     
     .hero-cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 2; }
-    .btn-wa, .btn-call, .btn-islamic-hero { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; font-family: 'Tajawal', sans-serif; font-size: 17px; font-weight: 700; padding: 15px 38px; border-radius: 60px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; }
-    .btn-wa { background: linear-gradient(135deg, #25d366, #128c7e); color: #fff; animation: pulse-green 2s infinite; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
+    .btn-primary, .btn-call, .btn-islamic-hero { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; font-family: 'Tajawal', sans-serif; font-size: 17px; font-weight: 700; padding: 15px 38px; border-radius: 60px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; }
+    .btn-primary { background: linear-gradient(135deg, #ffd700, #ffb347); color: #1a0000; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); }
     .btn-islamic-hero { background: linear-gradient(135deg, #28a745, #1e7e34); color: #fff; animation: pulse-green-islamic 2.5s infinite; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4); }
     .btn-call { background: rgba(255, 215, 0, 0.05); backdrop-filter: blur(5px); color: var(--gold); border: 2px solid var(--gold); }
-    .btn-wa:active, .btn-call:active, .btn-islamic-hero:active { transform: scale(0.92); }
-    @media (pointer: fine) { .btn-wa:hover, .btn-islamic-hero:hover { transform: scale(1.05) translateY(-3px); } .btn-call:hover { background: var(--gold); color: #1a0000; transform: scale(1.05) translateY(-3px); box-shadow: 0 0 25px rgba(255,215,0,0.5); } }
+    .btn-primary:active, .btn-call:active, .btn-islamic-hero:active { transform: scale(0.92); }
+    @media (pointer: fine) { .btn-primary:hover { transform: scale(1.05) translateY(-3px); } .btn-islamic-hero:hover { transform: scale(1.05) translateY(-3px); } .btn-call:hover { background: var(--gold); color: #1a0000; transform: scale(1.05) translateY(-3px); box-shadow: 0 0 25px rgba(255,215,0,0.5); } }
 
     /* ===== SECTIONS ===== */
     .section { max-width: 960px; margin: 0 auto; padding: 70px 24px; }
@@ -254,8 +253,7 @@
   </div>
 </div>
 
-<!-- الأزرار العائمة في الزوايا السفلية -->
-<a href="https://wa.me/00972599100513" target="_blank" class="fab-wa haptic-btn" title="تواصل عبر واتساب">💬</a>
+<!-- الزر الأخضر العائم للنفحات الإيمانية -->
 <button class="fab-islamic haptic-btn" id="fabIslamicBtn" title="نفحات إيمانية">📖</button>
 
 <!-- NAV -->
@@ -289,7 +287,7 @@
   <p class="hero-sub">طعم مميز 🌯 وألذ التوست 🍞 وأجمل الجاتوهات 🎂</p>
   
   <div class="hero-cta">
-    <a class="btn-wa haptic-btn" href="#order-online">🍔 فصّل طلبك أونلاين</a>
+    <a class="btn-primary haptic-btn" href="#order-online">🍔 فصّل طلبك أونلاين</a>
     <a class="btn-call haptic-btn" href="tel:0599100513">📞 اتصل الآن</a>
     <!-- الزر الأخضر الجديد في الواجهة -->
     <button class="btn-islamic-hero haptic-btn" id="heroIslamicBtn">📖 نفحات إيمانية</button>
@@ -347,7 +345,7 @@
         </div>
 
         <button type="submit" class="submit-order-btn ripple-element haptic-btn">
-          📲 إرسال الطلب عبر واتساب
+          📲 تأكيد وإرسال الطلب
         </button>
       </form>
     </div>
@@ -450,11 +448,11 @@
     </div>
     <div class="cake-card reveal ripple-element">
       <div class="cake-img-wrap img-zoom-trigger">
-        <img src="https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=900&q=80" alt="جاتوهات مميزة للمناسبات הפاخرة" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=900&q=80" alt="جاتوهات مميزة للمناسبات الفاخرة" loading="lazy">
       </div>
-      <div class="cake-body" onclick="location.href='https://wa.me/00972599100513?text=مرحباً، أود الاستفسار عن طلب جاتوه للمناسبات.'">
+      <div class="cake-body">
         <h3>🎂 جاتوهات مميزة لكل مناسبة</h3>
-        <p>نصنع لكم <span class="hl">أجمل الكيكات</span> بأرقى الأذواق<br>لأعراسكم 💒 · وأعياد ميلادكم 🎉 · وكل مناسباتكم السعيدة<br><br><span class="hl">اضغط هنا للتواصل معنا وحجز الجاتوه</span></p>
+        <p>نصنع لكم <span class="hl">أجمل الكيكات</span> بأرقى الأذواق<br>لأعراسكم 💒 · وأعياد ميلادكم 🎉 · وكل مناسباتكم السعيدة</p>
       </div>
     </div>
   </div>
@@ -524,10 +522,9 @@ document.getElementById('closeIslamic').addEventListener('click', () => {
   modalIslamic.classList.remove('active');
 });
 
-
 // 2. نظام إرسال الطلب الذكي + قصاصات الاحتفال (Confetti)
 function shootConfetti() {
-  const colors = ['#ffd700', '#ffb347', '#ff3333', '#ffffff', '#25d366'];
+  const colors = ['#ffd700', '#ffb347', '#ff3333', '#ffffff', '#28a745'];
   for(let i=0; i<80; i++) {
     const conf = document.createElement('div');
     conf.className = 'confetti';
@@ -621,7 +618,7 @@ function createRipple(event) {
   if (existing) existing.remove();
   element.appendChild(circle);
 }
-document.querySelectorAll('.btn-wa, .btn-call, .btn-islamic-hero, .fab-islamic, .ripple-element, .submit-order-btn, .fab-wa').forEach(el => {
+document.querySelectorAll('.btn-primary, .btn-call, .btn-islamic-hero, .fab-islamic, .ripple-element, .submit-order-btn').forEach(el => {
   el.addEventListener('mousedown', createRipple);
   el.addEventListener('touchstart', createRipple, { passive: true });
 });
