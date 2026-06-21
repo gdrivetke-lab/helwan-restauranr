@@ -123,4 +123,545 @@
     .nav-order-btn { background: var(--gold); color: #1a0000 !important; padding: 4px 12px; border-radius: 20px; font-weight: 700 !important; border: none !important; box-shadow: 0 0 10px rgba(255,215,0,0.4); }
 
     /* ===== HERO ===== */
-    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 140px 24px 60px; position: relative; overflow: hidden; background: radial-gradient(ellipse at 25% 30%, rgba(204,17,17,0.4) 0%, transparent 55%), radial-gradient(ellipse at 75% 70%, rgba(255,179,
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 140px 24px 60px; position: relative; overflow: hidden; background: radial-gradient(ellipse at 25% 30%, rgba(204,17,17,0.4) 0%, transparent 55%), radial-gradient(ellipse at 75% 70%, rgba(255,179,71,0.15) 0%, transparent 50%), radial-gradient(ellipse at 50% 10%, rgba(139,0,0,0.5) 0%, transparent 50%), linear-gradient(180deg, #2d0000 0%, #1a0000 100%); }
+    .fire-particle { position: absolute; width: 4px; height: 4px; border-radius: 50%; pointer-events: none; animation: rise linear infinite; }
+    @keyframes rise { 0% { transform: translateY(0) scale(1); opacity: 0.9; } 100% { transform: translateY(-120px) scale(0); opacity: 0; } }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,215,0,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,215,0,0.4); border-radius: 40px; padding: 7px 20px; font-size: 13px; color: var(--gold); font-weight: 700; margin-bottom: 22px; position: relative; z-index: 2; box-shadow: 0 0 20px rgba(255,215,0,0.2); }
+    .hero-title { font-size: clamp(30px, 8vw, 58px); font-weight: 900; line-height: 1.1; color: var(--white); position: relative; z-index: 2; text-shadow: 0 4px 24px rgba(0,0,0,0.6); }
+    .hero-title .gold { color: var(--gold); display: inline-block; animation: gold-glow 3s ease-in-out infinite; }
+    .hero-title .red { background: linear-gradient(90deg, #ff3333, #ffaa00, #ff3333); background-size: 200% auto; color: transparent; -webkit-background-clip: text; background-clip: text; animation: text-gradient 3s linear infinite; }
+    .hero-location { font-size: 15px; color: var(--text-muted); margin-top: 14px; position: relative; z-index: 2; }
+    .hero-location a { color: inherit; text-decoration: none; transition: color 0.3s; }
+    .hero-location a:hover { color: var(--gold); }
+    .hero-divider { width: 100px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 24px auto; position: relative; z-index: 2; }
+    .hero-sub { font-size: 18px; color: rgba(255,255,255,0.85); line-height: 1.8; position: relative; z-index: 2; }
+    
+    .hero-cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 2; }
+    .btn-primary, .btn-call, .btn-islamic-hero { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; font-family: 'Tajawal', sans-serif; font-size: 17px; font-weight: 700; padding: 15px 38px; border-radius: 60px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; }
+    .btn-primary { background: linear-gradient(135deg, #ffd700, #ffb347); color: #1a0000; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); }
+    .btn-islamic-hero { background: linear-gradient(135deg, #28a745, #1e7e34); color: #fff; animation: pulse-green-islamic 2.5s infinite; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4); }
+    .btn-call { background: rgba(255, 215, 0, 0.05); backdrop-filter: blur(5px); color: var(--gold); border: 2px solid var(--gold); }
+    .btn-primary:active, .btn-call:active, .btn-islamic-hero:active { transform: scale(0.92); }
+    @media (pointer: fine) { .btn-primary:hover { transform: scale(1.05) translateY(-3px); } .btn-islamic-hero:hover { transform: scale(1.05) translateY(-3px); } .btn-call:hover { background: var(--gold); color: #1a0000; transform: scale(1.05) translateY(-3px); box-shadow: 0 0 25px rgba(255,215,0,0.5); } }
+
+    /* ===== SECTIONS ===== */
+    .section { max-width: 960px; margin: 0 auto; padding: 70px 24px; }
+    .section-header { text-align: center; margin-bottom: 44px; }
+    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 10px; }
+    .section-title { font-size: clamp(22px, 5vw, 36px); font-weight: 900; color: var(--white); }
+    .section-title span { color: var(--red-bright); }
+    .title-bar { width: 60px; height: 3px; background: linear-gradient(90deg, var(--red-vivid), var(--gold)); border-radius: 2px; margin: 14px auto 0; }
+
+    /* ===== ORDER ONLINE FORM ===== */
+    .order-bg { background: linear-gradient(180deg, #110000 0%, #1a0000 100%); border-top: 1px solid rgba(255,215,0,0.15); }
+    .order-container { background: rgba(30, 0, 0, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,215,0,0.2); border-radius: 24px; padding: 32px 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); max-width: 700px; margin: 0 auto; }
+    .form-group { margin-bottom: 24px; text-align: right; }
+    .form-label { display: block; font-size: 15px; font-weight: 700; color: var(--gold); margin-bottom: 10px; }
+    .form-input, .form-select, .form-textarea { width: 100%; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 14px 16px; color: var(--white); font-family: 'Tajawal', sans-serif; font-size: 16px; transition: all 0.3s; outline: none; cursor: pointer; }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.4); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); box-shadow: 0 0 15px rgba(255,215,0,0.2); background: rgba(26,0,0,0.8); }
+    
+    .form-select optgroup { background: #2d0000; color: var(--gold); font-weight: bold; }
+    .form-select option { background: #1a0000; color: var(--white); font-weight: normal; }
+
+    .salads-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; }
+    .salad-option { display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 10px; cursor: pointer; transition: all 0.2s; user-select: none; }
+    .salad-option:active { transform: scale(0.95); }
+    .salad-option input[type="checkbox"] { display: none; }
+    .custom-checkbox { width: 20px; height: 20px; border: 2px solid rgba(255,215,0,0.5); border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .salad-option input[type="checkbox"]:checked + .custom-checkbox { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 10px rgba(255,215,0,0.5); }
+    .salad-option input[type="checkbox"]:checked + .custom-checkbox::after { content: '✔'; color: #1a0000; font-size: 14px; font-weight: bold; }
+    .salad-option input[type="checkbox"]:checked ~ .salad-name { color: var(--gold); font-weight: 700; }
+    .salad-name { font-size: 14px; color: rgba(255,255,255,0.8); transition: color 0.2s; }
+    .submit-order-btn { width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px; background: linear-gradient(135deg, #ffd700, #ffb347); color: #1a0000; font-size: 18px; font-weight: 900; border: none; border-radius: 14px; padding: 18px; margin-top: 10px; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 25px rgba(255,215,0,0.3); position: relative; overflow: hidden; font-family: 'Tajawal', sans-serif; }
+    .submit-order-btn:active { transform: scale(0.96); box-shadow: 0 5px 15px rgba(255,215,0,0.2); }
+
+    /* ===== MENU GRID & CARDS ===== */
+    .menu-bg { background: linear-gradient(180deg, #200000 0%, #1a0000 100%); border-top: 1px solid rgba(255,215,0,0.15); border-bottom: 1px solid rgba(255,215,0,0.15); }
+    .category-row { margin-bottom: 52px; }
+    .category-row:last-child { margin-bottom: 0; }
+    .cat-label { display: inline-flex; align-items: center; gap: 8px; background: rgba(204, 17, 17, 0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,215,0,0.3); border-radius: 30px; padding: 8px 24px; font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 26px; box-shadow: 0 8px 20px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,215,0,0.1); animation: float 4s ease-in-out infinite alternate; }
+    .items-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; justify-items: center; perspective: 1000px; }
+    
+    .food-card { background: linear-gradient(160deg, rgba(80,0,0,0.4), rgba(30,0,0,0.8)); backdrop-filter: blur(5px); border: 1px solid rgba(255,215,0,0.15); border-radius: 20px; overflow: hidden; width: 100%; max-width: 280px; position: relative; transform-style: preserve-3d; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s, box-shadow 0.4s; cursor: pointer; }
+    .food-card:active { transform: scale(0.95); border-color: rgba(255,215,0,0.8); box-shadow: 0 0 20px rgba(255, 30, 0, 0.5), inset 0 0 15px rgba(255,215,0,0.3); }
+    @media (pointer: fine) { .food-card:hover { transform: translateY(-12px); border-color: rgba(255,215,0,0.8); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 30, 0, 0.3), inset 0 0 15px rgba(255,215,0,0.1); } }
+    .food-img-wrap { position: relative; width: 100%; height: 190px; overflow: hidden; background: #110000; display: flex; align-items: center; justify-content: center; transform: translateZ(30px); }
+    .food-img-wrap::after { content: '🔍'; position: absolute; font-size: 24px; opacity: 0; transition: opacity 0.3s; z-index: 5; pointer-events: none; }
+    .food-card:hover .food-img-wrap::after { opacity: 1; }
+    .food-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease, filter 0.6s ease; filter: brightness(0.9); }
+    .food-card:active .food-img-wrap img, .food-card:hover .food-img-wrap img { transform: scale(1.12); filter: brightness(1.1); }
+    .food-info { padding: 18px 16px 20px; text-align: center; position: relative; z-index: 2; transform: translateZ(20px); }
+    .food-name { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 6px; transition: color 0.3s; }
+    .food-card:active .food-name, .food-card:hover .food-name { color: var(--gold); }
+    .food-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .food-price { display: inline-block; background: rgba(255, 215, 0, 0.15); color: var(--gold); padding: 4px 12px; border-radius: 20px; font-weight: 900; font-size: 15px; margin-top: 8px; border: 1px solid rgba(255, 215, 0, 0.3); }
+
+    /* ===== CAKES & OTHERS ===== */
+    .cake-bg { background: linear-gradient(180deg, #1a0000 0%, #220000 100%); }
+    .cake-card { max-width: 680px; margin: 0 auto; background: linear-gradient(135deg, rgba(139,0,0,0.4), rgba(45,0,0,0.7)); border: 1px solid rgba(255,215,0,0.3); border-radius: 28px; overflow: hidden; box-shadow: 0 15px 45px rgba(0,0,0,0.6), 0 0 30px rgba(255,215,0,0.1); animation: float 5s ease-in-out infinite; cursor: pointer; position: relative; }
+    .cake-card:active { transform: scale(0.97); }
+    .cake-img-wrap { width: 100%; height: 320px; overflow: hidden; position: relative;}
+    .cake-img-wrap::after { content: '🔍'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+    .cake-card:hover .cake-img-wrap::after { opacity: 1; }
+    .cake-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.9); transition: transform 0.8s ease; }
+    .cake-body { padding: 32px 28px; text-align: center; }
+    .cake-body h3 { font-size: 26px; font-weight: 900; color: var(--gold); margin-bottom: 12px; }
+    .cake-body p { font-size: 16px; color: rgba(255,255,255,0.9); line-height: 1.9; }
+    .cake-body .hl { color: var(--red-bright); font-weight: 700; }
+    
+    .drinks-bg { background: linear-gradient(180deg, #220000 0%, #1a0000 100%); border-top: 1px solid rgba(255,215,0,0.12); }
+    .contact-bg { background: linear-gradient(180deg, #1a0000 0%, #0d0000 100%); border-top: 1px solid rgba(255,215,0,0.15); }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .contact-card { background: rgba(139,0,0,0.2); backdrop-filter: blur(5px); border: 1px solid rgba(255,215,0,0.18); border-radius: 18px; padding: 22px 18px; display: flex; align-items: center; gap: 14px; transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden; }
+    .contact-card:active { transform: scale(0.95); border-color: var(--gold); }
+    .c-icon { width: 48px; height: 48px; border-radius: 14px; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; transition: transform 0.3s, background 0.3s; }
+    .contact-card:active .c-icon, .contact-card:hover .c-icon { transform: scale(1.1) rotate(5deg); background: rgba(255,215,0,0.2); }
+    .c-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+    .c-value { font-size: 15px; font-weight: 700; color: var(--white); }
+    .c-value a { color: var(--gold); text-decoration: none; direction: ltr; display: inline-block; cursor: pointer; }
+
+    footer { background: #080000; border-top: 1px solid rgba(255,215,0,0.15); padding: 26px 24px; text-align: center; }
+    .footer-name { font-size: 17px; font-weight: 900; color: var(--gold); margin-bottom: 6px; }
+    .footer-copy { font-size: 13px; color: rgba(255,179,71,0.4); }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) { .nav-links { display: flex; gap: 10px; } .nav-links li.desktop-only { display: none; } }
+    @media (max-width: 620px) { html { cursor: auto; } .items-grid { grid-template-columns: 1fr 1fr; } .items-grid.single { grid-template-columns: 1fr; } .hero-cta { flex-direction: column; align-items: center; } .food-card { transform-style: flat; } }
+    @media (max-width: 420px) { .items-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-logo">🔥 حلوان اخوان</div>
+  <div class="fire-text">مرحباً بكم في عالم ملك الشاورما بلا منازع</div>
+</div>
+
+<div id="scroll-progress"></div>
+<div id="magic-cursor"></div>
+<div id="cursor-trail"></div>
+
+<div class="zoom-overlay" id="zoomOverlay">
+  <img src="" alt="Zoomed" class="zoomed-img" id="zoomedImg">
+</div>
+
+<div class="islamic-modal" id="islamicModal">
+  <div class="islamic-content">
+    <span class="close-islamic" id="closeIslamic">&times;</span>
+    <div class="islamic-icon">📖</div>
+    <div class="islamic-text" id="islamicText"></div>
+  </div>
+</div>
+
+<button class="fab-islamic haptic-btn" id="fabIslamicBtn" title="نفحات إيمانية">📖</button>
+
+<header>
+  <div class="marquee-container">
+    <div class="marquee-text">
+      🔥 أهلاً بكم في مطعم وجاتوه حلوان اخوان في قلقيلية! 🎁 عروضنا ما بتخلص: وجاتوهات بتجمّل كل مناسباتكم... اطلب أونلاين الآن! 🛵
+    </div>
+  </div>
+  <nav>
+    <div class="nav-logo">🔥 حلوان اخوان</div>
+    <ul class="nav-links">
+      <li class="desktop-only"><a href="#chicken">دجاج</a></li>
+      <li class="desktop-only"><a href="#habash">حبش</a></li>
+      <li class="desktop-only"><a href="#toast-bashka">توست وباشكا</a></li>
+      <li class="desktop-only"><a href="#cakes">جاتوه</a></li>
+      <li><a href="#order-online" class="nav-order-btn haptic-btn">🛒 اطلب أونلاين</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <div id="particles"></div>
+  <div class="hero-badge">✨ قلقيلية — شارع الملعب ✨</div>
+  <h1 class="hero-title">
+    مطعم <span class="gold">وجاتوه</span><br>
+    <span class="red">حلوان</span> اخوان
+  </h1>
+  <p class="hero-location">
+    <a href="https://www.google.com/maps/search/?api=1&query=32.192059732330684,34.966379284951145" target="_blank">📍 بجانب الشنطي للمحروقات (اضغط للوصول)</a>
+  </p>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">طعم مميز 🌯 وألذ الساندويشات 🥙 وأجمل الجاتوهات 🎂</p>
+  
+  <div class="hero-cta">
+    <a class="btn-primary haptic-btn" href="#order-online">🍔 فصّل طلبك أونلاين</a>
+    <a class="btn-call haptic-btn" href="tel:0599100513">📞 اتصل الآن</a>
+    <button class="btn-islamic-hero haptic-btn" id="heroIslamicBtn">📖 نفحات إيمانية</button>
+  </div>
+</section>
+
+<div class="order-bg" id="order-online">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="eyebrow">اطلب الآن بسهولة</span>
+      <h2 class="section-title">اختر وجبتك <span>على ذوقك</span></h2>
+      <div class="title-bar"></div>
+    </div>
+    
+    <div class="order-container reveal">
+      <form id="custom-order-form">
+        <div class="form-group">
+          <label class="form-label">الاسم الكريم:</label>
+          <input type="text" id="custName" class="form-input" placeholder="اكتب اسمك هنا..." required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">اختر وجبتك الأساسية:</label>
+          <select id="mealType" class="form-select" required>
+            <option value="" disabled selected>-- اضغط لاختيار الوجبة --</option>
+            <optgroup label="وجبات الدجاج">
+                <option value="بيتا دجاج (15 شيكل)">بيتا دجاج - 15 ₪</option>
+                <option value="بيتا دجاج دبل (18 شيكل)">بيتا دجاج دبل - 18 ₪</option>
+                <option value="بجيت دجاج (17 شيكل)">بجيت دجاج - 17 ₪</option>
+                <option value="بجيت دجاج دبل (25 شيكل)">بجيت دجاج دبل - 25 ₪</option>
+                <option value="لفة دجاج (17 شيكل)">لفة دجاج - 17 ₪</option>
+                <option value="لفة دجاج دبل (25 شيكل)">لفة دجاج دبل - 25 ₪</option>
+            </optgroup>
+            <optgroup label="وجبات الحبش">
+                <option value="بيتا حبش (18 شيكل)">بيتا حبش - 18 ₪</option>
+                <option value="بجيت حبش (22 شيكل)">بجيت حبش - 22 ₪</option>
+                <option value="لفة حبش (22 شيكل)">لفة حبش - 22 ₪</option>
+            </optgroup>
+            <optgroup label="التوست والباشكا">
+                <option value="توست (25 شيكل)">توست - 25 ₪</option>
+                <option value="باشكا (25 شيكل)">باشكا - 25 ₪</option>
+            </optgroup>
+            <optgroup label="المشروبات">
+                <option value="كولا (3 شيكل)">كولا - 3 ₪</option>
+                <option value="عصير (3 شيكل)">عصير - 3 ₪</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">السلطات والإضافات (اختر ما تحب):</label>
+          <div class="salads-grid">
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="ملفوف أحمر"><div class="custom-checkbox"></div><span class="salad-name">ملفوف أحمر</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="ملفوف أبيض"><div class="custom-checkbox"></div><span class="salad-name">ملفوف أبيض</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="عمبة"><div class="custom-checkbox"></div><span class="salad-name">عمبة</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="طحينية"><div class="custom-checkbox"></div><span class="salad-name">طحينية</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="بصل"><div class="custom-checkbox"></div><span class="salad-name">بصل</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="مخلل خيار"><div class="custom-checkbox"></div><span class="salad-name">مخلل خيار</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="سلطة تركية"><div class="custom-checkbox"></div><span class="salad-name">تركية</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="جزر"><div class="custom-checkbox"></div><span class="salad-name">جزر</span></label>
+            <label class="salad-option haptic-btn"><input type="checkbox" name="salads" value="سلطة عربية"><div class="custom-checkbox"></div><span class="salad-name">سلطة عربي</span></label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ملاحظات إضافية (اختياري):</label>
+          <textarea id="orderNotes" class="form-textarea" rows="2" placeholder="مثال: بدون شطة، محمص زيادة..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-order-btn ripple-element haptic-btn">
+          📲 تأكيد وإرسال الطلب
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="menu-bg" id="chicken">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="eyebrow">قائمة الدجاج</span>
+      <h2 class="section-title">وجبات <span>الدجاج</span></h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="category-row">
+      <div class="items-grid">
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1619881589316-56c7f9e6b587?w=600&q=80" alt="بجيت دجاج" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بجيت دجاج (17 شيكل)')">
+            <div class="food-name">بجيت دجاج</div><div class="food-desc">بجيت الدجاج الشهي والمحمص</div><div class="food-price">17 ₪</div>
+          </div>
+        </div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1604467715878-83e57e8bc129?w=600&q=80" alt="بجيت دجاج دبل" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بجيت دجاج دبل (25 شيكل)')">
+            <div class="food-name">بجيت دجاج دبل</div><div class="food-desc">كمية مضاعفة للمعدة الخاوية</div><div class="food-price">25 ₪</div>
+          </div>
+        </div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600&q=80" alt="لفة دجاج" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('لفة دجاج (17 شيكل)')">
+            <div class="food-name">لفة دجاج</div><div class="food-desc">شاورما دجاج بخبز الصاج</div><div class="food-price">17 ₪</div>
+          </div>
+        </div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=600&q=80" alt="لفة دجاج دبل" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('لفة دجاج دبل (25 شيكل)')">
+            <div class="food-name">لفة دجاج دبل</div><div class="food-desc">لفة مضاعفة ومليئة بالطعم</div><div class="food-price">25 ₪</div>
+          </div>
+        </div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1605333396914-2314dce1c581?w=600&q=80" alt="بيتا دجاج" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بيتا دجاج (15 شيكل)')">
+            <div class="food-name">بيتا دجاج</div><div class="food-desc">دجاج مشوي بخبز البيتا الطازج</div><div class="food-price">15 ₪</div>
+          </div>
+        </div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=600&q=80" alt="بيتا دجاج دبل" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بيتا دجاج دبل (18 شيكل)')">
+            <div class="food-name">بيتا دجاج دبل</div><div class="food-desc">بيتا مليئة بطبقة دجاج إضافية</div><div class="food-price">18 ₪</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="background: linear-gradient(180deg,#1a0000,#200000); border-bottom: 1px solid rgba(255,215,0,0.12);" id="habash">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="eyebrow">قائمة الحبش</span>
+      <h2 class="section-title">وجبات <span>الحبش</span></h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="category-row">
+      <div class="items-grid">
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?w=600&q=80" alt="بجيت حبش" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بجيت حبش (22 شيكل)')">
+            <div class="food-name">بجيت حبش</div><div class="food-desc">شاورما حبش مميزة بخبز البجيت</div><div class="food-price">22 ₪</div>
+          </div>
+        </div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1668233595287-28d11c828df5?w=600&q=80" alt="لفة حبش" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('لفة حبش (22 شيكل)')">
+            <div class="food-name">لفة حبش</div><div class="food-desc">حبش محشي بخبز الصاج</div><div class="food-price">22 ₪</div>
+          </div>
+        </div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600&q=80" alt="بيتا حبش" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بيتا حبش (18 شيكل)')">
+            <div class="food-name">بيتا حبش</div><div class="food-desc">حبش رائع بخبز البيتا</div><div class="food-price">18 ₪</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-bg" id="toast-bashka">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="eyebrow">المميز لدينا</span>
+      <h2 class="section-title">توست <span>وباشكا</span></h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="category-row">
+      <div class="items-grid">
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80" alt="توست" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('توست (25 شيكل)')">
+            <div class="food-name">توست</div><div class="food-desc">توست محمص غني بالطعم والإضافات</div><div class="food-price">25 ₪</div>
+          </div>
+        </div>
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1553909489-cd47ce7fa5d5?w=600&q=80" alt="باشكا" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('باشكا (25 شيكل)')">
+            <div class="food-name">باشكا</div><div class="food-desc">وجبة الباشكا المميزة والشهية</div><div class="food-price">25 ₪</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="drinks-bg" id="drinks">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="eyebrow">المشروبات</span>
+      <h2 class="section-title">مشروبات <span>منعشة</span></h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="items-grid">
+      <div class="food-card reveal ripple-element">
+        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=600&q=80" alt="كولا" loading="lazy"></div>
+        <div class="food-info" onclick="selectMeal('كولا (3 شيكل)')">
+          <div class="food-name">كولا</div><div class="food-desc">مشروب غازي بارد</div><div class="food-price">3 ₪</div>
+        </div>
+      </div>
+      <div class="food-card reveal ripple-element">
+        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600&q=80" alt="عصير" loading="lazy"></div>
+        <div class="food-info" onclick="selectMeal('عصير (3 شيكل)')">
+          <div class="food-name">عصير</div><div class="food-desc">عصائر منعشة ومثلجة</div><div class="food-price">3 ₪</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cake-bg" id="cakes">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="eyebrow">الجاتوهات والحلويات</span>
+      <h2 class="section-title">صنعناه <span>بجمال</span> ارائكــم</h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="cake-card reveal ripple-element">
+      <div class="cake-img-wrap img-zoom-trigger">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=900&q=80" alt="جاتوهات مميزة للمناسبات الفاخرة" loading="lazy">
+      </div>
+      <div class="cake-body">
+        <h3>🎂 جاتوهات مميزة لكل مناسبة</h3>
+        <p>نصنع لكم <span class="hl">أجمل الكيكات</span> بأرقى الأذواق<br>لأعراسكم 💒 · وأعياد ميلادكم 🎉 · وكل مناسباتكم السعيدة</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-bg" id="contact">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="eyebrow">تواصل معنا</span>
+      <h2 class="section-title">نحن في <span>خدمتكم</span></h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal ripple-element" onclick="window.open('https://www.google.com/maps/search/?api=1&query=32.192059732330684,34.966379284951145', '_blank')" title="اضغط لفتح الخريطة">
+        <div class="c-icon">📍</div>
+        <div>
+          <div class="c-label">العنوان (اضغط للوصول)</div>
+          <div class="c-value"><span style="color: var(--gold);">قلقيلية · شارع الملعب</span></div>
+        </div>
+      </div>
+      <div class="contact-card reveal ripple-element"><div class="c-icon">📞</div><div><div class="c-label">الهاتف الأرضي</div><div class="c-value"><a href="tel:092946906" dir="ltr">09-2946906</a></div></div></div>
+      <div class="contact-card reveal ripple-element"><div class="c-icon">📱</div><div><div class="c-label">الجوال</div><div class="c-value"><a href="tel:0599100513" dir="ltr">0599-100513</a></div></div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-name">🔥 مطعم وجاتوه حلوان أخوان</div>
+  <div class="footer-copy">جميع الحقوق محفوظة © 2026 — قلقيلية، فلسطين</div>
+</footer>
+
+<script>
+// 1. نظام شاشة التحميل الآمن (لن تعلق الشاشة أبداً)
+document.addEventListener('DOMContentLoaded', () => {
+  const loader = document.getElementById('loader');
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    setTimeout(() => { loader.style.display = 'none'; }, 500);
+  }, 1000);
+});
+
+// حماية إضافية في حال تأخر المتصفح
+setTimeout(() => {
+  const loader = document.getElementById('loader');
+  if(loader && loader.style.display !== 'none') {
+    loader.style.opacity = '0';
+    setTimeout(() => { loader.style.display = 'none'; }, 500);
+  }
+}, 2500);
+
+// 2. نظام الزر الأخضر (النفحات الإيمانية)
+const islamicQuotes = [
+  "۞ إِنَّ مَعَ الْعُسْرِ يُسْرًا ۞",
+  "۞ وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَى ۞",
+  "۞ وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ ۞",
+  "قال رسول الله ﷺ: «كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن: سبحان الله وبحمده، سبحان الله العظيم»",
+  "۞ فَاذْكُرُونِي أَذْكُرْكُمْ ۞",
+  "قال رسول الله ﷺ: «اتق الله حيثما كنت، وأتبع السيئة الحسنة تمحها، وخالق الناس بخلق حسن»",
+  "۞ وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ ۞",
+  "قال رسول الله ﷺ: «لا تحقرن من المعروف شيئاً، ولو أن تلقى أخاك بوجه طلق»",
+  "۞ سَيَجْعَلُ اللَّهُ بَعْدَ عُسْرٍ يُسْرًا ۞",
+  "قال رسول الله ﷺ: «من صام رمضان إيماناً واحتساباً غفر له ما تقدم من ذنبه»",
+  "۞ وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ ۞",
+  "قال رسول الله ﷺ: «خير الناس أنفعهم للناس»"
+];
+
+const modalIslamic = document.getElementById('islamicModal');
+const textIslamic = document.getElementById('islamicText');
+
+function showIslamicQuote() {
+  const randomQuote = islamicQuotes[Math.floor(Math.random() * islamicQuotes.length)];
+  textIslamic.innerText = randomQuote;
+  modalIslamic.classList.add('active');
+  shootConfetti(); 
+}
+
+document.getElementById('fabIslamicBtn').addEventListener('click', showIslamicQuote);
+document.getElementById('heroIslamicBtn').addEventListener('click', showIslamicQuote);
+document.getElementById('closeIslamic').addEventListener('click', () => {
+  modalIslamic.classList.remove('active');
+});
+
+// 3. نظام إرسال الطلب الذكي للواتساب
+function shootConfetti() {
+  const colors = ['#ffd700', '#ffb347', '#ff3333', '#ffffff', '#28a745'];
+  for(let i=0; i<80; i++) {
+    const conf = document.createElement('div');
+    conf.className = 'confetti';
+    conf.style.left = Math.random() * 100 + 'vw';
+    conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    conf.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+    document.body.appendChild(conf);
+    setTimeout(() => conf.remove(), 4000);
+  }
+}
+
+document.getElementById('custom-order-form').addEventListener('submit', function(e) {
+  e.preventDefault(); 
+  
+  const name = document.getElementById('custName').value;
+  const meal = document.getElementById('mealType').value;
+  const notes = document.getElementById('orderNotes').value;
+  
+  const saladElements = document.querySelectorAll('input[name="salads"]:checked');
+  let salads = [];
+  saladElements.forEach(el => salads.push(el.value));
+  let saladsText = salads.length > 0 ? salads.join('، ') : "بدون إضافات";
+  let notesText = notes.trim() !== "" ? notes : "لا يوجد";
+
+  const waMessage = `🔥 *طلب جديد من الموقع* 🔥\n\n👤 *الاسم:* ${name}\n🍔 *الوجبة:* ${meal}\n🥗 *السلطات والإضافات:* ${saladsText}\n📝 *ملاحظات إضافية:* ${notesText}`;
+  const encodedMessage = encodeURIComponent(waMessage);
+  const waLink = `https://wa.me/00972599100513?text=${encodedMessage}`;
+  
+  shootConfetti(); 
+  window.location.href = waLink;
+});
+
+function selectMeal(mealName) {
+  document.getElementById('mealType').value = mealName;
+  location.href = '#order-online';
+  const selectBox = document.getElementById('mealType');
+  selectBox.style.boxShadow = '0 0 20px var(--gold)';
+  setTimeout(() => { selectBox.style.boxShadow = 'none'; }, 1500);
+}
+
+// 4. ميزة تكبير الصور (Lightbox)
+const zoomTriggers = document.querySelectorAll('.img-zoom-trigger');
+const zoomOverlay = document.getElementById('zoomOverlay');
+const zoomedImg = document.getElementById('zoomedImg');
+
+zoomTriggers.forEach(trigger => {
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const imgSrc = trigger.querySelector('img').src;
+    zoomedImg.src = imgSrc;
+    zoomOverlay.classList.add('active');
+  });
+});
+
+zoomOverlay.addEventListener('click', () => { zoomOverlay.classList.remove('active'); });
+
+// 5. شريط تقدم القراءة
+window.addEventListener('scroll', () => {
+  const scrollTotal = document.documentElement.scrollTop || document.body.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById('scroll-progress').style.width = ((scrollTotal / height) * 100) + '%';
+});
+
+// 6. سحر اللمس (Touch Sparkles)
+let lastSparkTime = 0;
+document.addEventListener('touchmove', (e) => {
+  const now = Date.now();
