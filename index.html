@@ -25,7 +25,7 @@
       --text-muted:  #ffcca0;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; cursor: none; /* إخفاء الماوس الافتراضي للأجهزة التي تدعم الماوس السحري */ }
 
     body {
       font-family: 'Tajawal', sans-serif;
@@ -34,7 +34,34 @@
       overflow-x: hidden;
     }
 
-    /* ===== KEYFRAMES (تأثيرات سحرية) ===== */
+    /* ===== شريط التقدم السحري ===== */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red-vivid), var(--gold), #ffffff);
+      z-index: 10000;
+      width: 0%;
+      box-shadow: 0 0 10px var(--gold);
+      transition: width 0.1s;
+    }
+
+    /* ===== الماوس السحري (يتم إخفاؤه في الجوال) ===== */
+    #magic-cursor {
+      position: fixed; top: 0; left: 0; width: 8px; height: 8px;
+      background: var(--gold); border-radius: 50%; pointer-events: none;
+      z-index: 9999; transform: translate(-50%, -50%);
+      box-shadow: 0 0 15px 4px rgba(255, 215, 0, 0.6);
+      transition: width 0.2s, height 0.2s;
+    }
+    #cursor-trail {
+      position: fixed; top: 0; left: 0; width: 30px; height: 30px;
+      border: 1px solid rgba(255, 215, 0, 0.5); border-radius: 50%;
+      pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
+      transition: top 0.1s ease-out, left 0.1s ease-out, width 0.2s, height 0.2s;
+    }
+
+    /* ===== KEYFRAMES ===== */
     @keyframes pulse-green {
       0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
       70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
@@ -60,6 +87,16 @@
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
+    }
+
+    /* تأثير الكتابة التلقائية */
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--gold) }
     }
 
     /* ===== NAV ===== */
@@ -88,39 +125,20 @@
       text-shadow: 0 0 8px rgba(255,215,0,0.4);
     }
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-
+    .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a {
-      text-decoration: none;
-      color: rgba(255,255,255,0.8);
-      font-size: 15px;
-      font-weight: 500;
-      transition: color 0.3s, text-shadow 0.3s;
-      padding-bottom: 2px;
-      border-bottom: 2px solid transparent;
+      text-decoration: none; color: rgba(255,255,255,0.8); font-size: 15px;
+      font-weight: 500; transition: color 0.3s, text-shadow 0.3s;
+      padding-bottom: 2px; border-bottom: 2px solid transparent;
+      cursor: none; /* يتولى الماوس السحري الأمر */
     }
-
-    .nav-links a:hover {
-      color: var(--gold);
-      text-shadow: 0 0 8px rgba(255,215,0,0.6);
-      border-bottom-color: var(--gold);
-    }
+    .nav-links a:hover { color: var(--gold); text-shadow: 0 0 8px rgba(255,215,0,0.6); border-bottom-color: var(--gold); }
 
     /* ===== HERO ===== */
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 110px 24px 60px;
-      position: relative;
-      overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 110px 24px 60px; position: relative; overflow: hidden;
       background:
         radial-gradient(ellipse at 25% 30%, rgba(204,17,17,0.4) 0%, transparent 55%),
         radial-gradient(ellipse at 75% 70%, rgba(255,179,71,0.15) 0%, transparent 50%),
@@ -129,12 +147,8 @@
     }
 
     .fire-particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      pointer-events: none;
-      animation: rise linear infinite;
+      position: absolute; width: 4px; height: 4px; border-radius: 50%;
+      pointer-events: none; animation: rise linear infinite; transition: transform 0.5s ease-out;
     }
 
     @keyframes rise {
@@ -143,416 +157,171 @@
     }
 
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,215,0,0.1);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,215,0,0.4);
-      border-radius: 40px;
-      padding: 7px 20px;
-      font-size: 13px;
-      color: var(--gold);
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-bottom: 22px;
-      position: relative;
-      z-index: 2;
-      box-shadow: 0 0 20px rgba(255,215,0,0.2);
+      display: inline-flex; align-items: center; gap: 8px; background: rgba(255,215,0,0.1);
+      backdrop-filter: blur(4px); border: 1px solid rgba(255,215,0,0.4);
+      border-radius: 40px; padding: 7px 20px; font-size: 13px; color: var(--gold);
+      font-weight: 700; letter-spacing: 1.5px; margin-bottom: 22px; position: relative;
+      z-index: 2; box-shadow: 0 0 20px rgba(255,215,0,0.2);
     }
 
     .hero-title {
-      font-size: clamp(30px, 8vw, 58px);
-      font-weight: 900;
-      line-height: 1.1;
-      color: var(--white);
-      position: relative;
-      z-index: 2;
-      text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+      font-size: clamp(30px, 8vw, 58px); font-weight: 900; line-height: 1.1;
+      color: var(--white); position: relative; z-index: 2; text-shadow: 0 4px 24px rgba(0,0,0,0.6);
     }
 
-    .hero-title .gold { 
-      color: var(--gold); 
-      display: inline-block;
-      animation: gold-glow 3s ease-in-out infinite; 
-    }
-    
-    .hero-title .red { 
+    .hero-title .gold { color: var(--gold); display: inline-block; animation: gold-glow 3s ease-in-out infinite; }
+    .hero-title .red {
       background: linear-gradient(90deg, #ff3333, #ffaa00, #ff3333);
-      background-size: 200% auto;
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
+      background-size: 200% auto; color: transparent;
+      -webkit-background-clip: text; background-clip: text;
       animation: text-gradient 3s linear infinite;
     }
 
-    .hero-location {
-      font-size: 15px;
-      color: var(--text-muted);
-      margin-top: 14px;
-      position: relative;
-      z-index: 2;
-    }
+    .hero-location { font-size: 15px; color: var(--text-muted); margin-top: 14px; position: relative; z-index: 2; }
+    .hero-divider { width: 100px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 24px auto; position: relative; z-index: 2; }
 
-    .hero-divider {
-      width: 100px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 24px auto;
-      position: relative;
-      z-index: 2;
-    }
-
+    /* تأثير الكتابة في الوصف */
+    .hero-sub-wrap { display: inline-block; position: relative; z-index: 2; }
     .hero-sub {
-      font-size: 18px;
-      color: rgba(255,255,255,0.85);
-      max-width: 480px;
-      line-height: 1.8;
-      position: relative;
-      z-index: 2;
+      font-size: 18px; color: rgba(255,255,255,0.85); line-height: 1.8;
+      overflow: hidden; white-space: nowrap; margin: 0 auto;
+      border-left: 2px solid var(--gold); /* مؤشر الكتابة */
+      animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
     }
 
-    .hero-cta {
-      margin-top: 36px;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: center;
-      position: relative;
-      z-index: 2;
-    }
-
+    .hero-cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 2; }
+    .btn-wa, .btn-call { cursor: none; } /* الماوس السحري */
+    
     .btn-wa {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: linear-gradient(135deg, #25d366, #128c7e);
-      color: #fff;
-      font-family: 'Tajawal', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      padding: 15px 38px;
-      border-radius: 60px;
-      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff; font-family: 'Tajawal', sans-serif; font-size: 17px; font-weight: 700;
+      padding: 15px 38px; border-radius: 60px; text-decoration: none;
       transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
-      animation: pulse-green 2s infinite; 
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      animation: pulse-green 2s infinite; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
     }
-
-    .btn-wa:hover { transform: scale(1.05); }
+    .btn-wa:hover { transform: scale(1.05) translateY(-3px); }
 
     .btn-call {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255, 215, 0, 0.05);
-      backdrop-filter: blur(5px);
-      color: var(--gold);
-      font-family: 'Tajawal', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      padding: 15px 38px;
-      border-radius: 60px;
-      border: 2px solid var(--gold);
-      text-decoration: none;
-      transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 10px; background: rgba(255, 215, 0, 0.05);
+      backdrop-filter: blur(5px); color: var(--gold); font-family: 'Tajawal', sans-serif;
+      font-size: 17px; font-weight: 700; padding: 15px 38px; border-radius: 60px;
+      border: 2px solid var(--gold); text-decoration: none; transition: all 0.3s;
     }
+    .btn-call:hover { background: var(--gold); color: #1a0000; transform: scale(1.05) translateY(-3px); box-shadow: 0 0 25px rgba(255,215,0,0.5); }
 
-    .btn-call:hover { 
-      background: var(--gold); 
-      color: #1a0000; 
-      transform: scale(1.05); 
-      box-shadow: 0 0 25px rgba(255,215,0,0.5);
-    }
-
-    /* ===== SECTION SHELL ===== */
-    .section {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 70px 24px;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 44px;
-    }
-
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: var(--gold);
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .section-title {
-      font-size: clamp(22px, 5vw, 36px);
-      font-weight: 900;
-      color: var(--white);
-    }
-
+    /* ===== SECTIONS ===== */
+    .section { max-width: 960px; margin: 0 auto; padding: 70px 24px; }
+    .section-header { text-align: center; margin-bottom: 44px; }
+    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 10px; }
+    .section-title { font-size: clamp(22px, 5vw, 36px); font-weight: 900; color: var(--white); }
     .section-title span { color: var(--red-bright); }
-
-    .title-bar {
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--red-vivid), var(--gold));
-      border-radius: 2px;
-      margin: 14px auto 0;
-    }
+    .title-bar { width: 60px; height: 3px; background: linear-gradient(90deg, var(--red-vivid), var(--gold)); border-radius: 2px; margin: 14px auto 0; }
 
     /* ===== MENU GRID ===== */
-    .menu-bg {
-      background: linear-gradient(180deg, #200000 0%, #1a0000 100%);
-      border-top:    1px solid rgba(255,215,0,0.15);
-      border-bottom: 1px solid rgba(255,215,0,0.15);
-    }
-
-    .category-row {
-      margin-bottom: 52px;
-    }
-
+    .menu-bg { background: linear-gradient(180deg, #200000 0%, #1a0000 100%); border-top: 1px solid rgba(255,215,0,0.15); border-bottom: 1px solid rgba(255,215,0,0.15); }
+    .category-row { margin-bottom: 52px; }
     .category-row:last-child { margin-bottom: 0; }
-
+    
     .cat-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(204, 17, 17, 0.15);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,215,0,0.3);
-      border-radius: 30px;
-      padding: 8px 24px;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 26px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,215,0,0.1);
+      display: inline-flex; align-items: center; gap: 8px; background: rgba(204, 17, 17, 0.15);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 30px; padding: 8px 24px; font-size: 16px; font-weight: 700; color: var(--gold);
+      margin-bottom: 26px; box-shadow: 0 8px 20px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,215,0,0.1);
+      animation: float 4s ease-in-out infinite alternate;
     }
 
-    .items-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      justify-items: center;
-    }
-
+    .items-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; justify-items: center; perspective: 1000px; /* لثلاثية الأبعاد */ }
     .items-grid.single { grid-template-columns: repeat(3, 1fr); }
 
-    /* ===== FOOD CARD ENHANCEMENTS ===== */
+    /* ===== FOOD CARD (3D Magic) ===== */
     .food-card {
       background: linear-gradient(160deg, rgba(80,0,0,0.4), rgba(30,0,0,0.8));
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255,215,0,0.15);
-      border-radius: 20px;
-      overflow: hidden;
-      width: 100%;
-      max-width: 280px;
-      position: relative;
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s, box-shadow 0.4s;
+      backdrop-filter: blur(5px); border: 1px solid rgba(255,215,0,0.15);
+      border-radius: 20px; overflow: hidden; width: 100%; max-width: 280px;
+      position: relative; transform-style: preserve-3d; /* مهم للـ 3D */
+      transition: transform 0.1s, border-color 0.4s, box-shadow 0.4s;
+      cursor: none;
     }
+
+    /* هالة خلفية للبطاقة */
+    .food-card::after {
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.3s; z-index: 1; pointer-events: none;
+    }
+    .food-card:hover::after { opacity: 1; }
 
     .food-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 50%;
-      height: 100%;
+      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
       background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,215,0,0.2) 50%, rgba(255,255,255,0) 100%);
-      transform: skewX(-25deg);
-      z-index: 10;
-      transition: none;
+      transform: skewX(-25deg); z-index: 10; transition: none;
+    }
+    .food-card:hover::before { animation: shine 0.8s; }
+
+    /* في حال عدم وجود الماوس، هذا التأثير الافتراضي */
+    @media (hover: none) {
+      .food-card:hover { transform: translateY(-12px); border-color: rgba(255,215,0,0.8); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 30, 0, 0.3), inset 0 0 15px rgba(255,215,0,0.1); }
     }
 
-    .food-card:hover::before {
-      animation: shine 0.8s;
-    }
+    .food-img-wrap { position: relative; width: 100%; height: 190px; overflow: hidden; background: #110000; display: flex; align-items: center; justify-content: center; transform: translateZ(30px); /* يبرز للأمام في الـ 3D */ }
+    .food-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease, filter 0.6s ease; filter: brightness(0.9); }
+    .food-card:hover .food-img-wrap img { transform: scale(1.12); filter: brightness(1.1); }
 
-    .food-card:hover {
-      transform: translateY(-12px);
-      border-color: rgba(255,215,0,0.8);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 30, 0, 0.3), inset 0 0 15px rgba(255,215,0,0.1);
-    }
+    .food-info { padding: 18px 16px 20px; text-align: center; position: relative; z-index: 2; transform: translateZ(20px); }
+    .food-name { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 6px; transition: color 0.3s, text-shadow 0.3s; }
+    .food-card:hover .food-name { color: var(--gold); text-shadow: 0 0 8px rgba(255,215,0,0.4); }
+    .food-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
-    .food-img-wrap {
-      position: relative;
-      width: 100%;
-      height: 190px;
-      overflow: hidden;
-      background: #110000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .food-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s ease, filter 0.6s ease;
-      filter: brightness(0.9);
-    }
-
-    .food-card:hover .food-img-wrap img {
-      transform: scale(1.12) rotate(2deg);
-      filter: brightness(1.1);
-    }
-
-    .food-info {
-      padding: 18px 16px 20px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .food-name {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 6px;
-      transition: color 0.3s, text-shadow 0.3s;
-    }
-    
-    .food-card:hover .food-name {
-      color: var(--gold);
-      text-shadow: 0 0 8px rgba(255,215,0,0.4);
-    }
-
-    .food-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* ===== CAKE SECTION ===== */
-    .cake-bg {
-      background: linear-gradient(180deg, #1a0000 0%, #220000 100%);
-    }
-
-    .cake-card {
-      max-width: 680px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, rgba(139,0,0,0.4), rgba(45,0,0,0.7));
-      border: 1px solid rgba(255,215,0,0.3);
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.6), 0 0 30px rgba(255,215,0,0.1);
-      animation: float 5s ease-in-out infinite;
-    }
-
-    .cake-img-wrap {
-      width: 100%;
-      height: 320px;
-      overflow: hidden;
-    }
-
-    .cake-img-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.8s ease;
-    }
-
-    .cake-card:hover .cake-img-wrap img {
-      transform: scale(1.05);
-    }
-
-    .cake-body {
-      padding: 32px 28px;
-      text-align: center;
-    }
-
-    .cake-body h3 {
-      font-size: 26px;
-      font-weight: 900;
-      color: var(--gold);
-      margin-bottom: 12px;
-      text-shadow: 0 2px 10px rgba(255,215,0,0.3);
-    }
-
-    .cake-body p {
-      font-size: 16px;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.9;
-    }
-
+    /* ===== CAKES ===== */
+    .cake-bg { background: linear-gradient(180deg, #1a0000 0%, #220000 100%); }
+    .cake-card { max-width: 680px; margin: 0 auto; background: linear-gradient(135deg, rgba(139,0,0,0.4), rgba(45,0,0,0.7)); border: 1px solid rgba(255,215,0,0.3); border-radius: 28px; overflow: hidden; box-shadow: 0 15px 45px rgba(0,0,0,0.6), 0 0 30px rgba(255,215,0,0.1); animation: float 5s ease-in-out infinite; cursor: none; }
+    .cake-img-wrap { width: 100%; height: 320px; overflow: hidden; }
+    .cake-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s ease; filter: brightness(0.9); }
+    .cake-card:hover .cake-img-wrap img { transform: scale(1.05); filter: brightness(1.05); }
+    .cake-body { padding: 32px 28px; text-align: center; }
+    .cake-body h3 { font-size: 26px; font-weight: 900; color: var(--gold); margin-bottom: 12px; text-shadow: 0 2px 10px rgba(255,215,0,0.3); }
+    .cake-body p { font-size: 16px; color: rgba(255,255,255,0.9); line-height: 1.9; }
     .cake-body .hl { color: var(--red-bright); font-weight: 700; }
 
     /* ===== OTHERS ===== */
     .drinks-bg { background: linear-gradient(180deg, #220000 0%, #1a0000 100%); border-top: 1px solid rgba(255,215,0,0.12); }
     .contact-bg { background: linear-gradient(180deg, #1a0000 0%, #0d0000 100%); border-top: 1px solid rgba(255,215,0,0.15); }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-
-    .contact-card {
-      background: rgba(139,0,0,0.2);
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255,215,0,0.18);
-      border-radius: 18px;
-      padding: 22px 18px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      transition: all 0.3s;
-    }
-
-    .contact-card:hover {
-      border-color: rgba(255,215,0,0.6);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(200,0,0,0.3), inset 0 0 10px rgba(255,215,0,0.05);
-    }
-
-    .c-icon {
-      width: 48px; height: 48px;
-      border-radius: 14px;
-      background: rgba(255,215,0,0.1);
-      border: 1px solid rgba(255,215,0,0.2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
-      transition: transform 0.3s, background 0.3s;
-    }
-    
-    .contact-card:hover .c-icon { 
-      transform: scale(1.1) rotate(5deg); 
-      background: rgba(255,215,0,0.2);
-    }
-
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .contact-card { background: rgba(139,0,0,0.2); backdrop-filter: blur(5px); border: 1px solid rgba(255,215,0,0.18); border-radius: 18px; padding: 22px 18px; display: flex; align-items: center; gap: 14px; transition: all 0.3s; cursor: none; }
+    .contact-card:hover { border-color: rgba(255,215,0,0.6); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(200,0,0,0.3), inset 0 0 10px rgba(255,215,0,0.05); }
+    .c-icon { width: 48px; height: 48px; border-radius: 14px; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; transition: transform 0.3s, background 0.3s; }
+    .contact-card:hover .c-icon { transform: scale(1.1) rotate(5deg) translateZ(10px); background: rgba(255,215,0,0.2); }
     .c-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
     .c-value { font-size: 15px; font-weight: 700; color: var(--white); }
-    .c-value a { color: var(--gold); text-decoration: none; direction: ltr; display: inline-block; transition: text-shadow 0.2s; }
+    .c-value a { color: var(--gold); text-decoration: none; direction: ltr; display: inline-block; transition: text-shadow 0.2s; cursor: none; }
     .c-value a:hover { text-decoration: underline; text-shadow: 0 0 5px rgba(255,215,0,0.5); }
 
     footer { background: #080000; border-top: 1px solid rgba(255,215,0,0.15); padding: 26px 24px; text-align: center; }
     .footer-name { font-size: 17px; font-weight: 900; color: var(--gold); margin-bottom: 6px; }
     .footer-copy { font-size: 13px; color: rgba(255,179,71,0.4); }
     .footer-links { display: flex; justify-content: center; gap: 22px; margin-top: 14px; }
-    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; transition: color 0.2s; cursor: none; }
     .footer-links a:hover { color: var(--gold); }
 
-    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1); }
+    .reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 620px) {
-      .nav-links { display: none; }
-      .items-grid { grid-template-columns: 1fr 1fr; }
-      .items-grid.single { grid-template-columns: 1fr; }
-      .hero-cta { flex-direction: column; align-items: center; }
+    /* إيقاف التأثيرات التي تعتمد على الماوس في الهواتف */
+    @media (max-width: 768px) {
+      body, a, .btn-wa, .btn-call, .food-card, .cake-card, .contact-card { cursor: auto !important; }
+      #magic-cursor, #cursor-trail { display: none !important; }
+      .food-card { transform-style: flat; }
+      .hero-sub { white-space: normal; animation: none; border-left: none; } /* إيقاف الكتابة لتناسب الشاشات الصغيرة */
     }
+    @media (max-width: 620px) { .nav-links { display: none; } .items-grid { grid-template-columns: 1fr 1fr; } .items-grid.single { grid-template-columns: 1fr; } .hero-cta { flex-direction: column; align-items: center; } }
     @media (max-width: 420px) { .items-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
+
+<div id="scroll-progress"></div>
+<div id="magic-cursor"></div>
+<div id="cursor-trail"></div>
 
 <!-- NAV -->
 <nav>
@@ -576,10 +345,9 @@
   </h1>
   <p class="hero-location">📍 بجانب الشنطي للمحروقات</p>
   <div class="hero-divider"></div>
-  <p class="hero-sub">
-    طعم مميز 🌯 وألذ التوست 🍞<br>
-    وأجمل الجاتوهات 🎂 لكل مناسباتكم
-  </p>
+  <div class="hero-sub-wrap">
+    <p class="hero-sub">طعم مميز 🌯 وألذ التوست 🍞 وأجمل الجاتوهات 🎂</p>
+  </div>
   <div class="hero-cta">
     <a class="btn-wa" href="https://wa.me/00972599100513" target="_blank" rel="noopener">
       💬 اطلب عبر واتساب
@@ -608,7 +376,7 @@
         </div>
         <div class="food-card reveal">
           <div class="food-img-wrap"><img src="https://www.atyabtabkha.com/tachyon/sites/2/2025/12/%D8%B4%D8%A7%D9%88%D8%B1%D9%85%D8%A7-2.jpg" alt="لفة دجاج" loading="lazy"></div>
-          <div class="food-info"><div class="food-name"> لفـــة دجاج </div><div class="food-desc">طعم   لا يقــــاوم بخبز الصاج</div></div>
+          <div class="food-info"><div class="food-name"> لفـــة دجاج </div><div class="food-desc">طعم  لا يقــــاوم بخبز الصاج</div></div>
         </div>
       </div>
     </div>
@@ -772,15 +540,98 @@
 </footer>
 
 <script>
-/* fire particles in hero */
+/* السحر المتقدم (Advanced JS Magic) */
+
+// 1. شريط تقدم القراءة (Scroll Progress)
+window.addEventListener('scroll', () => {
+  const scrollTotal = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrollValue = (scrollTotal / height) * 100;
+  document.getElementById('scroll-progress').style.width = scrollValue + '%';
+});
+
+// 2. الماوس السحري وتأثير التتبع (Magic Cursor)
+if (window.matchMedia("(pointer: fine)").matches) {
+  const cursor = document.getElementById('magic-cursor');
+  const trail = document.getElementById('cursor-trail');
+  let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  // تأثير التتبع اللطيف للهالة (Trail)
+  function animateTrail() {
+    trailX += (mouseX - trailX) * 0.15;
+    trailY += (mouseY - trailY) * 0.15;
+    trail.style.left = trailX + 'px';
+    trail.style.top = trailY + 'px';
+    requestAnimationFrame(animateTrail);
+  }
+  animateTrail();
+
+  // تفاعل الماوس مع الروابط والأزرار
+  const hoverElements = document.querySelectorAll('a, .food-card, .cake-card, .contact-card');
+  hoverElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+      trail.style.width = '50px';
+      trail.style.height = '50px';
+      trail.style.borderColor = 'var(--red-bright)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+      trail.style.width = '30px';
+      trail.style.height = '30px';
+      trail.style.borderColor = 'rgba(255, 215, 0, 0.5)';
+    });
+  });
+
+  // 3. تأثير البعد الثالث (3D Tilt Effect) للبطاقات
+  const cards = document.querySelectorAll('.food-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      // حساب زوايا الدوران (أرقام صغيرة لجعلها ناعمة)
+      const rotateX = ((y - centerY) / centerY) * -12; 
+      const rotateY = ((x - centerX) / centerX) * 12;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+      card.style.borderColor = 'rgba(255,215,0,0.8)';
+      card.style.boxShadow = `
+        ${-rotateY}px ${rotateX}px 30px rgba(0,0,0,0.5), 
+        0 0 25px rgba(255, 30, 0, 0.4), 
+        inset 0 0 15px rgba(255,215,0,0.1)
+      `;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+      card.style.borderColor = 'rgba(255,215,0,0.15)';
+      card.style.boxShadow = 'none';
+    });
+  });
+}
+
+// 4. جزيئات النار المتفاعلة (Interactive Fire Particles)
 (function(){
   const container = document.getElementById('particles');
   const colors = ['#ff4400','#ff6600','#ff8800','#ffaa00','#ffd700','#ff2200'];
-  for(let i=0;i<50;i++){
+  const particles = [];
+  
+  for(let i=0;i<60;i++){
     const p = document.createElement('div');
     p.className = 'fire-particle';
+    const left = Math.random()*100;
     p.style.cssText = `
-      left:${Math.random()*100}%;
+      left:${left}%;
       bottom:${Math.random()*30}%;
       width:${2+Math.random()*4}px;
       height:${2+Math.random()*4}px;
@@ -789,10 +640,27 @@
       animation-delay:${Math.random()*3}s;
     `;
     container.appendChild(p);
+    particles.push({el: p, baseX: left});
+  }
+
+  // تفاعل النار مع حركة الماوس في الواجهة
+  const hero = document.getElementById('hero');
+  if (window.matchMedia("(pointer: fine)").matches) {
+    hero.addEventListener('mousemove', (e) => {
+      const mouseXRatio = e.clientX / window.innerWidth;
+      particles.forEach(part => {
+        // تحريك الشرار بعكس اتجاه الماوس قليلاً لخلق تأثير السحب
+        const shift = (mouseXRatio - 0.5) * -20; 
+        part.el.style.transform = `translateX(${shift}px)`;
+      });
+    });
+    hero.addEventListener('mouseleave', () => {
+      particles.forEach(part => part.el.style.transform = `translateX(0)`);
+    });
   }
 })();
 
-/* scroll reveal with magical feel */
+// 5. ظهور العناصر عند النزول (Scroll Reveal)
 (function(){
   const els = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver(entries=>{
