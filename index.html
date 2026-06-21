@@ -44,102 +44,73 @@
       margin-bottom: 20px;
     }
 
-    /* تأثير النار كالحطب للنص الترحيبي */
     .fire-text {
-      font-family: 'Tajawal', sans-serif;
-      font-size: clamp(22px, 5vw, 42px);
-      font-weight: 900;
-      color: #fffbdd; /* لون الجمر الداخلي */
-      text-align: center;
-      padding: 0 15px;
-      letter-spacing: 1px;
-      animation: wood-fire 0.6s infinite alternate ease-in-out;
+      font-family: 'Tajawal', sans-serif; font-size: clamp(22px, 5vw, 42px);
+      font-weight: 900; color: #fffbdd; text-align: center; padding: 0 15px;
+      letter-spacing: 1px; animation: wood-fire 0.6s infinite alternate ease-in-out;
     }
 
     @keyframes wood-fire {
-      0% {
-        text-shadow:
-          0 2px 4px rgba(255, 255, 255, 0.8),
-          0 -2px 10px rgba(255, 179, 71, 0.8),
-          0 -6px 15px rgba(255, 68, 0, 0.8),
-          0 -10px 20px rgba(204, 17, 17, 0.8);
-        transform: scale(1);
-      }
-      100% {
-        text-shadow:
-          0 2px 6px rgba(255, 255, 255, 1),
-          0 -5px 15px rgba(255, 179, 71, 1),
-          0 -12px 25px rgba(255, 68, 0, 1),
-          0 -18px 35px rgba(204, 17, 17, 1),
-          0 -22px 45px rgba(139, 0, 0, 0.8);
-        transform: scale(1.02);
-      }
+      0% { text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8), 0 -2px 10px rgba(255, 179, 71, 0.8), 0 -6px 15px rgba(255, 68, 0, 0.8), 0 -10px 20px rgba(204, 17, 17, 0.8); transform: scale(1); }
+      100% { text-shadow: 0 2px 6px rgba(255, 255, 255, 1), 0 -5px 15px rgba(255, 179, 71, 1), 0 -12px 25px rgba(255, 68, 0, 1), 0 -18px 35px rgba(204, 17, 17, 1), 0 -22px 45px rgba(139, 0, 0, 0.8); transform: scale(1.02); }
     }
 
     /* ===== شريط التقدم ===== */
-    #scroll-progress {
-      position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--red-vivid), var(--gold), #ffffff);
-      z-index: 10000; width: 0%; box-shadow: 0 0 10px var(--gold); transition: width 0.1s;
-    }
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--red-vivid), var(--gold), #ffffff); z-index: 10000; width: 0%; box-shadow: 0 0 10px var(--gold); transition: width 0.1s; }
 
-    /* ===== شريط العروض المتحرك (Marquee) ===== */
-    .marquee-container {
-      background: rgba(255, 215, 0, 0.1); border-bottom: 1px solid rgba(255,215,0,0.2);
-      color: var(--gold); font-size: 14px; font-weight: 700; padding: 8px 0;
-      overflow: hidden; white-space: nowrap; position: relative;
-    }
-    .marquee-text {
-      display: inline-block; padding-left: 100%;
-      animation: marquee 25s linear infinite;
-    }
+    /* ===== شريط العروض المتحرك ===== */
+    .marquee-container { background: rgba(255, 215, 0, 0.1); border-bottom: 1px solid rgba(255,215,0,0.2); color: var(--gold); font-size: 14px; font-weight: 700; padding: 8px 0; overflow: hidden; white-space: nowrap; position: relative; }
+    .marquee-text { display: inline-block; padding-left: 100%; animation: marquee 25s linear infinite; }
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
-    /* ===== زر الواتساب العائم ===== */
-    .fab-wa {
-      position: fixed; bottom: 24px; left: 24px; width: 60px; height: 60px;
-      background: linear-gradient(135deg, #25d366, #128c7e); border-radius: 50%;
-      display: flex; justify-content: center; align-items: center; font-size: 30px;
-      color: white; text-decoration: none; z-index: 9000;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
-      animation: pulse-green 2s infinite; transition: transform 0.3s;
+    /* ===== الأزرار العائمة ===== */
+    .fab-wa { position: fixed; bottom: 24px; left: 24px; width: 60px; height: 60px; background: linear-gradient(135deg, #25d366, #128c7e); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; color: white; text-decoration: none; z-index: 9000; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5); animation: pulse-green 2s infinite; transition: transform 0.3s; }
+    .fab-islamic { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: linear-gradient(135deg, #28a745, #1e7e34); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; color: white; border: none; cursor: pointer; z-index: 9000; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.5); animation: pulse-green-islamic 2.5s infinite; transition: transform 0.3s; }
+    .fab-wa:active, .fab-islamic:active { transform: scale(0.9); }
+    @media (pointer: fine) { .fab-wa:hover, .fab-islamic:hover { transform: scale(1.1) rotate(-10deg); } }
+
+    @keyframes pulse-green-islamic { 0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(40, 167, 69, 0); } 100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); } }
+
+    /* ===== نافذة النفحات الإيمانية (Popup) ===== */
+    .islamic-modal {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.85); z-index: 100000;
+      display: none; justify-content: center; align-items: center;
+      opacity: 0; transition: opacity 0.4s ease;
     }
-    .fab-wa:active { transform: scale(0.9); }
-    @media (pointer: fine) { .fab-wa:hover { transform: scale(1.1) rotate(-10deg); } }
+    .islamic-modal.active { display: flex; opacity: 1; }
+    .islamic-content {
+      background: linear-gradient(135deg, #1a0000, #2d0000);
+      border: 2px solid var(--gold); border-radius: 20px;
+      padding: 40px 30px; text-align: center; max-width: 90%; width: 450px;
+      transform: scale(0.8); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 40px rgba(255,215,0,0.3); position: relative;
+    }
+    .islamic-modal.active .islamic-content { transform: scale(1); }
+    .close-islamic { position: absolute; top: 15px; right: 20px; color: var(--gold); font-size: 32px; cursor: pointer; font-weight: bold; transition: transform 0.2s; }
+    .close-islamic:active { transform: scale(0.8); }
+    .islamic-icon { font-size: 55px; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+    .islamic-text { font-size: 24px; color: var(--white); line-height: 1.8; font-weight: 700; text-shadow: 0 2px 10px rgba(255,215,0,0.3); }
 
     /* ===== تأثيرات اللمس والقصاصات ===== */
     .touch-spark { position: absolute; width: 5px; height: 5px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; box-shadow: 0 0 8px var(--gold); animation: spark-fall 0.8s ease-out forwards; }
     @keyframes spark-fall { 0% { transform: scale(1.5) translateY(0); opacity: 1; } 100% { transform: scale(0) translateY(40px); opacity: 0; } }
     .ripple { position: absolute; border-radius: 50%; background: rgba(255, 215, 0, 0.4); transform: scale(0); animation: ripple-anim 0.6s linear; pointer-events: none; }
     @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
-
     .confetti { position: fixed; width: 10px; height: 10px; pointer-events: none; z-index: 99999; animation: confetti-fall 2.5s ease-out forwards; }
     @keyframes confetti-fall { 0% { transform: translateY(-100px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
 
-    /* ===== تكبير الصور (Lightbox) ===== */
-    .zoom-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.9); z-index: 99998;
-      display: none; justify-content: center; align-items: center;
-      opacity: 0; transition: opacity 0.3s; cursor: zoom-out;
-    }
+    /* ===== تكبير الصور ===== */
+    .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 99998; display: none; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s; cursor: zoom-out; }
     .zoom-overlay.active { display: flex; opacity: 1; }
-    .zoomed-img {
-      max-width: 90%; max-height: 90%; border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(255,215,0,0.3);
-      transform: scale(0.5); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
+    .zoomed-img { max-width: 90%; max-height: 90%; border-radius: 20px; box-shadow: 0 10px 40px rgba(255,215,0,0.3); transform: scale(0.5); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     .zoom-overlay.active .zoomed-img { transform: scale(1); }
 
     /* ===== الماوس السحري ===== */
     #magic-cursor, #cursor-trail { display: none; }
-    @media (pointer: fine) {
-      #magic-cursor { display: block; position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 0 0 15px 4px rgba(255, 215, 0, 0.6); transition: width 0.2s, height 0.2s; }
-      #cursor-trail { display: block; position: fixed; top: 0; left: 0; width: 30px; height: 30px; border: 1px solid rgba(255, 215, 0, 0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: top 0.1s ease-out, left 0.1s ease-out, width 0.2s, height 0.2s; }
-    }
+    @media (pointer: fine) { #magic-cursor { display: block; position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 0 0 15px 4px rgba(255, 215, 0, 0.6); transition: width 0.2s, height 0.2s; } #cursor-trail { display: block; position: fixed; top: 0; left: 0; width: 30px; height: 30px; border: 1px solid rgba(255, 215, 0, 0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: top 0.1s ease-out, left 0.1s ease-out, width 0.2s, height 0.2s; } }
 
     /* ===== KEYFRAMES ===== */
-    @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
-    @keyframes gold-glow { 0%, 100% { text-shadow: 0 0 10px rgba(255,215,0,0.5), 0 0 20px rgba(255,215,0,0.3); } 50% { text-shadow: 0 0 20px rgba(255,215,0,0.9), 0 0 30px rgba(255,215,0,0.6); } }
     @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
     @keyframes text-gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
@@ -165,11 +136,12 @@
     .hero-sub { font-size: 18px; color: rgba(255,255,255,0.85); line-height: 1.8; position: relative; z-index: 2; }
     
     .hero-cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 2; }
-    .btn-wa, .btn-call { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; font-family: 'Tajawal', sans-serif; font-size: 17px; font-weight: 700; padding: 15px 38px; border-radius: 60px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+    .btn-wa, .btn-call, .btn-islamic-hero { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; font-family: 'Tajawal', sans-serif; font-size: 17px; font-weight: 700; padding: 15px 38px; border-radius: 60px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; }
     .btn-wa { background: linear-gradient(135deg, #25d366, #128c7e); color: #fff; animation: pulse-green 2s infinite; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
+    .btn-islamic-hero { background: linear-gradient(135deg, #28a745, #1e7e34); color: #fff; animation: pulse-green-islamic 2.5s infinite; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4); }
     .btn-call { background: rgba(255, 215, 0, 0.05); backdrop-filter: blur(5px); color: var(--gold); border: 2px solid var(--gold); }
-    .btn-wa:active, .btn-call:active { transform: scale(0.92); }
-    @media (pointer: fine) { .btn-wa:hover { transform: scale(1.05) translateY(-3px); } .btn-call:hover { background: var(--gold); color: #1a0000; transform: scale(1.05) translateY(-3px); box-shadow: 0 0 25px rgba(255,215,0,0.5); } }
+    .btn-wa:active, .btn-call:active, .btn-islamic-hero:active { transform: scale(0.92); }
+    @media (pointer: fine) { .btn-wa:hover, .btn-islamic-hero:hover { transform: scale(1.05) translateY(-3px); } .btn-call:hover { background: var(--gold); color: #1a0000; transform: scale(1.05) translateY(-3px); box-shadow: 0 0 25px rgba(255,215,0,0.5); } }
 
     /* ===== SECTIONS ===== */
     .section { max-width: 960px; margin: 0 auto; padding: 70px 24px; }
@@ -211,10 +183,8 @@
     .food-card:active { transform: scale(0.95); border-color: rgba(255,215,0,0.8); box-shadow: 0 0 20px rgba(255, 30, 0, 0.5), inset 0 0 15px rgba(255,215,0,0.3); }
     @media (pointer: fine) { .food-card:hover { transform: translateY(-12px); border-color: rgba(255,215,0,0.8); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 30, 0, 0.3), inset 0 0 15px rgba(255,215,0,0.1); } }
     .food-img-wrap { position: relative; width: 100%; height: 190px; overflow: hidden; background: #110000; display: flex; align-items: center; justify-content: center; transform: translateZ(30px); }
-    
     .food-img-wrap::after { content: '🔍'; position: absolute; font-size: 24px; opacity: 0; transition: opacity 0.3s; z-index: 5; pointer-events: none; }
     .food-card:hover .food-img-wrap::after { opacity: 1; }
-    
     .food-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease, filter 0.6s ease; filter: brightness(0.9); }
     .food-card:active .food-img-wrap img, .food-card:hover .food-img-wrap img { transform: scale(1.12); filter: brightness(1.1); }
     .food-info { padding: 18px 16px 20px; text-align: center; position: relative; z-index: 2; transform: translateZ(20px); }
@@ -253,17 +223,8 @@
     .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 768px) {
-      .nav-links { display: flex; gap: 10px; }
-      .nav-links li.desktop-only { display: none; }
-    }
-    @media (max-width: 620px) {
-      html { cursor: auto; }
-      .items-grid { grid-template-columns: 1fr 1fr; }
-      .items-grid.single { grid-template-columns: 1fr; }
-      .hero-cta { flex-direction: column; align-items: center; }
-      .food-card { transform-style: flat; }
-    }
+    @media (max-width: 768px) { .nav-links { display: flex; gap: 10px; } .nav-links li.desktop-only { display: none; } }
+    @media (max-width: 620px) { html { cursor: auto; } .items-grid { grid-template-columns: 1fr 1fr; } .items-grid.single { grid-template-columns: 1fr; } .hero-cta { flex-direction: column; align-items: center; } .food-card { transform-style: flat; } }
     @media (max-width: 420px) { .items-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -272,7 +233,7 @@
 <!-- شاشة التحميل السينمائية الملتهبة -->
 <div id="loader">
   <div class="loader-logo">🔥 حلوان اخوان</div>
-  <div class="fire-text">مرحبا بكم في عالم ملك الشاورما بلا منازع</div>
+  <div class="fire-text">مرحباً بكم في عالم ملك الشاورما بلا منازع</div>
 </div>
 
 <div id="scroll-progress"></div>
@@ -284,12 +245,21 @@
   <img src="" alt="Zoomed" class="zoomed-img" id="zoomedImg">
 </div>
 
-<!-- زر الواتساب العائم -->
+<!-- نافذة النفحات الإيمانية (Modal) -->
+<div class="islamic-modal" id="islamicModal">
+  <div class="islamic-content">
+    <span class="close-islamic" id="closeIslamic">&times;</span>
+    <div class="islamic-icon">📖</div>
+    <div class="islamic-text" id="islamicText"></div>
+  </div>
+</div>
+
+<!-- الأزرار العائمة في الزوايا السفلية -->
 <a href="https://wa.me/00972599100513" target="_blank" class="fab-wa haptic-btn" title="تواصل عبر واتساب">💬</a>
+<button class="fab-islamic haptic-btn" id="fabIslamicBtn" title="نفحات إيمانية">📖</button>
 
 <!-- NAV -->
 <header>
-  <!-- الشريط الإخباري (Marquee) -->
   <div class="marquee-container">
     <div class="marquee-text">
       🔥 أهلاً بكم في مطعم وجاتوه حلوان اخوان في قلقيلية! 🎁 عروضنا ما بتخلص: طعم الشاورما الأصيل، وألذ توست محمص، وجاتوهات بتجمّل كل مناسباتكم... اطلب أونلاين الآن! 🛵
@@ -319,12 +289,10 @@
   <p class="hero-sub">طعم مميز 🌯 وألذ التوست 🍞 وأجمل الجاتوهات 🎂</p>
   
   <div class="hero-cta">
-    <a class="btn-wa haptic-btn" href="#order-online">
-      🍔 فصّل طلبك أونلاين
-    </a>
-    <a class="btn-call haptic-btn" href="tel:0599100513">
-      📞 اتصل الآن
-    </a>
+    <a class="btn-wa haptic-btn" href="#order-online">🍔 فصّل طلبك أونلاين</a>
+    <a class="btn-call haptic-btn" href="tel:0599100513">📞 اتصل الآن</a>
+    <!-- الزر الأخضر الجديد في الواجهة -->
+    <button class="btn-islamic-hero haptic-btn" id="heroIslamicBtn">📖 نفحات إيمانية</button>
   </div>
 </section>
 
@@ -515,18 +483,51 @@
 </footer>
 
 <script>
-// 0. إزالة شاشة التحميل عند اكتمال الموقع بعد 3 ثوانٍ
+// 0. إزالة شاشة التحميل السينمائية بعد 3 ثوانٍ
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
   setTimeout(() => {
     loader.style.opacity = '0';
     setTimeout(() => { loader.style.display = 'none'; }, 800);
-  }, 3000); // 3000ms = 3 ثوانٍ بالضبط
+  }, 3000); 
 });
 
-// 1. نظام إرسال الطلب الذكي + قصاصات الاحتفال (Confetti)
+// 1. نظام الزر الأخضر (النفحات الإيمانية)
+const islamicQuotes = [
+  "۞ إِنَّ مَعَ الْعُسْرِ يُسْرًا ۞",
+  "۞ وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَى ۞",
+  "۞ وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ ۞",
+  "قال رسول الله ﷺ: «كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن: سبحان الله وبحمده، سبحان الله العظيم»",
+  "۞ فَاذْكُرُونِي أَذْكُرْكُمْ ۞",
+  "قال رسول الله ﷺ: «اتق الله حيثما كنت، وأتبع السيئة الحسنة تمحها، وخالق الناس بخلق حسن»",
+  "۞ وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ ۞",
+  "قال رسول الله ﷺ: «لا تحقرن من المعروف شيئاً، ولو أن تلقى أخاك بوجه طلق»",
+  "۞ سَيَجْعَلُ اللَّهُ بَعْدَ عُسْرٍ يُسْرًا ۞",
+  "قال رسول الله ﷺ: «من صام رمضان إيماناً واحتساباً غفر له ما تقدم من ذنبه»",
+  "۞ وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ ۞",
+  "قال رسول الله ﷺ: «خير الناس أنفعهم للناس»"
+];
+
+const modalIslamic = document.getElementById('islamicModal');
+const textIslamic = document.getElementById('islamicText');
+
+function showIslamicQuote() {
+  const randomQuote = islamicQuotes[Math.floor(Math.random() * islamicQuotes.length)];
+  textIslamic.innerText = randomQuote;
+  modalIslamic.classList.add('active');
+  shootConfetti(); // إطلاق الاحتفال عند القراءة!
+}
+
+document.getElementById('fabIslamicBtn').addEventListener('click', showIslamicQuote);
+document.getElementById('heroIslamicBtn').addEventListener('click', showIslamicQuote);
+document.getElementById('closeIslamic').addEventListener('click', () => {
+  modalIslamic.classList.remove('active');
+});
+
+
+// 2. نظام إرسال الطلب الذكي + قصاصات الاحتفال (Confetti)
 function shootConfetti() {
-  const colors = ['#ffd700', '#ffb347', '#ff3333', '#ffffff'];
+  const colors = ['#ffd700', '#ffb347', '#ff3333', '#ffffff', '#25d366'];
   for(let i=0; i<80; i++) {
     const conf = document.createElement('div');
     conf.className = 'confetti';
@@ -540,11 +541,9 @@ function shootConfetti() {
 
 document.getElementById('custom-order-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  
   const name = document.getElementById('custName').value;
   const meal = document.getElementById('mealType').value;
   const notes = document.getElementById('orderNotes').value;
-  
   const saladElements = document.querySelectorAll('input[name="salads"]:checked');
   let salads = [];
   saladElements.forEach(el => salads.push(el.value));
@@ -555,49 +554,42 @@ document.getElementById('custom-order-form').addEventListener('submit', function
   const encodedMessage = encodeURIComponent(waMessage);
   const waLink = `https://wa.me/00972599100513?text=${encodedMessage}`;
   
-  // إطلاق الاحتفال
   shootConfetti();
-  
-  // تأخير التحويل للواتساب قليلاً ليرى الزبون الاحتفال!
   setTimeout(() => { window.open(waLink, '_blank'); }, 1200);
 });
 
-// وظيفة اختيار الوجبة من القائمة السفلية والصعود للنموذج
 function selectMeal(mealName) {
   document.getElementById('mealType').value = mealName;
   location.href = '#order-online';
-  // لفت الانتباه للمربع
   const selectBox = document.getElementById('mealType');
   selectBox.style.boxShadow = '0 0 20px var(--gold)';
   setTimeout(() => { selectBox.style.boxShadow = 'none'; }, 1500);
 }
 
-// 2. ميزة تكبير الصور (Lightbox)
+// 3. ميزة تكبير الصور (Lightbox)
 const zoomTriggers = document.querySelectorAll('.img-zoom-trigger');
 const zoomOverlay = document.getElementById('zoomOverlay');
 const zoomedImg = document.getElementById('zoomedImg');
 
 zoomTriggers.forEach(trigger => {
   trigger.addEventListener('click', (e) => {
-    e.stopPropagation(); // منع تفعيل الروابط الأخرى خلف الصورة
+    e.stopPropagation();
     const imgSrc = trigger.querySelector('img').src;
     zoomedImg.src = imgSrc;
     zoomOverlay.classList.add('active');
   });
 });
 
-zoomOverlay.addEventListener('click', () => {
-  zoomOverlay.classList.remove('active');
-});
+zoomOverlay.addEventListener('click', () => { zoomOverlay.classList.remove('active'); });
 
-// 3. شريط تقدم القراءة
+// 4. شريط تقدم القراءة
 window.addEventListener('scroll', () => {
   const scrollTotal = document.documentElement.scrollTop || document.body.scrollTop;
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   document.getElementById('scroll-progress').style.width = ((scrollTotal / height) * 100) + '%';
 });
 
-// 4. سحر اللمس (Touch Sparkles)
+// 5. سحر اللمس (Touch Sparkles)
 let lastSparkTime = 0;
 document.addEventListener('touchmove', (e) => {
   const now = Date.now();
@@ -612,7 +604,7 @@ document.addEventListener('touchmove', (e) => {
   setTimeout(() => spark.remove(), 800);
 }, { passive: true });
 
-// 5. تأثير الموجة (Ripple)
+// 6. تأثير الموجة (Ripple)
 function createRipple(event) {
   const element = event.currentTarget;
   const circle = document.createElement('span');
@@ -629,17 +621,17 @@ function createRipple(event) {
   if (existing) existing.remove();
   element.appendChild(circle);
 }
-document.querySelectorAll('.btn-wa, .btn-call, .ripple-element, .submit-order-btn, .fab-wa').forEach(el => {
+document.querySelectorAll('.btn-wa, .btn-call, .btn-islamic-hero, .fab-islamic, .ripple-element, .submit-order-btn, .fab-wa').forEach(el => {
   el.addEventListener('mousedown', createRipple);
   el.addEventListener('touchstart', createRipple, { passive: true });
 });
 
-// 6. اهتزاز التفاعل الجوال
+// 7. اهتزاز التفاعل الجوال
 document.querySelectorAll('.haptic-btn').forEach(btn => {
   btn.addEventListener('touchstart', () => { if (navigator.vibrate) navigator.vibrate(40); }, { passive: true });
 });
 
-// 7. الماوس السحري للحواسيب
+// 8. الماوس السحري للحواسيب
 if (window.matchMedia("(pointer: fine)").matches) {
   const cursor = document.getElementById('magic-cursor');
   const trail = document.getElementById('cursor-trail');
@@ -647,11 +639,10 @@ if (window.matchMedia("(pointer: fine)").matches) {
   document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px'; });
   function animateTrail() { trailX += (mouseX - trailX) * 0.15; trailY += (mouseY - trailY) * 0.15; trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px'; requestAnimationFrame(animateTrail); }
   animateTrail();
-  document.querySelectorAll('a, .food-card, .cake-card, .contact-card, .salad-option, .submit-order-btn, select, input, textarea, .img-zoom-trigger').forEach(el => {
+  document.querySelectorAll('a, .food-card, .cake-card, .contact-card, .salad-option, .submit-order-btn, select, input, textarea, .img-zoom-trigger, button').forEach(el => {
     el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%, -50%) scale(1.5)'; trail.style.borderColor = 'var(--red-bright)'; });
     el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%, -50%) scale(1)'; trail.style.borderColor = 'rgba(255, 215, 0, 0.5)'; });
   });
-  // 3D Tilt
   document.querySelectorAll('.food-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top;
@@ -663,7 +654,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
   });
 }
 
-// 8. شرارات النار الواجهة
+// 9. شرارات النار الواجهة
 (function(){
   const container = document.getElementById('particles');
   const colors = ['#ff4400','#ff6600','#ff8800','#ffaa00','#ffd700','#ff2200'];
@@ -674,7 +665,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
   }
 })();
 
-// 9. كشف النزول (Scroll Reveal)
+// 10. كشف النزول (Scroll Reveal)
 (function(){
   const els = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); },{threshold:0.1});
