@@ -641,13 +641,11 @@
 <section style="padding:20px; text-align:center;">
   <h2>اطلب الآن</h2>
 
-  <textarea id="orderText" placeholder="اكتب طلبك هنا"
-    style="width:80%; height:120px; padding:10px;"></textarea>
+  <textarea id="orderText" style="width:80%; height:120px;"></textarea>
 
   <br><br>
 
-  <button onclick="sendOrder()"
-    style="padding:10px 20px; background:#C8973A; color:white; border:none;">
+  <button onclick="sendOrder()">
     إرسال الطلب
   </button>
 
@@ -664,11 +662,8 @@ function sendOrder() {
     return;
   }
 
-  // مؤقت (بدون Firebase حتى لا يخرب الموقع)
-  console.log("طلب جديد:", order);
-
   status.innerText = "تم استلام الطلب ✔";
-  document.getElementById("orderText").value = "";
+  console.log(order);
 }
 </script>
   </body>
