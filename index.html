@@ -48,7 +48,7 @@
 
     @keyframes float {
       0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-12px); }
       100% { transform: translateY(0px); }
     }
 
@@ -56,18 +56,26 @@
       100% { left: 125%; }
     }
 
+    @keyframes text-gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     /* ===== NAV ===== */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(26, 0, 0, 0.96);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,215,0,0.3);
+      background: rgba(26, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,215,0,0.2);
       padding: 14px 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      transition: all 0.4s ease;
     }
 
     .nav-logo {
@@ -77,6 +85,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      text-shadow: 0 0 8px rgba(255,215,0,0.4);
     }
 
     .nav-links {
@@ -97,7 +106,7 @@
 
     .nav-links a:hover {
       color: var(--gold);
-      text-shadow: 0 0 8px rgba(255,215,0,0.5);
+      text-shadow: 0 0 8px rgba(255,215,0,0.6);
       border-bottom-color: var(--gold);
     }
 
@@ -113,9 +122,9 @@
       position: relative;
       overflow: hidden;
       background:
-        radial-gradient(ellipse at 25% 30%, rgba(204,17,17,0.5) 0%, transparent 55%),
-        radial-gradient(ellipse at 75% 70%, rgba(255,179,71,0.2) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 10%, rgba(139,0,0,0.6) 0%, transparent 50%),
+        radial-gradient(ellipse at 25% 30%, rgba(204,17,17,0.4) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 70%, rgba(255,179,71,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 10%, rgba(139,0,0,0.5) 0%, transparent 50%),
         linear-gradient(180deg, #2d0000 0%, #1a0000 100%);
     }
 
@@ -137,7 +146,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255,215,0,0.12);
+      background: rgba(255,215,0,0.1);
+      backdrop-filter: blur(4px);
       border: 1px solid rgba(255,215,0,0.4);
       border-radius: 40px;
       padding: 7px 20px;
@@ -148,7 +158,7 @@
       margin-bottom: 22px;
       position: relative;
       z-index: 2;
-      box-shadow: 0 0 15px rgba(255,215,0,0.2);
+      box-shadow: 0 0 20px rgba(255,215,0,0.2);
     }
 
     .hero-title {
@@ -167,7 +177,14 @@
       animation: gold-glow 3s ease-in-out infinite; 
     }
     
-    .hero-title .red  { color: var(--red-bright); }
+    .hero-title .red { 
+      background: linear-gradient(90deg, #ff3333, #ffaa00, #ff3333);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: text-gradient 3s linear infinite;
+    }
 
     .hero-location {
       font-size: 15px;
@@ -209,7 +226,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: #25d366;
+      background: linear-gradient(135deg, #25d366, #128c7e);
       color: #fff;
       font-family: 'Tajawal', sans-serif;
       font-size: 17px;
@@ -217,17 +234,19 @@
       padding: 15px 38px;
       border-radius: 60px;
       text-decoration: none;
-      transition: background 0.3s, transform 0.2s;
-      animation: pulse-green 2s infinite; /* تأثير النبض هنا */
+      transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+      animation: pulse-green 2s infinite; 
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
     }
 
-    .btn-wa:hover { background: #1aab52; transform: scale(1.05); }
+    .btn-wa:hover { transform: scale(1.05); }
 
     .btn-call {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: transparent;
+      background: rgba(255, 215, 0, 0.05);
+      backdrop-filter: blur(5px);
       color: var(--gold);
       font-family: 'Tajawal', sans-serif;
       font-size: 17px;
@@ -243,7 +262,7 @@
       background: var(--gold); 
       color: #1a0000; 
       transform: scale(1.05); 
-      box-shadow: 0 0 20px rgba(255,215,0,0.4);
+      box-shadow: 0 0 25px rgba(255,215,0,0.5);
     }
 
     /* ===== SECTION SHELL ===== */
@@ -301,15 +320,17 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: linear-gradient(90deg, rgba(204,17,17,0.3), rgba(255,215,0,0.1));
-      border: 1px solid rgba(255,215,0,0.25);
+      background: rgba(204, 17, 17, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,215,0,0.3);
       border-radius: 30px;
-      padding: 7px 20px;
-      font-size: 15px;
+      padding: 8px 24px;
+      font-size: 16px;
       font-weight: 700;
       color: var(--gold);
-      margin-bottom: 22px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      margin-bottom: 26px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,215,0,0.1);
     }
 
     .items-grid {
@@ -323,17 +344,17 @@
 
     /* ===== FOOD CARD ENHANCEMENTS ===== */
     .food-card {
-      background: linear-gradient(160deg, rgba(80,0,0,0.5), rgba(40,0,0,0.7));
-      border: 1px solid rgba(255,215,0,0.18);
+      background: linear-gradient(160deg, rgba(80,0,0,0.4), rgba(30,0,0,0.8));
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,215,0,0.15);
       border-radius: 20px;
       overflow: hidden;
       width: 100%;
       max-width: 280px;
-      position: relative; /* ضروري لتأثير اللمعان */
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s, box-shadow 0.4s;
     }
 
-    /* تأثير اللمعان السحري المار على البطاقة */
     .food-card::before {
       content: '';
       position: absolute;
@@ -352,9 +373,9 @@
     }
 
     .food-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(255,215,0,0.6);
-      box-shadow: 0 15px 30px rgba(255, 0, 0, 0.2), 0 0 20px rgba(255, 215, 0, 0.15);
+      transform: translateY(-12px);
+      border-color: rgba(255,215,0,0.8);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 30, 0, 0.3), inset 0 0 15px rgba(255,215,0,0.1);
     }
 
     .food-img-wrap {
@@ -362,7 +383,7 @@
       width: 100%;
       height: 190px;
       overflow: hidden;
-      background: linear-gradient(135deg, #3d0000, #200000);
+      background: #110000;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -373,11 +394,13 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s ease, filter 0.6s ease;
+      filter: brightness(0.9);
     }
 
     .food-card:hover .food-img-wrap img {
-      transform: scale(1.1) rotate(2deg); /* تكبير ودوران خفيف جداً */
+      transform: scale(1.12) rotate(2deg);
+      filter: brightness(1.1);
     }
 
     .food-info {
@@ -392,11 +415,12 @@
       font-weight: 700;
       color: var(--white);
       margin-bottom: 6px;
-      transition: color 0.3s;
+      transition: color 0.3s, text-shadow 0.3s;
     }
     
     .food-card:hover .food-name {
       color: var(--gold);
+      text-shadow: 0 0 8px rgba(255,215,0,0.4);
     }
 
     .food-desc {
@@ -417,13 +441,13 @@
       border: 1px solid rgba(255,215,0,0.3);
       border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-      animation: float 6s ease-in-out infinite; /* تأثير الطفو */
+      box-shadow: 0 15px 45px rgba(0,0,0,0.6), 0 0 30px rgba(255,215,0,0.1);
+      animation: float 5s ease-in-out infinite;
     }
 
     .cake-img-wrap {
       width: 100%;
-      height: 280px;
+      height: 320px; /* جعلت صورة الكيك أكبر قليلاً لتبدو أشهى */
       overflow: hidden;
     }
 
@@ -431,6 +455,11 @@
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.8s ease;
+    }
+
+    .cake-card:hover .cake-img-wrap img {
+      transform: scale(1.05);
     }
 
     .cake-body {
@@ -443,7 +472,7 @@
       font-weight: 900;
       color: var(--gold);
       margin-bottom: 12px;
-      text-shadow: 0 2px 10px rgba(255,215,0,0.2);
+      text-shadow: 0 2px 10px rgba(255,215,0,0.3);
     }
 
     .cake-body p {
@@ -454,7 +483,7 @@
 
     .cake-body .hl { color: var(--red-bright); font-weight: 700; }
 
-    /* ===== CONTACT & OTHERS (بقيت كما هي مع تحسينات طفيفة) ===== */
+    /* ===== OTHERS ===== */
     .drinks-bg { background: linear-gradient(180deg, #220000 0%, #1a0000 100%); border-top: 1px solid rgba(255,215,0,0.12); }
     .contact-bg { background: linear-gradient(180deg, #1a0000 0%, #0d0000 100%); border-top: 1px solid rgba(255,215,0,0.15); }
 
@@ -467,6 +496,7 @@
 
     .contact-card {
       background: rgba(139,0,0,0.2);
+      backdrop-filter: blur(5px);
       border: 1px solid rgba(255,215,0,0.18);
       border-radius: 18px;
       padding: 22px 18px;
@@ -477,9 +507,9 @@
     }
 
     .contact-card:hover {
-      border-color: rgba(255,215,0,0.5);
+      border-color: rgba(255,215,0,0.6);
       transform: translateY(-5px);
-      box-shadow: 0 5px 20px rgba(200,0,0,0.2);
+      box-shadow: 0 10px 25px rgba(200,0,0,0.3), inset 0 0 10px rgba(255,215,0,0.05);
     }
 
     .c-icon {
@@ -490,15 +520,18 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 22px;
       flex-shrink: 0;
-      transition: transform 0.3s;
+      transition: transform 0.3s, background 0.3s;
     }
     
-    .contact-card:hover .c-icon { transform: scale(1.1) rotate(5deg); }
+    .contact-card:hover .c-icon { 
+      transform: scale(1.1) rotate(5deg); 
+      background: rgba(255,215,0,0.2);
+    }
 
     .c-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
     .c-value { font-size: 15px; font-weight: 700; color: var(--white); }
-    .c-value a { color: var(--gold); text-decoration: none; direction: ltr; display: inline-block; }
-    .c-value a:hover { text-decoration: underline; }
+    .c-value a { color: var(--gold); text-decoration: none; direction: ltr; display: inline-block; transition: text-shadow 0.2s; }
+    .c-value a:hover { text-decoration: underline; text-shadow: 0 0 5px rgba(255,215,0,0.5); }
 
     footer { background: #080000; border-top: 1px solid rgba(255,215,0,0.15); padding: 26px 24px; text-align: center; }
     .footer-name { font-size: 17px; font-weight: 900; color: var(--gold); margin-bottom: 6px; }
@@ -507,7 +540,7 @@
     .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; transition: color 0.2s; }
     .footer-links a:hover { color: var(--gold); }
 
-    .reveal { opacity: 0; transform: translateY(35px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 620px) {
@@ -565,29 +598,31 @@
       <h2 class="section-title">شاورما <span>لا مثيل لها</span></h2>
       <div class="title-bar"></div>
     </div>
+    
     <div class="category-row">
       <div class="cat-label reveal">🍗 شاورما الدجاج</div>
       <div class="items-grid">
         <div class="food-card reveal">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600&q=80" alt="شاورما دجاج بجيت" loading="lazy"></div>
-          <div class="food-info"><div class="food-name">شاورما دجاج بجيت</div><div class="food-desc">دجاج مشوي طازج بخبز البجيت</div></div>
+          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600&q=80" alt="شاورما دجاج بجيت" loading="lazy"></div>
+          <div class="food-info"><div class="food-name">شاورما دجاج بجيت</div><div class="food-desc">دجاج مشوي طازج بخبز البجيت المحمص</div></div>
         </div>
         <div class="food-card reveal">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1561651188-d207bbec4ec3?w=600&q=80" alt="شاورما دجاج " loading="lazy"></div>
-          <div class="food-info"><div class="food-name"> لفـــة دجاج </div><div class="food-desc">طعم لا يقــــاوم</div></div>
+          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80" alt="لفة دجاج" loading="lazy"></div>
+          <div class="food-info"><div class="food-name"> لفـــة دجاج </div><div class="food-desc">طعم لا يقــــاوم بخبز الصاج</div></div>
         </div>
       </div>
     </div>
+    
     <div class="category-row">
       <div class="cat-label reveal">🥩 شاورما الحبش</div>
       <div class="items-grid">
         <div class="food-card reveal">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=600&q=80" alt="شاورما حبش بجيت" loading="lazy"></div>
-          <div class="food-info"><div class="food-name">شاورما  بجيت حبـش</div><div class="food-desc">حبش مشوي وشهي بخبز البجيت الذهـبي</div></div>
+          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1619881589316-58f48f430544?w=600&q=80" alt="شاورما حبش بجيت" loading="lazy"></div>
+          <div class="food-info"><div class="food-name">شاورما بجيت حبـش</div><div class="food-desc">حبش مشوي وشهي بخبز البجيت الذهـبي</div></div>
         </div>
         <div class="food-card reveal">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="شاورما حبش" loading="lazy"></div>
-          <div class="food-info"><div class="food-name">شاورما </div><div class="food-desc">حبش  بالخبز  الطازج</div></div>
+          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1648281132717-b089c97b8304?w=600&q=80" alt="شاورما حبش لفة" loading="lazy"></div>
+          <div class="food-info"><div class="food-name">شاورما حبش لفة</div><div class="food-desc">حبش مشوي بخبز الصاج الطازج</div></div>
         </div>
       </div>
     </div>
@@ -599,30 +634,32 @@
   <div class="section">
     <div class="section-header reveal">
       <span class="eyebrow">البيتا والتوست</span>
-      <h2 class="section-title"> <span>طعــم</span>   ولا بالاحـلام </h2>
+      <h2 class="section-title"> <span>طعــم</span> ولا بالاحـلام </h2>
       <div class="title-bar"></div>
     </div>
+    
     <div class="category-row">
       <div class="cat-label reveal">🥙 البيتا</div>
       <div class="items-grid single">
         <div></div>
         <div class="food-card reveal" style="margin: 0 auto;">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="بيتا بجيت" loading="lazy"></div>
-          <div class="food-info"><div class="food-name">بيتا  الدجاج</div><div class="food-desc">خبز بيــتا طازج</div></div>
+          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1550507992-eb63ffee0224?w=600&q=80" alt="بيتا الدجاج" loading="lazy"></div>
+          <div class="food-info"><div class="food-name">بيتا الدجاج</div><div class="food-desc">دجاج بخبز البيتا الطازج المحشو واللذيذ</div></div>
         </div>
         <div></div>
       </div>
     </div>
+    
     <div class="category-row" style="margin-bottom:0">
       <div class="cat-label reveal">🍞 التوست</div>
       <div class="items-grid">
         <div class="food-card reveal">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80" alt="توست دجاج " loading="lazy"></div>
-          <div class="food-info"><div class="food-name">توست دجاج </div><div class="food-desc">توســـت  دجاج</div></div>
+          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1528736235302-52922df5c122?w=600&q=80" alt="توست دجاج" loading="lazy"></div>
+          <div class="food-info"><div class="food-name">توست دجاج </div><div class="food-desc">ساندويش توست دجاج محمص بالجبنة</div></div>
         </div>
         <div class="food-card reveal">
-          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1528736235302-52922df5c122?w=600&q=80" alt="توست حبش" loading="lazy"></div>
-          <div class="food-info"><div class="food-name">توست حبش </div><div class="food-desc"> توست حبــــش</div></div>
+          <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80" alt="توست حبش" loading="lazy"></div>
+          <div class="food-info"><div class="food-name">توست حبش </div><div class="food-desc"> توست حبــــش مدخن محمص مع الإضافات</div></div>
         </div>
       </div>
     </div>
@@ -637,18 +674,16 @@
       <h2 class="section-title">مشروبات <span>منعشة</span></h2>
       <div class="title-bar"></div>
     </div>
+    
+    <!-- تم حذف المشروبات الساخنة وجعلها شبكة من عنصرين فقط ليتم توزيعها بشكل أجمل -->
     <div class="items-grid">
       <div class="food-card reveal">
-        <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80" alt="عصائر طازجة" loading="lazy"></div>
-        <div class="food-info"><div class="food-name">عصائر طازجة</div><div class="food-desc">عصائر طبيعية منعشة</div></div>
+        <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1600271886742-f049cd451b51?w=600&q=80" alt="عصائر طازجة" loading="lazy"></div>
+        <div class="food-info"><div class="food-name">عصائر طازجة</div><div class="food-desc">عصائر طبيعية منعشة ومثلجة</div></div>
       </div>
       <div class="food-card reveal">
-        <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1581636625402-29b2a704ef13?w=600&q=80" alt="مشروبات غازية" loading="lazy"></div>
-        <div class="food-info"><div class="food-name">مشروبات غازية</div><div class="food-desc">تشكيلة متنوعة من المشروبات الباردة</div></div>
-      </div>
-      <div class="food-card reveal">
-        <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1556881286-fc6915169721?w=600&q=80" alt="مشروبات ساخنة" loading="lazy"></div>
-        <div class="food-info"><div class="food-name">مشروبات ساخنة</div><div class="food-desc">قهوة وشاي ومشروبات دافئة</div></div>
+        <div class="food-img-wrap"><img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&q=80" alt="مشروبات غازية" loading="lazy"></div>
+        <div class="food-info"><div class="food-name">مشروبات غازية</div><div class="food-desc">تشكيلة متنوعة من المشروبات الغازية المبردة</div></div>
       </div>
     </div>
   </div>
@@ -664,7 +699,7 @@
     </div>
     <div class="cake-card reveal">
       <div class="cake-img-wrap">
-        <img src="https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=900&q=80" alt="جاتوهات مميزة للمناسبات" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=900&q=80" alt="جاتوهات مميزة للمناسبات الفاخرة" loading="lazy">
       </div>
       <div class="cake-body">
         <h3>🎂 جاتوهات مميزة لكل مناسبة</h3>
@@ -742,14 +777,14 @@
 (function(){
   const container = document.getElementById('particles');
   const colors = ['#ff4400','#ff6600','#ff8800','#ffaa00','#ffd700','#ff2200'];
-  for(let i=0;i<40;i++){
+  for(let i=0;i<50;i++){
     const p = document.createElement('div');
     p.className = 'fire-particle';
     p.style.cssText = `
       left:${Math.random()*100}%;
       bottom:${Math.random()*30}%;
-      width:${2+Math.random()*5}px;
-      height:${2+Math.random()*5}px;
+      width:${2+Math.random()*4}px;
+      height:${2+Math.random()*4}px;
       background:${colors[Math.floor(Math.random()*colors.length)]};
       animation-duration:${1.5+Math.random()*3}s;
       animation-delay:${Math.random()*3}s;
@@ -758,14 +793,17 @@
   }
 })();
 
-/* scroll reveal */
+/* scroll reveal with magical feel */
 (function(){
   const els = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver(entries=>{
     entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+      if(e.isIntersecting){ 
+        e.target.classList.add('visible'); 
+        obs.unobserve(e.target); 
+      }
     });
-  },{threshold:0.1});
+  },{threshold:0.15});
   els.forEach(el=>obs.observe(el));
 })();
 </script>
