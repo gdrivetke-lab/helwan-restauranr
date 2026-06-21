@@ -35,7 +35,7 @@
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: #0d0000; z-index: 999999;
       display: flex; flex-direction: column; justify-content: center; align-items: center;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     
     .loader-logo {
@@ -180,8 +180,7 @@
     .category-row:last-child { margin-bottom: 0; }
     .cat-label { display: inline-flex; align-items: center; gap: 8px; background: rgba(204, 17, 17, 0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,215,0,0.3); border-radius: 30px; padding: 8px 24px; font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 26px; box-shadow: 0 8px 20px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,215,0,0.1); animation: float 4s ease-in-out infinite alternate; }
     .items-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; justify-items: center; perspective: 1000px; }
-    .items-grid.single { grid-template-columns: repeat(3, 1fr); }
-
+    
     .food-card { background: linear-gradient(160deg, rgba(80,0,0,0.4), rgba(30,0,0,0.8)); backdrop-filter: blur(5px); border: 1px solid rgba(255,215,0,0.15); border-radius: 20px; overflow: hidden; width: 100%; max-width: 280px; position: relative; transform-style: preserve-3d; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s, box-shadow 0.4s; cursor: pointer; }
     .food-card:active { transform: scale(0.95); border-color: rgba(255,215,0,0.8); box-shadow: 0 0 20px rgba(255, 30, 0, 0.5), inset 0 0 15px rgba(255,215,0,0.3); }
     @media (pointer: fine) { .food-card:hover { transform: translateY(-12px); border-color: rgba(255,215,0,0.8); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 30, 0, 0.3), inset 0 0 15px rgba(255,215,0,0.1); } }
@@ -234,6 +233,7 @@
 </head>
 <body>
 
+<!-- شاشة التحميل السينمائية الملتهبة -->
 <div id="loader">
   <div class="loader-logo">🔥 حلوان اخوان</div>
   <div class="fire-text">مرحباً بكم في عالم ملك الشاورما بلا منازع</div>
@@ -243,10 +243,12 @@
 <div id="magic-cursor"></div>
 <div id="cursor-trail"></div>
 
+<!-- أداة تكبير الصور (Lightbox) -->
 <div class="zoom-overlay" id="zoomOverlay">
   <img src="" alt="Zoomed" class="zoomed-img" id="zoomedImg">
 </div>
 
+<!-- نافذة النفحات الإيمانية (Modal) -->
 <div class="islamic-modal" id="islamicModal">
   <div class="islamic-content">
     <span class="close-islamic" id="closeIslamic">&times;</span>
@@ -255,8 +257,10 @@
   </div>
 </div>
 
+<!-- الزر الأخضر العائم للنفحات الإيمانية -->
 <button class="fab-islamic haptic-btn" id="fabIslamicBtn" title="نفحات إيمانية">📖</button>
 
+<!-- NAV -->
 <header>
   <div class="marquee-container">
     <div class="marquee-text">
@@ -275,6 +279,7 @@
   </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero" id="hero">
   <div id="particles"></div>
   <div class="hero-badge">✨ قلقيلية — شارع الملعب ✨</div>
@@ -293,6 +298,7 @@
   </div>
 </section>
 
+<!-- ORDER ONLINE SECTION -->
 <div class="order-bg" id="order-online">
   <div class="section">
     <div class="section-header reveal">
@@ -360,6 +366,7 @@
   </div>
 </div>
 
+<!-- CHICKEN SECTION -->
 <div class="menu-bg" id="chicken">
   <div class="section">
     <div class="section-header reveal">
@@ -367,47 +374,56 @@
       <h2 class="section-title">وجبات <span>الدجاج</span></h2>
       <div class="title-bar"></div>
     </div>
-    <div class="items-grid">
-      <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600&q=80" alt="بجيت دجاج" loading="lazy"></div>
-        <div class="food-info" onclick="selectMeal('بجيت دجاج (17 شيكل)')">
-          <div class="food-name">بجيت دجاج</div><div class="food-desc">بجيت الدجاج الشهي والمحمص</div><div class="food-price">17 ₪</div>
+    <div class="category-row">
+      <div class="items-grid">
+        <!-- 1 -->
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1619881589316-56c7f9e6b587?w=600&q=80" alt="بجيت دجاج" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بجيت دجاج (17 شيكل)')">
+            <div class="food-name">بجيت دجاج</div><div class="food-desc">بجيت الدجاج الشهي والمحمص</div><div class="food-price">17 ₪</div>
+          </div>
         </div>
-      </div>
-      <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600&q=80" alt="بجيت دجاج دبل" loading="lazy"></div>
-        <div class="food-info" onclick="selectMeal('بجيت دجاج دبل (25 شيكل)')">
-          <div class="food-name">بجيت دجاج دبل</div><div class="food-desc">كمية مضاعفة للمعدة الخاوية</div><div class="food-price">25 ₪</div>
+        <!-- 2 -->
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1604467715878-83e57e8bc129?w=600&q=80" alt="بجيت دجاج دبل" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بجيت دجاج دبل (25 شيكل)')">
+            <div class="food-name">بجيت دجاج دبل</div><div class="food-desc">كمية مضاعفة للمعدة الخاوية</div><div class="food-price">25 ₪</div>
+          </div>
         </div>
-      </div>
-      <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap img-zoom-trigger"><img src="https://www.atyabtabkha.com/tachyon/sites/2/2025/12/%D8%B4%D8%A7%D9%88%D8%B1%D9%85%D8%A7-2.jpg" alt="لفة دجاج" loading="lazy"></div>
-        <div class="food-info" onclick="selectMeal('لفة دجاج (17 شيكل)')">
-          <div class="food-name">لفة دجاج</div><div class="food-desc">شاورما دجاج بخبز الصاج</div><div class="food-price">17 ₪</div>
+        <!-- 3 -->
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600&q=80" alt="لفة دجاج" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('لفة دجاج (17 شيكل)')">
+            <div class="food-name">لفة دجاج</div><div class="food-desc">شاورما دجاج  </div><div class="food-price">17 ₪</div>
+          </div>
         </div>
-      </div>
-      <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap img-zoom-trigger"><img src="https://www.atyabtabkha.com/tachyon/sites/2/2025/12/%D8%B4%D8%A7%D9%88%D8%B1%D9%85%D8%A7-2.jpg" alt="لفة دجاج دبل" loading="lazy"></div>
-        <div class="food-info" onclick="selectMeal('لفة دجاج دبل (25 شيكل)')">
-          <div class="food-name">لفة دجاج دبل</div><div class="food-desc">لفة مضاعفة ومليئة بالطعم</div><div class="food-price">25 ₪</div>
+        <!-- 4 -->
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=600&q=80" alt="لفة دجاج دبل" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('لفة دجاج دبل (25 شيكل)')">
+            <div class="food-name">لفة دجاج دبل</div><div class="food-desc">لفة مضاعفة </div><div class="food-price">25 ₪</div>
+          </div>
         </div>
-      </div>
-      <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="بيتا دجاج" loading="lazy"></div>
-        <div class="food-info" onclick="selectMeal('بيتا دجاج (15 شيكل)')">
-          <div class="food-name">بيتا دجاج</div><div class="food-desc">دجاج مشوي بخبز البيتا الطازج</div><div class="food-price">15 ₪</div>
+        <!-- 5 -->
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1605333396914-2314dce1c581?w=600&q=80" alt="بيتا دجاج" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بيتا دجاج (15 شيكل)')">
+            <div class="food-name">بيتا دجاج</div><div class="food-desc">دجاج  بخبز البيتا الطازج</div><div class="food-price">15 ₪</div>
+          </div>
         </div>
-      </div>
-      <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="بيتا دجاج دبل" loading="lazy"></div>
-        <div class="food-info" onclick="selectMeal('بيتا دجاج دبل (18 شيكل)')">
-          <div class="food-name">بيتا دجاج دبل</div><div class="food-desc">بيتا مليئة بطبقة دجاج إضافية</div><div class="food-price">18 ₪</div>
+        <!-- 6 -->
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=600&q=80" alt="بيتا دجاج دبل" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بيتا دجاج دبل (18 شيكل)')">
+            <div class="food-name">بيتا دجاج دبل</div><div class="food-desc">بيتا مليئة بطبقة دجاج إضافية</div><div class="food-price">18 ₪</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- HABASH SECTION -->
 <div style="background: linear-gradient(180deg,#1a0000,#200000); border-bottom: 1px solid rgba(255,215,0,0.12);" id="habash">
   <div class="section">
     <div class="section-header reveal">
@@ -415,29 +431,35 @@
       <h2 class="section-title">وجبات <span>الحبش</span></h2>
       <div class="title-bar"></div>
     </div>
-    <div class="items-grid">
-      <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=600&q=80" alt="بجيت حبش" loading="lazy"></div>
-        <div class="food-info" onclick="selectMeal('بجيت حبش (22 شيكل)')">
-          <div class="food-name">بجيت حبش</div><div class="food-desc">شاورما حبش مميزة بخبز البجيت</div><div class="food-price">22 ₪</div>
+    <div class="category-row">
+      <div class="items-grid">
+        <!-- 1 -->
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?w=600&q=80" alt="بجيت حبش" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بجيت حبش (22 شيكل)')">
+            <div class="food-name">بجيت حبش</div><div class="food-desc">شاورما حبش مميزة بخبز البجيت</div><div class="food-price">22 ₪</div>
+          </div>
         </div>
-      </div>
-      <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="لفة حبش" loading="lazy"></div>
-        <div class="food-info" onclick="selectMeal('لفة حبش (22 شيكل)')">
-          <div class="food-name">لفة حبش</div><div class="food-desc">حبش محشي بخبز الصاج</div><div class="food-price">22 ₪</div>
+        <!-- 2 -->
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1668233595287-28d11c828df5?w=600&q=80" alt="لفة حبش" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('لفة حبش (22 شيكل)')">
+            <div class="food-name">لفة حبش</div><div class="food-desc">حبش مميز </div><div class="food-price">22 ₪</div>
+          </div>
         </div>
-      </div>
-      <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1528736235302-52922df5c122?w=600&q=80" alt="بيتا حبش" loading="lazy"></div>
-        <div class="food-info" onclick="selectMeal('بيتا حبش (18 شيكل)')">
-          <div class="food-name">بيتا حبش</div><div class="food-desc">حبش رائع بخبز البيتا</div><div class="food-price">18 ₪</div>
+        <!-- 3 -->
+        <div class="food-card reveal ripple-element">
+          <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600&q=80" alt="بيتا حبش" loading="lazy"></div>
+          <div class="food-info" onclick="selectMeal('بيتا حبش (18 شيكل)')">
+            <div class="food-name">بيتا حبش</div><div class="food-desc">حبش رائع بخبز البيتا</div><div class="food-price">18 ₪</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- DRINKS -->
 <div class="drinks-bg" id="drinks">
   <div class="section">
     <div class="section-header reveal">
@@ -447,13 +469,13 @@
     </div>
     <div class="items-grid">
       <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&q=80" alt="كولا" loading="lazy"></div>
+        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=600&q=80" alt="كولا" loading="lazy"></div>
         <div class="food-info" onclick="selectMeal('كولا (3 شيكل)')">
           <div class="food-name">كولا</div><div class="food-desc">مشروب غازي بارد</div><div class="food-price">3 ₪</div>
         </div>
       </div>
       <div class="food-card reveal ripple-element">
-        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80" alt="عصير" loading="lazy"></div>
+        <div class="food-img-wrap img-zoom-trigger"><img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600&q=80" alt="عصير" loading="lazy"></div>
         <div class="food-info" onclick="selectMeal('عصير (3 شيكل)')">
           <div class="food-name">عصير</div><div class="food-desc">عصائر منعشة ومثلجة</div><div class="food-price">3 ₪</div>
         </div>
@@ -462,6 +484,7 @@
   </div>
 </div>
 
+<!-- CAKES -->
 <div class="cake-bg" id="cakes">
   <div class="section">
     <div class="section-header reveal">
@@ -471,7 +494,7 @@
     </div>
     <div class="cake-card reveal ripple-element">
       <div class="cake-img-wrap img-zoom-trigger">
-        <img src="https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=900&q=80" alt="جاتوهات مميزة للمناسبات الفاخرة" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=900&q=80" alt="جاتوهات مميزة للمناسبات الفاخرة" loading="lazy">
       </div>
       <div class="cake-body">
         <h3>🎂 جاتوهات مميزة لكل مناسبة</h3>
@@ -481,6 +504,7 @@
   </div>
 </div>
 
+<!-- CONTACT -->
 <div class="contact-bg" id="contact">
   <div class="section">
     <div class="section-header reveal">
@@ -496,22 +520,32 @@
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-name">🔥 مطعم وجاتوه حلوان أخوان</div>
   <div class="footer-copy">جميع الحقوق محفوظة © 2026 — قلقيلية، فلسطين</div>
 </footer>
 
 <script>
-// 0. إزالة شاشة التحميل السينمائية بعد 2 ثوانٍ
-window.addEventListener('load', () => {
+// 1. نظام شاشة التحميل الآمن (لن تعلق الشاشة أبداً)
+document.addEventListener('DOMContentLoaded', () => {
   const loader = document.getElementById('loader');
   setTimeout(() => {
     loader.style.opacity = '0';
-    setTimeout(() => { loader.style.display = 'none'; }, 800);
-  }, 3000); 
+    setTimeout(() => { loader.style.display = 'none'; }, 500);
+  }, 1000);
 });
 
-// 1. نظام الزر الأخضر (النفحات الإيمانية)
+// حماية إضافية في حال تأخر المتصفح
+setTimeout(() => {
+  const loader = document.getElementById('loader');
+  if(loader && loader.style.display !== 'none') {
+    loader.style.opacity = '0';
+    setTimeout(() => { loader.style.display = 'none'; }, 500);
+  }
+}, 2500);
+
+// 2. نظام الزر الأخضر (النفحات الإيمانية)
 const islamicQuotes = [
   "۞ إِنَّ مَعَ الْعُسْرِ يُسْرًا ۞",
   "۞ وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَى ۞",
@@ -543,7 +577,7 @@ document.getElementById('closeIslamic').addEventListener('click', () => {
   modalIslamic.classList.remove('active');
 });
 
-// 2. نظام إرسال الطلب الذكي + قصاصات الاحتفال (Confetti)
+// 3. نظام إرسال الطلب الذكي للواتساب
 function shootConfetti() {
   const colors = ['#ffd700', '#ffb347', '#ff3333', '#ffffff', '#28a745'];
   for(let i=0; i<80; i++) {
@@ -558,10 +592,12 @@ function shootConfetti() {
 }
 
 document.getElementById('custom-order-form').addEventListener('submit', function(e) {
-  e.preventDefault();
+  e.preventDefault(); 
+  
   const name = document.getElementById('custName').value;
   const meal = document.getElementById('mealType').value;
   const notes = document.getElementById('orderNotes').value;
+  
   const saladElements = document.querySelectorAll('input[name="salads"]:checked');
   let salads = [];
   saladElements.forEach(el => salads.push(el.value));
@@ -572,8 +608,8 @@ document.getElementById('custom-order-form').addEventListener('submit', function
   const encodedMessage = encodeURIComponent(waMessage);
   const waLink = `https://wa.me/00972599100513?text=${encodedMessage}`;
   
-  shootConfetti();
-  setTimeout(() => { window.open(waLink, '_blank'); }, 1200);
+  shootConfetti(); 
+  window.location.href = waLink;
 });
 
 function selectMeal(mealName) {
@@ -584,7 +620,7 @@ function selectMeal(mealName) {
   setTimeout(() => { selectBox.style.boxShadow = 'none'; }, 1500);
 }
 
-// 3. ميزة تكبير الصور (Lightbox)
+// 4. ميزة تكبير الصور (Lightbox)
 const zoomTriggers = document.querySelectorAll('.img-zoom-trigger');
 const zoomOverlay = document.getElementById('zoomOverlay');
 const zoomedImg = document.getElementById('zoomedImg');
@@ -600,14 +636,14 @@ zoomTriggers.forEach(trigger => {
 
 zoomOverlay.addEventListener('click', () => { zoomOverlay.classList.remove('active'); });
 
-// 4. شريط تقدم القراءة
+// 5. شريط تقدم القراءة
 window.addEventListener('scroll', () => {
   const scrollTotal = document.documentElement.scrollTop || document.body.scrollTop;
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   document.getElementById('scroll-progress').style.width = ((scrollTotal / height) * 100) + '%';
 });
 
-// 5. سحر اللمس (Touch Sparkles)
+// 6. سحر اللمس (Touch Sparkles)
 let lastSparkTime = 0;
 document.addEventListener('touchmove', (e) => {
   const now = Date.now();
@@ -622,7 +658,7 @@ document.addEventListener('touchmove', (e) => {
   setTimeout(() => spark.remove(), 800);
 }, { passive: true });
 
-// 6. تأثير الموجة (Ripple)
+// 7. تأثير الموجة (Ripple)
 function createRipple(event) {
   const element = event.currentTarget;
   const circle = document.createElement('span');
@@ -644,12 +680,12 @@ document.querySelectorAll('.btn-primary, .btn-call, .btn-islamic-hero, .fab-isla
   el.addEventListener('touchstart', createRipple, { passive: true });
 });
 
-// 7. اهتزاز التفاعل الجوال
+// 8. اهتزاز التفاعل الجوال
 document.querySelectorAll('.haptic-btn').forEach(btn => {
   btn.addEventListener('touchstart', () => { if (navigator.vibrate) navigator.vibrate(40); }, { passive: true });
 });
 
-// 8. الماوس السحري للحواسيب
+// 9. الماوس السحري للحواسيب
 if (window.matchMedia("(pointer: fine)").matches) {
   const cursor = document.getElementById('magic-cursor');
   const trail = document.getElementById('cursor-trail');
@@ -672,7 +708,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
   });
 }
 
-// 9. شرارات النار الواجهة
+// 10. شرارات النار الواجهة
 (function(){
   const container = document.getElementById('particles');
   const colors = ['#ff4400','#ff6600','#ff8800','#ffaa00','#ffd700','#ff2200'];
@@ -683,7 +719,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
   }
 })();
 
-// 10. كشف النزول (Scroll Reveal)
+// 11. كشف النزول (Scroll Reveal)
 (function(){
   const els = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); },{threshold:0.1});
