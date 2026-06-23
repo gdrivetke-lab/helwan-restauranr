@@ -261,7 +261,7 @@
         justify-content: center; align-items: center; transition: 0.3s;
     }
     .close-btn:hover { background: var(--red-vivid); color: #fff; border-color: var(--red-vivid); transform: rotate(90deg); }
-    .ad-img { width: 100%; height: 250px; object-fit: cover; border-bottom: 2px solid var(--gold); }
+    .ad-img { width: 100%; height: auto; max-height: 400px; object-fit: cover; border-bottom: 2px solid var(--gold); }
     .countdown-container { padding: 25px 20px; }
     .countdown-title { color: var(--gold); margin-top: 0; font-size: 22px; font-weight: 900; margin-bottom: 20px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
     .timer { display: flex; justify-content: center; gap: 12px; direction: ltr; }
@@ -271,7 +271,7 @@
     .shop-btn-ad {
         display: inline-block; margin-top: 25px; padding: 12px 35px;
         background: linear-gradient(135deg, #ffd700, #ffb347); color: #1a0000; text-decoration: none;
-        border-radius: 25px; font-weight: 900; font-size: 18px; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,215,0,0.4);
+        border-radius: 25px; font-weight: 900; font-size: 18px; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,215,0,0.4); border: none; cursor: pointer;
     }
     .shop-btn-ad:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(255,215,0,0.6); }
 
@@ -589,10 +589,12 @@
   </div>
 </div>
 
+<!-- نافذة الإعلان المنبثقة المدمجة -->
 <div class="ad-overlay" id="adOverlay">
     <div class="ad-box">
         <button class="close-btn" id="closeAd">✖</button>
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="إعلان عرض خاص" class="ad-img">
+        <!-- صورة الإعلان التي قمت أنت بإرفاقها -->
+        <img src="1.jpg" alt="إعلان عرض خاص" class="ad-img">
         <div class="countdown-container">
             <h3 class="countdown-title">🔥 عرض خاص ينتهي قريباً 🔥</h3>
             <div class="timer" id="countdownTimer">
