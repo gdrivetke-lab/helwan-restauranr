@@ -235,16 +235,16 @@
     .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ===== ستايل نافذة الإعلان المنبثقة المدمجة ===== */
-    .ad-overlay {
+    /* ===== ستايل نافذة العرض المنبثقة (معدلة لتجاوز الحظر) ===== */
+    .promo-overlay {
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         background: rgba(0, 0, 0, 0.85); z-index: 9999999;
         display: flex; justify-content: center; align-items: center;
         opacity: 0; visibility: hidden; transition: opacity 0.5s ease;
         backdrop-filter: blur(8px);
     }
-    .ad-overlay.show { opacity: 1; visibility: visible; }
-    .ad-box {
+    .promo-overlay.show { opacity: 1; visibility: visible; }
+    .promo-box {
         background: linear-gradient(135deg, #1a0000, #2d0000);
         border: 2px solid var(--gold); border-radius: 20px;
         width: 90%; max-width: 500px; overflow: hidden; position: relative;
@@ -252,28 +252,29 @@
         transform: translateY(30px) scale(0.9); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         text-align: center;
     }
-    .ad-overlay.show .ad-box { transform: translateY(0) scale(1); }
-    .close-btn {
+    .promo-overlay.show .promo-box { transform: translateY(0) scale(1); }
+    .close-promo-btn {
         position: absolute; top: 12px; right: 15px;
         background: rgba(0,0,0,0.5); color: var(--gold); border: 1px solid var(--gold);
         width: 35px; height: 35px; border-radius: 50%;
         cursor: pointer; font-size: 18px; z-index: 10; display: flex;
         justify-content: center; align-items: center; transition: 0.3s;
     }
-    .close-btn:hover { background: var(--red-vivid); color: #fff; border-color: var(--red-vivid); transform: rotate(90deg); }
-    .ad-img { width: 100%; height: auto; max-height: 400px; object-fit: cover; border-bottom: 2px solid var(--gold); }
-    .countdown-container { padding: 25px 20px; }
-    .countdown-title { color: var(--gold); margin-top: 0; font-size: 22px; font-weight: 900; margin-bottom: 20px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+    .close-promo-btn:hover { background: var(--red-vivid); color: #fff; border-color: var(--red-vivid); transform: rotate(90deg); }
+    .promo-img { width: 100%; height: auto; max-height: 450px; object-fit: contain; background: #000; border-bottom: 2px solid var(--gold); }
+    
+    .countdown-container { padding: 20px; }
+    .countdown-title { color: var(--gold); margin-top: 0; font-size: 22px; font-weight: 900; margin-bottom: 15px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
     .timer { display: flex; justify-content: center; gap: 12px; direction: ltr; }
     .time-box { background: rgba(0,0,0,0.5); color: var(--white); padding: 10px; border-radius: 10px; min-width: 65px; border: 1px solid rgba(255,215,0,0.3); box-shadow: inset 0 0 10px rgba(0,0,0,0.8); }
     .time-box span { display: block; font-size: 24px; font-weight: 900; color: var(--gold); margin-bottom: 5px; }
     .time-box small { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: bold; }
-    .shop-btn-ad {
-        display: inline-block; margin-top: 25px; padding: 12px 35px;
+    .shop-btn-promo {
+        display: inline-block; margin-top: 20px; padding: 12px 35px;
         background: linear-gradient(135deg, #ffd700, #ffb347); color: #1a0000; text-decoration: none;
         border-radius: 25px; font-weight: 900; font-size: 18px; transition: 0.3s; box-shadow: 0 5px 15px rgba(255,215,0,0.4); border: none; cursor: pointer;
     }
-    .shop-btn-ad:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(255,215,0,0.6); }
+    .shop-btn-promo:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(255,215,0,0.6); }
 
     @media (max-width: 768px) { .nav-links { display: flex; gap: 10px; } .nav-links li.desktop-only { display: none; } }
     @media (max-width: 620px) { html { cursor: auto; } .items-grid { grid-template-columns: 1fr 1fr; } .items-grid.single { grid-template-columns: 1fr; } .hero-cta { flex-direction: column; align-items: center; } .food-card { transform-style: flat; } }
@@ -589,12 +590,10 @@
   </div>
 </div>
 
-<!-- نافذة الإعلان المنبثقة المدمجة -->
-<div class="ad-overlay" id="adOverlay">
-    <div class="ad-box">
-        <button class="close-btn" id="closeAd">✖</button>
-        <!-- صورة الإعلان التي قمت أنت بإرفاقها -->
-        <img src="1.jpg" alt="إعلان عرض خاص" class="ad-img">
+<div class="promo-overlay" id="promoOverlay">
+    <div class="promo-box">
+        <button class="close-promo-btn" id="closePromo">✖</button>
+        <img src="https://i.ibb.co/6R2N7bY1/IMG-20240905-WA0001.jpg" alt="إعلان عرض خاص" class="promo-img">
         <div class="countdown-container">
             <h3 class="countdown-title">🔥 عرض خاص ينتهي قريباً 🔥</h3>
             <div class="timer" id="countdownTimer">
@@ -603,7 +602,7 @@
                 <div class="time-box"><span id="minutes">00</span><small>دقيقة</small></div>
                 <div class="time-box"><span id="seconds">00</span><small>ثانية</small></div>
             </div>
-            <button class="shop-btn-ad" id="adOrderBtn">اطلب أونلاين الآن</button>
+            <button class="shop-btn-promo" id="promoOrderBtn">اطلب أونلاين الآن</button>
         </div>
     </div>
 </div>
@@ -787,45 +786,42 @@ if (window.matchMedia("(pointer: fine)").matches) {
 })();
 
 // ==========================================
-// أكواد الإعلان المنبثق والعداد التنازلي
+// أكواد العرض المنبثق والعداد التنازلي (تم تعديل الأسماء لتجاوز الحظر)
 // ==========================================
-const adOverlay = document.getElementById('adOverlay');
-const closeAdBtn = document.getElementById('closeAd');
-const adOrderBtn = document.getElementById('adOrderBtn');
+const promoOverlay = document.getElementById('promoOverlay');
+const closePromoBtn = document.getElementById('closePromo');
+const promoOrderBtn = document.getElementById('promoOrderBtn');
 
-// إظهار الإعلان بعد 3.5 ثانية لتجنب التداخل مع شاشة التحميل (Loader)
+// إظهار العرض بعد 3.5 ثانية
 setTimeout(() => {
-    adOverlay.classList.add('show');
-    shootConfetti(); // إطلاق الألوان الاحتفالية لجذب الانتباه
+    promoOverlay.classList.add('show');
+    shootConfetti(); 
 }, 3500);
 
-// إغلاق الإعلان عند الضغط على X
-closeAdBtn.addEventListener('click', () => {
-    adOverlay.classList.remove('show');
+// إغلاق العرض
+closePromoBtn.addEventListener('click', () => {
+    promoOverlay.classList.remove('show');
 });
 
-// إغلاق الإعلان والتمرير لأسفل لنموذج الطلب عند الضغط على زر "اطلب أونلاين الآن"
-adOrderBtn.addEventListener('click', () => {
-    adOverlay.classList.remove('show');
+// إغلاق العرض والذهاب للطلب
+promoOrderBtn.addEventListener('click', () => {
+    promoOverlay.classList.remove('show');
     document.querySelector('#order-online').scrollIntoView({ behavior: 'smooth' });
 });
 
-// إعداد تاريخ انتهاء العرض (25 يونيو 2026 الساعة 23:59:59)
+// إعداد تاريخ الانتهاء
 const countDownDate = new Date("Jun 25, 2026 23:59:59").getTime();
 
-// تحديث العداد كل ثانية
 const timerInterval = setInterval(function() {
     const now = new Date().getTime();
     const distance = countDownDate - now;
 
-    // في حال انتهاء الوقت
     if (distance < 0) {
         clearInterval(timerInterval);
         document.getElementById("countdownTimer").innerHTML = "<h4 style='color:var(--gold); margin: 0; font-size: 22px; text-shadow: 0 2px 10px rgba(0,0,0,0.5);'>لقد انتهى العرض!</h4>";
         return;
     }
 
-    // حساب الوقت وتحديث الأرقام في المربعات
     document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
     document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
     document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
