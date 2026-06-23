@@ -1433,7 +1433,7 @@ function makeRipple(e) {
   btn.appendChild(circle);
   setTimeout(() => circle.remove(), 600);
 }
-document.querySelectorAll('.btn, .submit-btn, .promo-cta').forEach(b => {
+document.querySelectorAll('.btn, .submit-btn, .promo-cta, .promo-go-btn').forEach(b => {
   b.addEventListener('mousedown', makeRipple);
   b.addEventListener('touchstart', makeRipple, { passive: true });
 });
@@ -1441,7 +1441,7 @@ document.querySelectorAll('.btn, .submit-btn, .promo-cta').forEach(b => {
 /* ═══════════════════════════════
    HAPTIC VIBRATION
 ═══════════════════════════════ */
-document.querySelectorAll('.btn, .food-card, .submit-btn, .salad-chip, .fab-wa').forEach(el => {
+document.querySelectorAll('.btn, .food-card, .submit-btn, .salad-chip, .fab-wa, .promo-fab').forEach(el => {
   el.addEventListener('touchstart', () => { if (navigator.vibrate) navigator.vibrate(30); }, { passive: true });
 });
 
@@ -1462,39 +1462,13 @@ document.addEventListener('touchmove', e => {
 }, { passive: true });
 
 /* ═══════════════════════════════
-   PROMO POPUP + COUNTDOWN
-═══════════════════════════════ */
-const promoWrap = document.getElementById('promoWrap');
-setTimeout(() => { promoWrap.classList.add('show'); shootConfetti(); }, 4000);
-document.getElementById('promoClose').addEventListener('click', () => promoWrap.classList.remove('show'));
-document.getElementById('promoCta').addEventListener('click', () => {
-  promoWrap.classList.remove('show');
-  scrollTo('#order-online');
-});
-
-const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
-(function tick() {
-  const dist = deadline - Date.now();
-  if (dist <= 0) {
-    document.getElementById('timerRow').innerHTML = `<span style="color:var(--gold);font-family:'Noto Kufi Arabic',sans-serif;font-size:14px;font-weight:700;">لقد انتهى العرض!</span>`;
-    return;
-  }
-  const pad = n => String(Math.floor(n)).padStart(2,'0');
-  document.getElementById('tDays').textContent  = pad(dist/(864e5));
-  document.getElementById('tHours').textContent = pad((dist%864e5)/36e5);
-  document.getElementById('tMins').textContent  = pad((dist%36e5)/6e4);
-  document.getElementById('tSecs').textContent  = pad((dist%6e4)/1000);
-  setTimeout(tick, 1000);
-})();
-
-/* ═══════════════════════════════
    NAV onclick fix
 ═══════════════════════════════ */
 document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribute('href'));
 
-// ═══════════════════════════════════════
-//  PROMO FAB LOGIC
-// ═══════════════════════════════════════
+/* ═══════════════════════════════
+   PROMO PANEL & FAB LOGIC
+═══════════════════════════════ */
 const promoPanel  = document.getElementById('promoPanel');
 const promoFabBtn = document.getElementById('promoFabBtn');
 const promoX      = document.getElementById('promoX');
@@ -1502,40 +1476,73 @@ const promoGoBtn  = document.getElementById('promoGoBtn');
 let promoOpen = false;
 
 function openPromo(){
+  if(!promoPanel) return;
   promoPanel.classList.add('open');
-  promoFabBtn.querySelector('.promo-fab-ring').style.transform='scale(1.1) rotate(15deg)';
-  promoOpen=true;
+  if(promoFabBtn.querySelector('.promo-fab-ring')) {
+    promoFabBtn.querySelector('.promo-fab-ring').style.transform='scale(1.1) rotate(15deg)';
+  }
+  promoOpen = true;
 }
+
 function closePromo(){
+  if(!promoPanel) return;
   promoPanel.classList.remove('open');
-  promoFabBtn.querySelector('.promo-fab-ring').style.transform='';
-  promoOpen=false;
+  if(promoFabBtn.querySelector('.promo-fab-ring')) {
+    promoFabBtn.querySelector('.promo-fab-ring').style.transform='';
+  }
+  promoOpen = false;
 }
-promoFabBtn.addEventListener('click', ()=>promoOpen?closePromo():openPromo());
-promoX.addEventListener('click', closePromo);
-promoGoBtn.addEventListener('click',()=>{ closePromo(); goTo('#order-online'); });
-document.addEventListener('click', e=>{
+
+promoFabBtn.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  promoOpen ? closePromo() : openPromo();
+});
+
+promoX.addEventListener('click', (e) => {
+  e.stopPropagation();
+  closePromo();
+});
+
+promoGoBtn.addEventListener('click', () => { 
+  closePromo(); 
+  scrollTo('#order-online'); 
+});
+
+document.addEventListener('click', e => {
   if(promoOpen && !promoPanel.contains(e.target) && !promoFabBtn.contains(e.target)) closePromo();
 });
-// فتح تلقائي بعد 4 ثوان
-setTimeout(()=>{ openPromo(); shootConfetti(); }, 4000);
 
-// COUNTDOWN
+// فتح تلقائي مبكر بعد 4 ثوانٍ
+setTimeout(() => { openPromo(); shootConfetti(); }, 4000);
+
+/* ═══════════════════════════════
+   COUNTDOWN TIMER (SHARED)
+═══════════════════════════════ */
 const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
+
 (function tick(){
   const dist = deadline - Date.now();
-  if(dist<=0){
-    document.getElementById('timerRow').innerHTML=`<span style="color:var(--gold);font-family:'Noto Kufi Arabic',sans-serif;font-size:13px;font-weight:700;">انتهى العرض!</span>`;
+  const timerRow = document.getElementById('timerRow');
+  
+  if(dist <= 0){
+    if(timerRow) {
+      timerRow.innerHTML = `<span style="color:var(--gold);font-family:'Noto Kufi Arabic',sans-serif;font-size:13px;font-weight:700;">انتهى العرض!</span>`;
+    }
     return;
   }
-  const pad=n=>String(Math.floor(n)).padStart(2,'0');
-  document.getElementById('tDays').textContent  = pad(dist/864e5);
-  document.getElementById('tHours').textContent = pad((dist%864e5)/36e5);
-  document.getElementById('tMins').textContent  = pad((dist%36e5)/6e4);
-  document.getElementById('tSecs').textContent  = pad((dist%6e4)/1000);
-  setTimeout(tick,1000);
+  
+  const pad = n => String(Math.floor(n)).padStart(2,'0');
+  
+  const daysElement = document.getElementById('tDays');
+  const hoursElement = document.getElementById('tHours');
+  const minsElement = document.getElementById('tMins');
+  const secsElement = document.getElementById('tSecs');
+  
+  if(daysElement)  daysElement.textContent  = pad(dist / 864e5);
+  if(hoursElement) hoursElement.textContent = pad((dist % 864e5) / 36e5);
+  if(minsElement)  minsElement.textContent  = pad((dist % 36e5) / 6e4);
+  if(secsElement)  secsElement.textContent  = pad((dist % 6e4) / 1000);
+  
+  setTimeout(tick, 1000);
 })();
-
 </script>
-</body>
-</html>
