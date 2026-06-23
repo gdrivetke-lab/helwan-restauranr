@@ -553,23 +553,19 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
 </head>
 <body>
 
-<!-- LOADER -->
 <div id="loader">
   <div class="loader-emblem">🔥</div>
   <div class="loader-name">حلوان اخوان</div>
   <div class="loader-bar"><div class="loader-bar-fill"></div></div>
 </div>
 
-<!-- SCROLL PROGRESS -->
 <div id="scroll-progress"></div>
 
-<!-- ZOOM OVERLAY -->
 <div class="zoom-overlay" id="zoomOverlay">
   <span class="zoom-close" id="zoomClose">✕</span>
   <img src="" alt="" class="zoom-img-big" id="zoomBig">
 </div>
 
-<!-- ISLAMIC MODAL -->
 <div class="modal-overlay" id="islamicModal">
   <div class="modal-box">
     <span class="modal-close" id="closeModal">✕</span>
@@ -578,10 +574,8 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   </div>
 </div>
 
-<!-- FAB (Islamic) -->
 <button class="fab-wa" id="fabIslamicBtn" title="نفحات إيمانية">📖</button>
 
-<!-- PROMO FAB -->
 <button class="promo-fab" id="promoFabBtn" title="عرض خاص">
   <div class="promo-fab-ring">
     🎁
@@ -590,7 +584,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   <span class="promo-fab-lbl">عرض خاص</span>
 </button>
 
-<!-- PROMO PANEL -->
 <div class="promo-panel" id="promoPanel">
   <div class="promo-inner">
     <button class="promo-x" id="promoX">✕</button>
@@ -608,7 +601,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   </div>
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="ticker">
     <span class="ticker-inner">
@@ -630,7 +622,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-particles" id="heroParticles"></div>
   <div class="hero-badge">✦ قلقيلية — شارع الملعب ✦</div>
@@ -657,7 +648,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   <div class="scroll-hint">مرر للأسفل</div>
 </section>
 
-<!-- ⚡ قائمة العروض المؤقتة المنفصلة (تختفي برمجياً لوحدها فور انتهاء المدة) ⚡ -->
 <div class="section-wrap mahogany" id="limited-promo-section">
   <div class="container">
     <div class="sec-head reveal">
@@ -702,7 +692,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   </div>
 </div>
 
-<!-- ORDER SECTION -->
 <div class="section-wrap dark" id="order-online">
   <div class="container">
     <div class="sec-head reveal">
@@ -721,7 +710,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
           <select id="mealType" class="form-select" required>
             <option value="" disabled selected>— اختر الوجبة —</option>
             
-            <!-- أوبشن العروض الحصرية (يختفي ديناميكياً) -->
             <optgroup label="🔥 أقوى عروض الشاورما الحالية (13 شيكل)" id="form-promo-group">
               <option value="عرض: لفة شاورما (13 شيكل)">لفة شاورما العرض الحصري ـ 13 ₪</option>
               <option value="عرض: بيتا شاورما (13 شيكل)">بيتا شاورما العرض الحصري ـ 13 ₪</option>
@@ -742,8 +730,8 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
               <option value="لفة حبش (22 شيكل)">لفة حبش ـ 22 ₪</option>
             </optgroup>
             <optgroup label="🥪 التوست والباشكا">
-              <option value="توست (25 شيكل)">توست ـ 25 ₪</option>
-              <option value="باشكا (25 شيكل)">باشكا ـ 25 ₪</option>
+              <option value="توست (17 شيكل)">توست ـ 17 ₪</option>
+              <option value="باشكا (17 شيكل)">باشكا ـ 17 ₪</option>
             </optgroup>
             <optgroup label="🥤 المشروبات">
               <option value="كولا (3 شيكل)">كولا ـ 3 ₪</option>
@@ -777,7 +765,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   </div>
 </div>
 
-<!-- CHICKEN MENU -->
 <div class="section-wrap charcoal" id="chicken">
   <div class="container">
     <div class="sec-head reveal">
@@ -839,7 +826,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   </div>
 </div>
 
-<!-- HABASH MENU -->
 <div class="section-wrap dark" id="habash">
   <div class="container">
     <div class="sec-head reveal">
@@ -877,7 +863,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   </div>
 </div>
 
-<!-- TOAST & BASHKA -->
 <div class="section-wrap charcoal" id="toast-bashka">
   <div class="container">
     <div class="sec-head reveal">
@@ -887,27 +872,26 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
     </div>
     <div class="menu-divider"><span class="cat-tag">🥪 التوست والباشكا</span></div>
     <div class="cards-grid" style="max-width:500px;margin:0 auto">
-      <div class="food-card reveal" onclick="pickMeal('توست (25 شيكل)')">
+      <div class="food-card reveal" onclick="pickMeal('توست (17 شيكل)')">
         <img class="card-img img-zoom" src="https://img.ananinja.com/media/ninja-catalog-42/restaurants/688pfliinnm5i85ipm7a31lisldg/%D8%A8%D8%A7%D8%B4%D9%83%D8%A7.jpeg?w=1080&q=75" alt="توست" loading="lazy">
         <div class="card-body">
           <div class="card-name">توست</div>
           <div class="card-desc">توست محمص غني بالطعم والإضافات</div>
-          <div class="card-price">25 ₪</div>
+          <div class="card-price">17 ₪</div>
         </div>
       </div>
-      <div class="food-card reveal" onclick="pickMeal('باشكا (25 شيكل)')">
+      <div class="food-card reveal" onclick="pickMeal('باشكا (17 شيكل)')">
         <img class="card-img img-zoom" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTluWAFmtd_yr1NP2zTjCnbR26dSbi39ujGgw&s" alt="باشكا" loading="lazy">
         <div class="card-body">
           <div class="card-name">باشكا</div>
           <div class="card-desc">وجبة الباشكا المميزة الشهية</div>
-          <div class="card-price">25 ₪</div>
+          <div class="card-price">17 ₪</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- DRINKS -->
 <div class="section-wrap dark" id="drinks">
   <div class="container">
     <div class="sec-head reveal">
@@ -936,7 +920,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   </div>
 </div>
 
-<!-- CAKES -->
 <div class="section-wrap mahogany" id="cakes">
   <div class="container">
     <div class="sec-head reveal">
@@ -957,7 +940,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   </div>
 </div>
 
-<!-- CONTACT -->
 <div class="section-wrap dark" id="contact">
   <div class="container">
     <div class="sec-head reveal">
@@ -991,7 +973,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="foot-name">🔥 مطعم وجاتوه حلوان أخوان</div>
   <div class="foot-copy">جميع الحقوق محفوظة © 2026 — قلقيلية، فلسطين</div>
