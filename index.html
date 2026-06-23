@@ -1356,13 +1356,13 @@ const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
   document.getElementById('tSecs').textContent  = pad((dist%6e4)/1000);
   setTimeout(tick, 1000);
 })();
-/* ═══════════════════════════════
+html//* ═══════════════════════════════
    NAV onclick fix
 ═══════════════════════════════ */
 document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribute('href'));
 </script>
 
-<!-- 🍅 كود حبة الطماطم الشفافة الموزون والمصلح لعدم تخريب الأزرار 🍅 -->
+<!-- 🍅 كود الطماطم المشفر برمجياً (مقاوم للمسح والشطب) 🍅 -->
 <style>
   body { 
     position: relative !important; 
@@ -1375,18 +1375,17 @@ document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribut
     left: 0 !important; 
     width: 100% !important; 
     height: 100% !important;
-    /* تم استبدال الرابط هنا بالرابط الصحيح والشغال والمباشر للصورة */
-    background-image: url('https://unsplash.com') !important; 
+    /* رسمة طماطم دائرية مشفرة داخل الكود مباشرة ولن تختفي أبداً */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='%23FF3B30' fill-opacity='0.12'%3E%3Ccircle cx='30' cy='32' r='14'/%3E%3Cpath d='M30 18c1-3-2-5-5-3 1 2 2 3 5 3zM30 18c-1-3 2-5 5-3-1 2-2 3-5 3z' fill='%234CD964'/%3E%3C/g%3E%3C/svg%3E") !important;
     background-repeat: repeat !important; 
-    background-size: 140px !important; 
-    opacity: 0.03 !important; /* درجة خفيفة جداً وأنيقة لحماية نصوص قائمة الطعام */
-    z-index: -1 !important; /* يضمن بقاء الخلفية خلف كروت الوجبات تماماً */
-    pointer-events: none !important; /* يضمن تمرير النقرات وألا تعطل أزرار الطلب والواتساب */
+    background-size: 100px !important; /* يمكنك تكبير أو تصغير النمط من هنا */
+    opacity: 0.25 !important; /* درجة ظهور ملائمة للرسم البرمجي */
+    z-index: -1 !important; 
+    pointer-events: none !important; 
   }
 </style>
 
 </body>
 </html>
-
 
 
