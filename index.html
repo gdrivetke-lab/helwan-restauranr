@@ -11,7 +11,7 @@
 
 <style>
 /* ═══════════════════════════════════════
-   TOKENS — SPICE & WHEAT PALETTE
+    TOKENS — SPICE & WHEAT PALETTE
 ═══════════════════════════════════════ */
 :root {
   --ink:        #0A0000;
@@ -24,18 +24,16 @@
   --wheat:      #FF6677;
   --cream:      #FFF0F0;
   --off-white:  #FFF5F5;
-  --mist:       rgba(229,48,64,0.12);
   --border:     rgba(229,48,64,0.25);
   --text-warm:  #E8A0A8;
   --text-body:  #F0C8CC;
-
   --r24: 24px;
   --r16: 16px;
   --r8:  8px;
 }
 
 /* ═══════════════════════════════════════
-   RESET & BASE
+    RESET & BASE
 ═══════════════════════════════════════ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent;font-size:16px}
@@ -49,7 +47,7 @@ body{
 }
 
 /* ═══════════════════════════════════════
-   LOADER
+    LOADER
 ═══════════════════════════════════════ */
 #loader{
   position:fixed;inset:0;z-index:99999;
@@ -91,7 +89,7 @@ body{
 @keyframes fadeUpText{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 /* ═══════════════════════════════════════
-   SCROLL PROGRESS
+    SCROLL PROGRESS
 ═══════════════════════════════════════ */
 #scroll-progress{
   position:fixed;top:0;left:0;height:2px;
@@ -102,7 +100,7 @@ body{
 }
 
 /* ═══════════════════════════════════════
-   TICKER / MARQUEE
+    TICKER / MARQUEE
 ═══════════════════════════════════════ */
 .ticker{
   background:var(--mahogany);
@@ -121,7 +119,7 @@ body{
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(100%)}}
 
 /* ═══════════════════════════════════════
-   HEADER / NAV
+    HEADER / NAV
 ═══════════════════════════════════════ */
 header{
   position:fixed;top:0;left:0;right:0;z-index:1000;
@@ -170,7 +168,7 @@ nav{
 .nav-cta:hover{transform:scale(1.05) !important;box-shadow:0 0 22px rgba(212,164,55,0.6) !important}
 
 /* ═══════════════════════════════════════
-   HERO
+    HERO
 ═══════════════════════════════════════ */
 .hero{
   min-height:100vh;
@@ -183,16 +181,12 @@ nav{
     radial-gradient(ellipse 60% 60% at 80% 60%,rgba(160,0,16,0.3) 0%,transparent 60%),
     linear-gradient(170deg,var(--ink) 0%,var(--charcoal) 50%,var(--mahogany) 100%);
 }
-
-/* Texture overlay */
 .hero::before{
   content:'';position:absolute;inset:0;
   background-image:
     url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8840A' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   pointer-events:none;opacity:0.6;
 }
-
-/* Floating spice dots */
 .hero-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .spark{
   position:absolute;border-radius:50%;
@@ -205,7 +199,6 @@ nav{
   90%{opacity:0.3}
   100%{transform:translateY(-120px) scale(0);opacity:0}
 }
-
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(212,164,55,0.1);
@@ -218,7 +211,6 @@ nav{
   position:relative;z-index:2;
   font-family:'Noto Kufi Arabic',sans-serif;
 }
-
 .hero-title{
   font-family:'Noto Kufi Arabic',sans-serif;
   font-size:clamp(36px,9vw,72px);
@@ -247,33 +239,27 @@ nav{
   animation:shineText 4s linear infinite;
 }
 @keyframes shineText{0%{background-position:0%}100%{background-position:300%}}
-
 .hero-location{
   font-size:14px;color:var(--text-warm);margin-top:14px;
   position:relative;z-index:2;
 }
 .hero-location a{color:var(--wheat);text-decoration:none;transition:color 0.2s}
 .hero-location a:hover{color:var(--gold)}
-
 .hero-rule{
   width:80px;height:1px;
   background:linear-gradient(90deg,transparent,var(--gold),transparent);
   margin:26px auto;position:relative;z-index:2;
 }
-
 .hero-sub{
   font-size:17px;color:rgba(255,255,255,0.75);
   line-height:1.9;position:relative;z-index:2;
   font-weight:300;
   max-width:480px;
 }
-
 .hero-cta{
   margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;
   justify-content:center;position:relative;z-index:2;
 }
-
-/* Scroll indicator */
 .scroll-hint{
   position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
   z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;
@@ -288,7 +274,7 @@ nav{
 @keyframes hintBob{0%,100%{opacity:0.5;transform:translateX(-50%) translateY(0)}50%{opacity:1;transform:translateX(-50%) translateY(6px)}}
 
 /* ═══════════════════════════════════════
-   BUTTONS
+    BUTTONS
 ═══════════════════════════════════════ */
 .btn{
   position:relative;overflow:hidden;
@@ -301,21 +287,18 @@ nav{
   white-space:nowrap;
 }
 .btn:active{transform:scale(0.93)}
-
 .btn-gold{
   background:linear-gradient(135deg,var(--gold),var(--wheat));
   color:var(--off-white);
   box-shadow:0 6px 20px rgba(229,48,64,0.4);
 }
 .btn-gold:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 30px rgba(229,48,64,0.6)}
-
 .btn-outline{
   background:transparent;
   color:var(--gold);
   border:1.5px solid var(--gold);
 }
 .btn-outline:hover{background:var(--gold);color:var(--ink);transform:translateY(-3px) scale(1.03)}
-
 .btn-green{
   background:linear-gradient(135deg,#2e7d32,#1b5e20);
   color:#fff;
@@ -324,29 +307,23 @@ nav{
 }
 @keyframes greenPulse{0%,100%{box-shadow:0 6px 20px rgba(46,125,50,0.4)}50%{box-shadow:0 6px 30px rgba(46,125,50,0.7),0 0 0 8px rgba(46,125,50,0.1)}}
 .btn-green:hover{transform:translateY(-3px) scale(1.03)}
-
 .btn-blue{
   background:linear-gradient(135deg,#1565c0,#0d47a1);
   color:#fff;
   box-shadow:0 6px 20px rgba(21,101,192,0.35);
 }
 .btn-blue:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 30px rgba(21,101,192,0.55)}
-
-/* Ripple */
 .ripple-spawn{position:absolute;border-radius:50%;background:rgba(255,255,255,0.25);transform:scale(0);animation:rippleGo 0.55s linear;pointer-events:none}
 @keyframes rippleGo{to{transform:scale(5);opacity:0}}
 
 /* ═══════════════════════════════════════
-   SECTION WRAPPER
+    SECTION WRAPPER
 ═══════════════════════════════════════ */
 .section-wrap{padding:80px 0;position:relative}
 .section-wrap.dark{background:var(--ink)}
 .section-wrap.charcoal{background:var(--charcoal)}
 .section-wrap.mahogany{background:var(--mahogany)}
-
 .container{max-width:980px;margin:0 auto;padding:0 24px}
-
-/* Section header */
 .sec-head{text-align:center;margin-bottom:52px}
 .eyebrow{
   display:inline-block;
@@ -368,7 +345,7 @@ nav{
 }
 
 /* ═══════════════════════════════════════
-   ORDER FORM
+    ORDER FORM
 ═══════════════════════════════════════ */
 .order-shell{
   background:rgba(46,26,14,0.55);
@@ -406,8 +383,6 @@ nav{
 .form-select optgroup{background:#2E1A0E;color:var(--wheat);font-weight:700}
 .form-select option{background:#1C1612;color:var(--off-white);font-weight:400}
 .form-select option:disabled{color:rgba(255,255,255,0.3)}
-
-/* Salad checkboxes */
 .salads-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
 .salad-chip{
   display:flex;align-items:center;gap:8px;
@@ -432,7 +407,6 @@ nav{
 .salad-chip input:checked + .chip-box::after{content:'✓';color:var(--ink);font-size:13px;font-weight:900}
 .salad-chip input:checked ~ .chip-name{color:var(--gold);font-weight:600}
 .chip-name{font-size:13px;color:var(--text-warm);transition:color 0.2s}
-
 .submit-btn{
   width:100%;padding:18px;
   background:linear-gradient(135deg,var(--gold),var(--wheat));
@@ -449,11 +423,9 @@ nav{
 .submit-btn:active{transform:scale(0.96)}
 
 /* ═══════════════════════════════════════
-   FOOD CARDS (Menu)
+    FOOD CARDS (Menu)
 ═══════════════════════════════════════ */
-.menu-divider{
-  display:flex;align-items:center;gap:16px;margin-bottom:32px;
-}
+.menu-divider{display:flex;align-items:center;gap:16px;margin-bottom:32px;}
 .menu-divider::before,.menu-divider::after{content:'';flex:1;height:1px;background:var(--border)}
 .cat-tag{
   display:inline-flex;align-items:center;gap:8px;
@@ -461,13 +433,7 @@ nav{
   color:var(--gold);
   white-space:nowrap;
 }
-
-.cards-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
-  gap:22px;
-}
-
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px;}
 .food-card{
   background:linear-gradient(160deg,rgba(60,28,8,0.5),rgba(20,12,6,0.85));
   border:1px solid rgba(212,164,55,0.14);
@@ -481,10 +447,8 @@ nav{
   box-shadow:0 20px 45px rgba(0,0,0,0.5),0 0 20px rgba(200,132,10,0.15);
 }
 .food-card:active{transform:scale(0.96)}
-
 .card-img{width:100%;height:180px;object-fit:cover;display:block;filter:brightness(0.88);transition:transform 0.6s ease,filter 0.4s}
 .food-card:hover .card-img{transform:scale(1.1);filter:brightness(1)}
-
 .card-body{padding:16px 14px 18px;text-align:center}
 .card-name{
   font-family:'Noto Kufi Arabic',sans-serif;font-size:16px;font-weight:700;
@@ -528,7 +492,7 @@ nav{
 .zoom-close:hover{background:var(--gold);color:var(--ink)}
 
 /* ═══════════════════════════════════════
-   CAKE FEATURE CARD
+    CAKE FEATURE CARD
 ═══════════════════════════════════════ */
 .cake-feature{
   max-width:700px;margin:0 auto;
@@ -549,7 +513,7 @@ nav{
 .cake-text em{font-style:normal;color:var(--wheat);font-weight:600}
 
 /* ═══════════════════════════════════════
-   CONTACT
+    CONTACT
 ═══════════════════════════════════════ */
 .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
 .contact-card{
@@ -574,7 +538,7 @@ nav{
 .c-val a{color:var(--wheat);text-decoration:none;direction:ltr;display:inline-block}
 
 /* ═══════════════════════════════════════
-   FAB (WhatsApp) + Islamic button
+    FAB (WhatsApp) + Islamic button
 ═══════════════════════════════════════ */
 .fab-wa{
   position:fixed;bottom:24px;right:24px;
@@ -590,7 +554,6 @@ nav{
 .fab-wa:active{transform:scale(0.9)}
 @keyframes waPulse{0%,100%{box-shadow:0 6px 20px rgba(37,211,102,0.45)}50%{box-shadow:0 6px 30px rgba(37,211,102,0.75),0 0 0 10px rgba(37,211,102,0.1)}}
 
-/* Islamic modal */
 .modal-overlay{
   position:fixed;inset:0;z-index:100000;
   background:rgba(0,0,0,0.82);
@@ -626,123 +589,7 @@ nav{
 }
 
 /* ═══════════════════════════════════════
-   PROMO POPUP
-═══════════════════════════════════════ */
-.promo-wrap{
-  position:fixed;bottom:96px;right:24px;
-  width:255px;max-width:calc(100vw - 32px);
-  z-index:9100;
-  transform:translateX(120%);opacity:0;visibility:hidden;
-  transition:transform 0.55s cubic-bezier(0.34,1.56,0.64,1),opacity 0.4s,visibility 0.4s;
-}
-.promo-wrap.show{transform:translateX(0);opacity:1;visibility:visible}
-.promo-card{
-  background:linear-gradient(145deg,var(--mahogany),var(--charcoal));
-  border:1.5px solid var(--gold);
-  border-radius:18px;overflow:hidden;
-  box-shadow:0 16px 40px rgba(0,0,0,0.6),0 0 24px rgba(212,164,55,0.2);
-}
-.promo-close-btn{
-  position:absolute;top:8px;right:8px;z-index:5;
-  width:26px;height:26px;border-radius:50%;
-  background:rgba(0,0,0,0.5);border:1px solid var(--border);
-  color:var(--gold);font-size:12px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:background 0.2s,transform 0.2s;
-}
-.promo-close-btn:hover{background:var(--ember);transform:rotate(90deg)}
-.promo-img{width:100%;height:160px;object-fit:cover;display:block;border-bottom:1.5px solid var(--gold)}
-.promo-body{padding:14px 14px 16px;text-align:center}
-.promo-label{
-  font-family:'Noto Kufi Arabic',sans-serif;
-  font-size:12px;font-weight:900;color:var(--gold);margin-bottom:10px;
-}
-.timer-row{display:flex;justify-content:center;gap:5px;direction:ltr;margin-bottom:12px}
-.t-box{
-  background:rgba(0,0,0,0.45);border:1px solid var(--border);border-radius:8px;
-  padding:6px 4px;min-width:46px;text-align:center;
-}
-.t-box .num{display:block;font-size:17px;font-weight:900;color:var(--gold);line-height:1.2}
-.t-box .lbl{font-size:9px;color:var(--text-warm);font-weight:600}
-.promo-cta{
-  display:inline-block;padding:8px 20px;
-  background:linear-gradient(135deg,var(--gold),var(--wheat));
-  color:var(--ink);
-  font-family:'Noto Kufi Arabic',sans-serif;font-size:13px;font-weight:900;
-  border-radius:22px;border:none;cursor:pointer;
-  transition:transform 0.2s,box-shadow 0.2s;
-  box-shadow:0 4px 14px rgba(212,164,55,0.4);
-}
-.promo-cta:hover{transform:scale(1.05);box-shadow:0 8px 22px rgba(212,164,55,0.6)}
-
-/* ═══════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
-footer{
-  background:var(--ink);
-  border-top:1px solid var(--border);
-  padding:30px 24px;text-align:center;
-}
-.foot-name{font-family:'Noto Kufi Arabic',sans-serif;font-size:16px;font-weight:900;color:var(--gold);margin-bottom:6px}
-.foot-copy{font-size:12px;color:rgba(200,164,55,0.4)}
-.foot-dl{
-  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
-  background:linear-gradient(135deg,#1565c0,#0d47a1);
-  color:#fff;font-family:'Noto Kufi Arabic',sans-serif;
-  font-size:13px;font-weight:700;padding:10px 22px;border-radius:30px;
-  text-decoration:none;border:1px solid rgba(255,255,255,0.15);
-  transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 14px rgba(21,101,192,0.4);
-}
-.foot-dl:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 24px rgba(21,101,192,0.6)}
-
-/* ═══════════════════════════════════════
-   TOUCH SPARKS & CONFETTI
-═══════════════════════════════════════ */
-.touch-dot{
-  position:fixed;width:6px;height:6px;border-radius:50%;
-  background:var(--gold);pointer-events:none;z-index:99999;
-  box-shadow:0 0 10px var(--gold);
-  animation:dotFade 0.7s ease-out forwards;
-}
-@keyframes dotFade{0%{transform:scale(2);opacity:1}100%{transform:scale(0) translateY(30px);opacity:0}}
-.confetti-piece{
-  position:fixed;width:8px;height:8px;pointer-events:none;z-index:99999;
-  animation:confettiFall 2.5s ease-out forwards;
-  border-radius:2px;
-}
-@keyframes confettiFall{0%{transform:translateY(-60px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(900deg);opacity:0}}
-
-/* ═══════════════════════════════════════
-   REVEAL ANIMATION
-═══════════════════════════════════════ */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.75s ease,transform 0.75s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-/* ═══════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
-@media(max-width:768px){
-  .nav-links li.hide-mobile{display:none}
-  .cards-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:480px){
-  .hero-cta{flex-direction:column;align-items:center}
-  .cards-grid{grid-template-columns:1fr 1fr}
-  .salads-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
-  .promo-wrap{bottom:90px;right:10px;width:calc(100vw - 20px);max-width:260px}
-}
-@media(max-width:380px){
-  .cards-grid{grid-template-columns:1fr}
-}
-@media(min-width:900px){
-  .cards-grid{grid-template-columns:repeat(3,1fr)}
-}
-@media(prefers-reduced-motion:reduce){
-  *{animation:none !important;transition:none !important}
-}
-
-/* ═══════════════════════════════════════
-   PROMO FAB — زر العرض الخاص العائم
+    PROMO FAB & PANEL
 ═══════════════════════════════════════ */
 .promo-fab{
   position:fixed;bottom:96px;right:24px;z-index:9100;
@@ -767,7 +614,6 @@ footer{
 @keyframes promoRingPulse{0%,100%{box-shadow:0 6px 22px rgba(229,48,64,0.5)}50%{box-shadow:0 6px 30px rgba(229,48,64,0.9),0 0 0 12px rgba(229,48,64,0.1)}}
 .promo-fab:hover .promo-fab-ring{transform:scale(1.12) rotate(-10deg)}
 .promo-fab:active .promo-fab-ring{transform:scale(0.92)}
-/* Badge عدد */
 .promo-badge{
   position:absolute;top:-4px;left:-4px;
   width:18px;height:18px;border-radius:50%;
@@ -783,10 +629,6 @@ footer{
   padding:2px 8px;border-radius:10px;
   border:1px solid rgba(229,48,64,0.35);white-space:nowrap;pointer-events:none;
 }
-
-/* ═══════════════════════════════════════
-   PROMO POPUP PANEL
-═══════════════════════════════════════ */
 .promo-panel{
   position:fixed;bottom:170px;right:24px;
   width:268px;max-width:calc(100vw - 48px);z-index:9200;
@@ -834,32 +676,74 @@ footer{
 }
 .promo-go-btn:hover{transform:scale(1.07);box-shadow:0 8px 22px rgba(229,48,64,0.6)}
 .promo-go-btn:active{transform:scale(0.95)}
+
+/* ═══════════════════════════════════════
+    FOOTER & RESPONSIVE
+═══════════════════════════════════════ */
+footer{
+  background:var(--ink);
+  border-top:1px solid var(--border);
+  padding:30px 24px;text-align:center;
+}
+.foot-name{font-family:'Noto Kufi Arabic',sans-serif;font-size:16px;font-weight:900;color:var(--gold);margin-bottom:6px}
+.foot-copy{font-size:12px;color:rgba(200,164,55,0.4)}
+.foot-dl{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+  background:linear-gradient(135deg,#1565c0,#0d47a1);
+  color:#fff;font-family:'Noto Kufi Arabic',sans-serif;
+  font-size:13px;font-weight:700;padding:10px 22px;border-radius:30px;
+  text-decoration:none;border:1px solid rgba(255,255,255,0.15);
+  transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 14px rgba(21,101,192,0.4);
+}
+.foot-dl:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 24px rgba(21,101,192,0.6)}
+
+.touch-dot{
+  position:fixed;width:6px;height:6px;border-radius:50%;
+  background:var(--gold);pointer-events:none;z-index:99999;
+  box-shadow:0 0 10px var(--gold);
+  animation:dotFade 0.7s ease-out forwards;
+}
+@keyframes dotFade{0%{transform:scale(2);opacity:1}100%{transform:scale(0) translateY(30px);opacity:0}}
+.confetti-piece{
+  position:fixed;width:8px;height:8px;pointer-events:none;z-index:99999;
+  animation:confettiFall 2.5s ease-out forwards;
+  border-radius:2px;
+}
+@keyframes confettiFall{0%{transform:translateY(-60px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(900deg);opacity:0}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  .nav-links li.hide-mobile{display:none}
+  .cards-grid{grid-template-columns:1fr 1fr}
+}
 @media(max-width:480px){
+  .hero-cta{flex-direction:column;align-items:center}
+  .cards-grid{grid-template-columns:1fr 1fr}
+  .salads-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
   .promo-panel{right:10px;bottom:158px;width:calc(100vw - 20px);max-width:280px}
   .promo-fab{right:10px;bottom:88px}
 }
-
+@media(max-width:380px){.cards-grid{grid-template-columns:1fr}}
+@media(min-width:900px){.cards-grid{grid-template-columns:repeat(3,1fr)}}
+@media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 </style>
 </head>
 <body>
 
-<!-- LOADER -->
 <div id="loader">
   <div class="loader-emblem">🔥</div>
   <div class="loader-name">حلوان اخوان</div>
   <div class="loader-bar"><div class="loader-bar-fill"></div></div>
 </div>
 
-<!-- SCROLL PROGRESS -->
 <div id="scroll-progress"></div>
 
-<!-- ZOOM OVERLAY -->
 <div class="zoom-overlay" id="zoomOverlay">
   <span class="zoom-close" id="zoomClose">✕</span>
   <img src="" alt="" class="zoom-img-big" id="zoomBig">
 </div>
 
-<!-- ISLAMIC MODAL -->
 <div class="modal-overlay" id="islamicModal">
   <div class="modal-box">
     <span class="modal-close" id="closeModal">✕</span>
@@ -868,13 +752,8 @@ footer{
   </div>
 </div>
 
-<!-- FAB (Islamic) -->
 <button class="fab-wa" id="fabIslamicBtn" title="نفحات إيمانية">📖</button>
 
-
-<!-- ═══════════════════════════════
-   PROMO FAB — زر العرض العائم
-════════════════════════════════ -->
 <button class="promo-fab" id="promoFabBtn" title="عرض خاص">
   <div class="promo-fab-ring">
     🎁
@@ -883,7 +762,6 @@ footer{
   <span class="promo-fab-lbl">عرض خاص</span>
 </button>
 
-<!-- PROMO PANEL -->
 <div class="promo-panel" id="promoPanel">
   <div class="promo-inner">
     <button class="promo-x" id="promoX">✕</button>
@@ -901,11 +779,10 @@ footer{
   </div>
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="ticker">
     <span class="ticker-inner">
-      🌿 أهلاً بكم في مطعم وجاتوه حلوان اخوان — قلقيلية &nbsp;|&nbsp; 🎂 وجاتوهات بتجمّل كل مناسباتكم &nbsp;|&nbsp; 🌯 شاورما طازجة يومياً &nbsp;|&nbsp; 📲 اطلب أونلاين الآن!
+      🌿 أهلاً بكم في مطعم وجاتوه حلوان اخوان — قلقيلية  |  🎂 وجاتوهات بتجمّل كل مناسباتكم  |  🌯 شاورما طازجة يومياً  |  📲 اطلب أونلاين الآن!
     </span>
   </div>
   <nav>
@@ -923,41 +800,32 @@ footer{
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-particles" id="heroParticles"></div>
-
   <div class="hero-badge">✦ قلقيلية — شارع الملعب ✦</div>
-
   <h1 class="hero-title">
     مطعم <em>وجاتوه</em><br>
     <strong>حلوان</strong> اخوان
   </h1>
-
   <p class="hero-location">
-    <a href="https://www.google.com/maps/search/?api=1&query=32.192059732330684,34.966379284951145" target="_blank">
-      📍 بجانب الشنطي للمحروقات &nbsp;·&nbsp; اضغط للوصول
+    <a href="https://maps.google.com" target="_blank">
+      📍 بجانب الشنطي للمحروقات  ·  اضغط للوصول
     </a>
   </p>
-
   <div class="hero-rule"></div>
-
   <p class="hero-sub">
     طعم مميز يجمع بين أشهى الشاورما 🌯<br>
     وأجمل الجاتوهات لكل مناسبة 🎂
   </p>
-
   <div class="hero-cta">
     <a class="btn btn-gold" onclick="scrollTo('#order-online')">🍔 اختر طلبك الآن</a>
     <a class="btn btn-outline" href="tel:0599100513">📞 اتصل بنا</a>
     <button class="btn btn-green" onclick="showIslamicQuote()">📖 نفحات إيمانية</button>
-    <a class="btn btn-blue" href="https://drive.google.com/file/d/1dMU2WZPqDjvboACaJFvgJWqPl-9UBt_U/view?usp=drive_link" target="_blank">📲 حمّل التطبيق</a>
+    <a class="btn btn-blue" href="https://drive.google.com" target="_blank">📲 حمّل التطبيق</a>
   </div>
-
   <div class="scroll-hint">مرر للأسفل</div>
 </section>
 
-<!-- ORDER SECTION -->
 <div class="section-wrap dark" id="order-online">
   <div class="container">
     <div class="sec-head reveal">
@@ -965,14 +833,12 @@ footer{
       <h2 class="sec-title">اختر وجبتك <b>على ذوقك</b></h2>
       <div class="sec-rule"></div>
     </div>
-
     <div class="order-shell reveal">
       <form id="orderForm">
         <div class="form-group">
           <label class="form-label" for="custName">الاسم الكريم</label>
           <input type="text" id="custName" class="form-input" placeholder="اكتب اسمك هنا..." required>
         </div>
-
         <div class="form-group">
           <label class="form-label" for="mealType">اختر وجبتك الأساسية</label>
           <select id="mealType" class="form-select" required>
@@ -1000,7 +866,6 @@ footer{
             </optgroup>
           </select>
         </div>
-
         <div class="form-group">
           <label class="form-label">السلطات والإضافات</label>
           <div class="salads-grid">
@@ -1017,21 +882,16 @@ footer{
             <label class="salad-chip"><input type="checkbox" name="salads" value="لفت"><div class="chip-box"></div><span class="chip-name">لفت</span></label>
           </div>
         </div>
-
         <div class="form-group">
           <label class="form-label" for="orderNotes">ملاحظات إضافية</label>
           <textarea id="orderNotes" class="form-textarea" rows="2" placeholder="مثال: بدون شطة، محمص زيادة..."></textarea>
         </div>
-
-        <button type="submit" class="submit-btn">
-          📲 تأكيد وإرسال الطلب على واتساب
-        </button>
+        <button type="submit" class="submit-btn">📲 تأكيد وإرسال الطلب على واتساب</button>
       </form>
     </div>
   </div>
 </div>
 
-<!-- CHICKEN MENU -->
 <div class="section-wrap charcoal" id="chicken">
   <div class="container">
     <div class="sec-head reveal">
@@ -1082,7 +942,7 @@ footer{
         </div>
       </div>
       <div class="food-card reveal" onclick="pickMeal('بيتا دجاج دبل (18 شيكل)')">
-        <img class="card-img img-zoom" src="https://www.visitdubai.com/-/media/gathercontent/article/d/dubais-best-shawarmas/media/dubaibestshawarmaalmallah1shutterstockjpg.jpg?rev=2ee9acb3eb534e9097460a5598470229&cx=0.5&cy=0.5&cw=1420&ch=710" alt="بيتا دجاج دبل" loading="lazy">
+        <img class="card-img img-zoom" src="https://www.visitdubai.com/-/media/gathercontent/article/d/dubais-best-shawarmas/media/dubaibestshawarmaalmallah1shutterstockjpg.jpg" alt="بيتا دجاج دبل" loading="lazy">
         <div class="card-body">
           <div class="card-name">بيتا دجاج دبل</div>
           <div class="card-desc">بيتا مليئة بطبقة دجاج إضافية</div>
@@ -1093,7 +953,6 @@ footer{
   </div>
 </div>
 
-<!-- HABASH MENU -->
 <div class="section-wrap dark" id="habash">
   <div class="container">
     <div class="sec-head reveal">
@@ -1131,7 +990,6 @@ footer{
   </div>
 </div>
 
-<!-- TOAST & BASHKA -->
 <div class="section-wrap charcoal" id="toast-bashka">
   <div class="container">
     <div class="sec-head reveal">
@@ -1161,7 +1019,6 @@ footer{
   </div>
 </div>
 
-<!-- DRINKS -->
 <div class="section-wrap dark" id="drinks">
   <div class="container">
     <div class="sec-head reveal">
@@ -1190,7 +1047,6 @@ footer{
   </div>
 </div>
 
-<!-- CAKES -->
 <div class="section-wrap mahogany" id="cakes">
   <div class="container">
     <div class="sec-head reveal">
@@ -1204,14 +1060,13 @@ footer{
         <h3 class="cake-title">🎂 جاتوهات مميزة لكل مناسبة</h3>
         <p class="cake-text">
           نصنع لكم <em>أجمل الكيكات</em> بأرقى الأذواق<br>
-          لأعراسكم 💒 &nbsp;·&nbsp; أعياد ميلادكم 🎉 &nbsp;·&nbsp; كل مناسباتكم السعيدة
+          لأعراسكم 💒  ·  أعياد ميلادكم 🎉  ·  كل مناسباتكم السعيدة
         </p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CONTACT -->
 <div class="section-wrap dark" id="contact">
   <div class="container">
     <div class="sec-head reveal">
@@ -1220,7 +1075,7 @@ footer{
       <div class="sec-rule"></div>
     </div>
     <div class="contact-grid">
-      <a href="https://www.google.com/maps/search/?api=1&query=32.192059732330684,34.966379284951145" target="_blank" class="contact-card reveal">
+      <a href="https://maps.google.com" target="_blank" class="contact-card reveal">
         <div class="c-icon">📍</div>
         <div>
           <div class="c-label">الموقع (اضغط للخريطة)</div>
@@ -1245,29 +1100,25 @@ footer{
   </div>
 </div>
 
-<!-- PROMO POPUP -->
-
-<!-- FOOTER -->
 <footer>
   <div class="foot-name">🔥 مطعم وجاتوه حلوان أخوان</div>
   <div class="foot-copy">جميع الحقوق محفوظة © 2026 — قلقيلية، فلسطين</div>
-  <a class="foot-dl" href="https://drive.google.com/file/d/1dMU2WZPqDjvboACaJFvgJWqPl-9UBt_U/view?usp=drive_link" target="_blank">
-    📲 حمّل التطبيق للأندرويد
-  </a>
+  <a class="foot-dl" href="https://drive.google.com" target="_blank">📲 حمّل التطبيق للأندرويد</a>
 </footer>
 
 <script>
 /* ═══════════════════════════════
-   SCROLL PROGRESS
+    SCROLL PROGRESS
 ═══════════════════════════════ */
 window.addEventListener('scroll', () => {
   const scrolled = document.documentElement.scrollTop || document.body.scrollTop;
   const total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  document.getElementById('scroll-progress').style.width = (scrolled / total * 100) + '%';
+  const bar = document.getElementById('scroll-progress');
+  if(bar) bar.style.width = (scrolled / total * 100) + '%';
 }, { passive: true });
 
 /* ═══════════════════════════════
-   SMOOTH SCROLL HELPER
+    SMOOTH SCROLL HELPER
 ═══════════════════════════════ */
 function scrollTo(id) {
   const el = document.querySelector(id);
@@ -1275,10 +1126,11 @@ function scrollTo(id) {
 }
 
 /* ═══════════════════════════════
-   HERO PARTICLES
+    HERO PARTICLES
 ═══════════════════════════════ */
 (function(){
   const container = document.getElementById('heroParticles');
+  if(!container) return;
   const colors = ['#D4A437','#C8840A','#8B3A0F','#E8C97A','#5C2D0A'];
   for (let i = 0; i < 36; i++) {
     const p = document.createElement('div');
@@ -1298,10 +1150,11 @@ function scrollTo(id) {
 })();
 
 /* ═══════════════════════════════
-   REVEAL ON SCROLL
+    REVEAL ON SCROLL
 ═══════════════════════════════ */
 (function(){
   const els = document.querySelectorAll('.reveal');
+  if(!els.length) return;
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
@@ -1311,26 +1164,30 @@ function scrollTo(id) {
 })();
 
 /* ═══════════════════════════════
-   ZOOM OVERLAY
+    ZOOM OVERLAY
 ═══════════════════════════════ */
 const zoomOverlay = document.getElementById('zoomOverlay');
 const zoomBig = document.getElementById('zoomBig');
+const zoomClose = document.getElementById('zoomClose');
 
 document.querySelectorAll('.img-zoom').forEach(img => {
   img.addEventListener('click', e => {
     e.stopPropagation();
-    zoomBig.src = img.src;
-    zoomOverlay.classList.add('on');
+    if(zoomBig && zoomOverlay) {
+      zoomBig.src = img.src;
+      zoomOverlay.classList.add('on');
+    }
   });
 });
-document.getElementById('zoomClose').addEventListener('click', () => zoomOverlay.classList.remove('on'));
-zoomOverlay.addEventListener('click', e => { if (e.target === zoomOverlay) zoomOverlay.classList.remove('on'); });
+if(zoomClose) zoomClose.addEventListener('click', () => zoomOverlay.classList.remove('on'));
+if(zoomOverlay) zoomOverlay.addEventListener('click', e => { if (e.target === zoomOverlay) zoomOverlay.classList.remove('on'); });
 
 /* ═══════════════════════════════
-   PICK MEAL → SCROLL TO ORDER
+    PICK MEAL → SCROLL TO ORDER
 ═══════════════════════════════ */
 function pickMeal(meal) {
   const sel = document.getElementById('mealType');
+  if(!sel) return;
   sel.value = meal;
   scrollTo('#order-online');
   sel.style.transition = 'box-shadow 0.3s';
@@ -1339,23 +1196,26 @@ function pickMeal(meal) {
 }
 
 /* ═══════════════════════════════
-   ORDER FORM → WHATSAPP
+    ORDER FORM → WHATSAPP
 ═══════════════════════════════ */
-document.getElementById('orderForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const name = document.getElementById('custName').value;
-  const meal = document.getElementById('mealType').value;
-  const notes = document.getElementById('orderNotes').value.trim();
-  const salads = [...document.querySelectorAll('input[name="salads"]:checked')].map(c => c.value);
-  const saladsText = salads.length ? salads.join('، ') : 'بدون إضافات';
-  const notesText = notes || 'لا يوجد';
-  const msg = `🔥 *طلب جديد من الموقع* 🔥\n\n👤 *الاسم:* ${name}\n🍔 *الوجبة:* ${meal}\n🥗 *الإضافات:* ${saladsText}\n📝 *ملاحظات:* ${notesText}`;
-  shootConfetti();
-  window.location.href = `https://wa.me/972599100513?text=${encodeURIComponent(msg)}`;
-});
+const orderForm = document.getElementById('orderForm');
+if(orderForm) {
+  orderForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('custName').value;
+    const meal = document.getElementById('mealType').value;
+    const notes = document.getElementById('orderNotes').value.trim();
+    const salads = [...document.querySelectorAll('input[name="salads"]:checked')].map(c => c.value);
+    const saladsText = salads.length ? salads.join('، ') : 'بدون إضافات';
+    const notesText = notes || 'لا يوجد';
+    const msg = `🔥 *طلب جديد من الموقع* 🔥\n\n👤 *الاسم:* ${name}\n🍔 *الوجبة:* ${meal}\n🥗 *الإضافات:* ${saladsText}\n📝 *ملاحظات:* ${notesText}`;
+    shootConfetti();
+    window.location.href = `https://wa.me/972599100513?text=${encodeURIComponent(msg)}`;
+  });
+}
 
 /* ═══════════════════════════════
-   ISLAMIC QUOTES
+    ISLAMIC QUOTES
 ═══════════════════════════════ */
 const quotes = [
   "۞ إِنَّ مَعَ الْعُسْرِ يُسْرًا ۞",
@@ -1371,18 +1231,22 @@ const quotes = [
 ];
 const islamicModal = document.getElementById('islamicModal');
 const islamicText = document.getElementById('islamicText');
+const closeModal = document.getElementById('closeModal');
+const fabIslamicBtn = document.getElementById('fabIslamicBtn');
 
 function showIslamicQuote() {
-  islamicText.textContent = quotes[Math.floor(Math.random() * quotes.length)];
-  islamicModal.classList.add('on');
-  shootConfetti();
+  if(islamicText && islamicModal) {
+    islamicText.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+    islamicModal.classList.add('on');
+    shootConfetti();
+  }
 }
-document.getElementById('fabIslamicBtn').addEventListener('click', showIslamicQuote);
-document.getElementById('closeModal').addEventListener('click', () => islamicModal.classList.remove('on'));
-islamicModal.addEventListener('click', e => { if (e.target === islamicModal) islamicModal.classList.remove('on'); });
+if(fabIslamicBtn) fabIslamicBtn.addEventListener('click', showIslamicQuote);
+if(closeModal) closeModal.addEventListener('click', () => islamicModal.classList.remove('on'));
+if(islamicModal) islamicModal.addEventListener('click', e => { if (e.target === islamicModal) islamicModal.classList.remove('on'); });
 
 /* ═══════════════════════════════
-   CONFETTI
+    CONFETTI
 ═══════════════════════════════ */
 function shootConfetti() {
   const colors = ['#D4A437','#E8C97A','#8B3A0F','#ffffff','#2e7d32'];
@@ -1402,7 +1266,7 @@ function shootConfetti() {
 }
 
 /* ═══════════════════════════════
-   RIPPLE ON BUTTONS
+    RIPPLE ON BUTTONS
 ═══════════════════════════════ */
 function makeRipple(e) {
   const btn = e.currentTarget;
@@ -1417,20 +1281,20 @@ function makeRipple(e) {
   btn.appendChild(circle);
   setTimeout(() => circle.remove(), 600);
 }
-document.querySelectorAll('.btn, .submit-btn, .promo-cta, .promo-go-btn').forEach(b => {
+document.querySelectorAll('.btn, .submit-btn, .promo-go-btn').forEach(b => {
   b.addEventListener('mousedown', makeRipple);
   b.addEventListener('touchstart', makeRipple, { passive: true });
 });
 
 /* ═══════════════════════════════
-   HAPTIC VIBRATION
+    HAPTIC VIBRATION
 ═══════════════════════════════ */
 document.querySelectorAll('.btn, .food-card, .submit-btn, .salad-chip, .fab-wa, .promo-fab').forEach(el => {
   el.addEventListener('touchstart', () => { if (navigator.vibrate) navigator.vibrate(30); }, { passive: true });
 });
 
 /* ═══════════════════════════════
-   TOUCH SPARKS
+    TOUCH SPARKS
 ═══════════════════════════════ */
 let lastTouchTime = 0;
 document.addEventListener('touchmove', e => {
@@ -1446,12 +1310,12 @@ document.addEventListener('touchmove', e => {
 }, { passive: true });
 
 /* ═══════════════════════════════
-   NAV onclick fix
+    NAV FIXED LINKS
 ═══════════════════════════════ */
 document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribute('href'));
 
 /* ═══════════════════════════════
-   PROMO PANEL & FAB LOGIC
+    PROMO PANEL LOGIC
 ═══════════════════════════════ */
 const promoPanel  = document.getElementById('promoPanel');
 const promoFabBtn = document.getElementById('promoFabBtn');
@@ -1462,7 +1326,7 @@ let promoOpen = false;
 function openPromo(){
   if(!promoPanel) return;
   promoPanel.classList.add('open');
-  if(promoFabBtn.querySelector('.promo-fab-ring')) {
+  if(promoFabBtn && promoFabBtn.querySelector('.promo-fab-ring')) {
     promoFabBtn.querySelector('.promo-fab-ring').style.transform='scale(1.1) rotate(15deg)';
   }
   promoOpen = true;
@@ -1471,36 +1335,38 @@ function openPromo(){
 function closePromo(){
   if(!promoPanel) return;
   promoPanel.classList.remove('open');
-  if(promoFabBtn.querySelector('.promo-fab-ring')) {
+  if(promoFabBtn && promoFabBtn.querySelector('.promo-fab-ring')) {
     promoFabBtn.querySelector('.promo-fab-ring').style.transform='';
   }
   promoOpen = false;
 }
 
-promoFabBtn.addEventListener('click', (e)=>{
-  e.stopPropagation();
-  promoOpen ? closePromo() : openPromo();
-});
-
-promoX.addEventListener('click', (e) => {
-  e.stopPropagation();
-  closePromo();
-});
-
-promoGoBtn.addEventListener('click', () => { 
-  closePromo(); 
-  scrollTo('#order-online'); 
-});
-
+if(promoFabBtn) {
+  promoFabBtn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    promoOpen ? closePromo() : openPromo();
+  });
+}
+if(promoX) {
+  promoX.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closePromo();
+  });
+}
+if(promoGoBtn) {
+  promoGoBtn.addEventListener('click', () => { 
+    closePromo(); 
+    scrollTo('#order-online'); 
+  });
+}
 document.addEventListener('click', e => {
-  if(promoOpen && !promoPanel.contains(e.target) && !promoFabBtn.contains(e.target)) closePromo();
+  if(promoOpen && promoPanel && !promoPanel.contains(e.target) && promoFabBtn && !promoFabBtn.contains(e.target)) closePromo();
 });
 
-// فتح تلقائي مبكر بعد 4 ثوانٍ
 setTimeout(() => { openPromo(); shootConfetti(); }, 4000);
 
 /* ═══════════════════════════════
-   COUNTDOWN TIMER (SHARED)
+    COUNTDOWN TIMER
 ═══════════════════════════════ */
 const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
 
@@ -1516,7 +1382,6 @@ const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
   }
   
   const pad = n => String(Math.floor(n)).padStart(2,'0');
-  
   const daysElement = document.getElementById('tDays');
   const hoursElement = document.getElementById('tHours');
   const minsElement = document.getElementById('tMins');
@@ -1530,3 +1395,5 @@ const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
   setTimeout(tick, 1000);
 })();
 </script>
+</body>
+</html>
