@@ -135,23 +135,19 @@ body{
 
 .ticker-inner {
   display: inline-block;
-  padding-left: 100%;
-  animation: ticker 28s linear infinite;
+  white-space: nowrap;
   font-family: 'Noto Kufi Arabic', sans-serif;
   font-size: 13px;
   font-weight: 600;
   color: #FFFFFF !important;
   letter-spacing: 0.5px;
+  animation: ticker 25s linear infinite;
 }
 
 @keyframes ticker {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(100%); }
+  0% { transform: translateX(-100vw); } /* يبدأ من خارج الشاشة يساراً */
+  100% { transform: translateX(100%); } /* ينتهي خارج الشاشة يميناً ليعيد الكرة */
 }
-}
-}
-}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(100%)}}
 
 /* ═══════════════════════════════════════
    HEADER / NAV
