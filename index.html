@@ -1364,32 +1364,17 @@ const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
 document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribute('href'));
 </script>
 
-<!-- 🌯 كود خلفية الشاورما الفخمة المصلح والواضح 100% 🌯 -->
+<!-- 🌯 كود الخلفية المباشر والمطور 100% 🌯 -->
 <style>
   body { 
-    position: relative !important; 
-    z-index: 1 !important; 
-  }
-  body::before {
-    content: "" !important; 
-    position: fixed !important; 
-    top: 0 !important; 
-    left: 0 !important; 
-    width: 100% !important; 
-    height: 100% !important;
-    
-    /* رابط الصورة الشغال والمباشر */
-    background-image: url('https://i.ibb.co/KpRxF36J/Pngtree-deliciously-wrapped-shawarma-bursting-with-16841024.jpg') !important; 
-    
+    /* دمج لون الفحم الداكن مع صورة الشاورما كطبقة واحدة لحماية النصوص */
+    background: linear-gradient(rgba(21, 0, 0, 0.90), rgba(21, 0, 0, 0.90)), 
+                url('https://i.ibb.co/KpRxF36J/Pngtree-deliciously-wrapped-shawarma-bursting-with-16841024.jpg') !important;
+                
     background-repeat: no-repeat !important; 
     background-size: cover !important; 
     background-position: center !important; 
-    
-    /* 🛠️ تم رفع الشفافية إلى 0.25 لتظهر صورة الشاورما بشكل واضح وممتاز خلف الكلمات */
-    opacity: 0.25 !important; 
-    
-    z-index: -1 !important; 
-    pointer-events: none !important; 
+    background-attachment: fixed !important; /* تثبيت الخلفية عند التمرير لمظهر فخم */
   }
 </style>
 
