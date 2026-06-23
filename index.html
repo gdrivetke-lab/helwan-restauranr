@@ -47,7 +47,7 @@ body{
 }
 
 /* ═══════════════════════════════════════
-    LOADER
+    LOADER (تم تكبير الدائرة والنص هنا)
 ═══════════════════════════════════════ */
 #loader{
   position:fixed;inset:0;z-index:99999;
@@ -60,25 +60,26 @@ body{
   0%,75%{opacity:1;visibility:visible}
   100%{opacity:0;visibility:hidden;pointer-events:none;display:none}
 }
-.loader-emblem {
-  width: 300px;       /* تم تكبير القطر */
-  height: 300px;      /* تم تكبير القطر */
+.loader-emblem{
+  width:160px;         /* حجم الدائرة المكبرة */
+  height:160px;        /* حجم الدائرة المكبرة */
   border-radius: 50%;
-  background: radial-gradient(circle, var(--spice), var(--ink));
-  border: 3px solid var(--gold); /* زيادة سماكة الإطار قليلاً ليناسب الحجم الجديد */
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-  font-size: 64px;    /* تكبير حجم الإيموجي أو اللهب بداخلها */
-  animation: pulseLogo 1.2s ease-in-out infinite alternate;
-  box-shadow: 0 0 50px rgba(212,164,55,0.4);
+  background:radial-gradient(circle,var(--spice),var(--ink));
+  border:3px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:64px;      /* حجم إيموجي النار المكبر */
+  animation:pulseLogo 1.2s ease-in-out infinite alternate;
+  box-shadow:0 0 50px rgba(212,164,55,0.4);
 }
-@keyframes pulseLogo{from{box-shadow:0 0 20px rgba(229,48,64,0.2)}to{box-shadow:0 0 50px rgba(229,48,64,0.6)}}
+@keyframes pulseLogo{from{box-shadow:0 0 20px rgba(229,48,64,0.2)}to{box-shadow:0 0 60px rgba(229,48,64,0.6)}}
 .loader-name{
   font-family:'Noto Kufi Arabic',sans-serif;
-  font-size:22px;font-weight:700;
+  font-size:36px;      /* حجم الخط المكبر */
+  font-weight:900;      /* عريض وبارز */
   color:var(--gold);
-  letter-spacing:1px;
+  letter-spacing:2px;
+  margin-top:10px;
+  text-shadow:0 4px 15px rgba(229, 48, 64, 0.4);
   animation:fadeUpText 0.8s 0.3s both;
 }
 .loader-bar{
@@ -438,7 +439,7 @@ nav{
 }
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px;}
 .food-card{
-  background:linear-gradient(160deg,rgba(60,28,8,0.5),rgba(20,12,6,0.85));
+  background:linear-gradient(160deg,rgba(60,28,8,0.5),rgba(20,12,65,0.85));
   border:1px solid rgba(212,164,55,0.14);
   border-radius:20px;overflow:hidden;
   position:relative;cursor:pointer;
@@ -767,19 +768,23 @@ footer{
 </head>
 <body>
 
+<!-- LOADER -->
 <div id="loader">
   <div class="loader-emblem">🔥</div>
   <div class="loader-name">حلوان اخوان</div>
   <div class="loader-bar"><div class="loader-bar-fill"></div></div>
 </div>
 
+<!-- SCROLL PROGRESS -->
 <div id="scroll-progress"></div>
 
+<!-- ZOOM OVERLAY -->
 <div class="zoom-overlay" id="zoomOverlay">
   <span class="zoom-close" id="zoomClose">✕</span>
   <img src="" alt="" class="zoom-img-big" id="zoomBig">
 </div>
 
+<!-- ISLAMIC MODAL -->
 <div class="modal-overlay" id="islamicModal">
   <div class="modal-box">
     <span class="modal-close" id="closeModal">✕</span>
@@ -788,8 +793,10 @@ footer{
   </div>
 </div>
 
+<!-- FAB (Islamic) -->
 <button class="fab-wa" id="fabIslamicBtn" title="نفحات إيمانية">📖</button>
 
+<!-- PROMO FAB -->
 <button class="promo-fab" id="promoFabBtn" title="عرض خاص">
   <div class="promo-fab-ring">
     🎁
@@ -798,6 +805,7 @@ footer{
   <span class="promo-fab-lbl">عرض خاص</span>
 </button>
 
+<!-- PROMO PANEL -->
 <div class="promo-panel" id="promoPanel">
   <div class="promo-inner">
     <button class="promo-x" id="promoX">✕</button>
@@ -815,6 +823,7 @@ footer{
   </div>
 </div>
 
+<!-- HEADER -->
 <header>
   <div class="ticker">
     <span class="ticker-inner">
@@ -836,6 +845,7 @@ footer{
   </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-particles" id="heroParticles"></div>
   <div class="hero-badge">✦ قلقيلية — شارع الملعب ✦</div>
@@ -862,6 +872,7 @@ footer{
   <div class="scroll-hint">مرر للأسفل</div>
 </section>
 
+<!-- ORDER SECTION -->
 <div class="section-wrap dark" id="order-online">
   <div class="container">
     <div class="sec-head reveal">
@@ -928,6 +939,7 @@ footer{
   </div>
 </div>
 
+<!-- CHICKEN MENU -->
 <div class="section-wrap charcoal" id="chicken">
   <div class="container">
     <div class="sec-head reveal">
@@ -946,7 +958,7 @@ footer{
         </div>
       </div>
       <div class="food-card reveal" onclick="pickMeal('بجيت دجاج دبل (25 شيكل)')">
-        <img class="card-img img-zoom" src="https://images.deliveryhero.io/image/talabat/MenuItems/Alos_%D8%B4%D8%A7%D9%8اورما_%D8%AF%D8%AC%D8%A7%D8%AC_%D8%B5%D9%85%D9%88%D9%86_%D8%AA%D8%B1%D9%83638749527865695194.jpg" alt="بجيت دجاج دبل" loading="lazy">
+        <img class="card-img img-zoom" src="https://images.deliveryhero.io/image/talabat/MenuItems/Alos_%D8%B4%D8%A7%D9%88%D8%B1%D9%85%D8%A7_%D8%AF%D8%AC%D8%A7%D8%AC_%D8%B5%D9%85%D9%88%D9%86_%D8%AA%D8%B1%D9%83638749527865695194.jpg" alt="بجيت دجاج دبل" loading="lazy">
         <div class="card-body">
           <div class="card-name">بجيت دجاج دبل</div>
           <div class="card-desc">كمية مضاعفة لمعدتك الخاوية</div>
@@ -989,6 +1001,7 @@ footer{
   </div>
 </div>
 
+<!-- HABASH MENU -->
 <div class="section-wrap dark" id="habash">
   <div class="container">
     <div class="sec-head reveal">
@@ -1026,6 +1039,7 @@ footer{
   </div>
 </div>
 
+<!-- TOAST & BASHKA -->
 <div class="section-wrap charcoal" id="toast-bashka">
   <div class="container">
     <div class="sec-head reveal">
@@ -1036,7 +1050,7 @@ footer{
     <div class="menu-divider"><span class="cat-tag">🥪 التوست والباشكا</span></div>
     <div class="cards-grid" style="max-width:500px;margin:0 auto">
       <div class="food-card reveal" onclick="pickMeal('توست (25 شيكل)')">
-        <img class="card-img img-zoom" src="https://img.ananinja.com/media/ninja-catalog-42/restaurants/688pfliinnm5i85ipm7a31lisldg/%D8%A8%D8%A7%D8%B4%D9%83%D8%A7.jpeg?w=1080&q=75" alt="توست" loading="lazy">
+        <img class="card-img img-zoom" src="https://img.ananinja.com/media/ninja-catalog-42/restaurants/688pfliinnm5i85ipm7a31lisldg/%D8%A8%D8%A7%D8%B4%D٩%83%D8%A7.jpeg?w=1080&q=75" alt="توست" loading="lazy">
         <div class="card-body">
           <div class="card-name">توست</div>
           <div class="card-desc">توست محمص غني بالطعم والإضافات</div>
@@ -1055,6 +1069,7 @@ footer{
   </div>
 </div>
 
+<!-- DRINKS -->
 <div class="section-wrap dark" id="drinks">
   <div class="container">
     <div class="sec-head reveal">
@@ -1083,6 +1098,7 @@ footer{
   </div>
 </div>
 
+<!-- CAKES -->
 <div class="section-wrap mahogany" id="cakes">
   <div class="container">
     <div class="sec-head reveal">
@@ -1103,6 +1119,7 @@ footer{
   </div>
 </div>
 
+<!-- CONTACT -->
 <div class="section-wrap dark" id="contact">
   <div class="container">
     <div class="sec-head reveal">
@@ -1136,6 +1153,7 @@ footer{
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="foot-name">🔥 مطعم وجاتوه حلوان أخوان</div>
   <div class="foot-copy">جميع الحقوق محفوظة © 2026 — قلقيلية، فلسطين</div>
@@ -1371,7 +1389,18 @@ function closePromo(){
   promoOpen = false;
 }
 
-if(promoX) promoX.addEventListener('click', (e) => { e.stopPropagation(); closePromo(); });
+if(promoFabBtn) {
+  promoFabBtn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    promoOpen ? closePromo() : openPromo();
+  });
+}
+if(promoX) {
+  promoX.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closePromo();
+  });
+}
 if(promoGoBtn) {
   promoGoBtn.addEventListener('click', () => { 
     closePromo(); 
