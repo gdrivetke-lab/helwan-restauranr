@@ -236,14 +236,27 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ===== ستايل نافذة العرض المنبثقة (معدلة لتجاوز الحظر) ===== */
-    .promo-overlay {
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.85); z-index: 9999999;
-        display: flex; justify-content: center; align-items: center;
-        opacity: 0; visibility: hidden; transition: opacity 0.5s ease;
-        backdrop-filter: blur(8px);
+    .promo-overlay { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        background: rgba(0,0,0,0.9); 
+        z-index: 99999999; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        opacity: 0; 
+        visibility: hidden; 
+        transition: opacity 0.4s; 
+        pointer-events: none; /* هذا السطر يحل المشكلة */
     }
-    .promo-overlay.show { opacity: 1; visibility: visible; }
+    .promo-overlay.show { 
+        opacity: 1; 
+        visibility: visible; 
+        pointer-events: auto; /* الماوس يعمل فقط عندما تكون النافذة ظاهرة */
+    }
     .promo-box {
         background: linear-gradient(135deg, #1a0000, #2d0000);
         border: 2px solid var(--gold); border-radius: 20px;
