@@ -1363,5 +1363,31 @@ const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
 ═══════════════════════════════ */
 document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribute('href'));
 </script>
+
+<!-- 🍅 كود الخلفية الشفافة الجاهز لتعديل الرابط 🍅 -->
+<style>
+  body { 
+    position: relative !important; 
+    z-index: 1 !important; 
+  }
+  body::before {
+    content: "" !important; 
+    position: fixed !important; 
+    top: 0 !important; 
+    left: 0 !important; 
+    width: 100% !important; 
+    height: 100% !important;
+    
+    /* 🛠️ ضع رابط صورتك المباشر داخل القوسين بالأسفل */
+    background-image: url('ضع_رابط_صورتك_هنا') !important; 
+    
+    background-repeat: repeat !important; 
+    background-size: 140px !important; /* يمكنك تعديل حجم الصورة من هنا */
+    opacity: 0.04 !important; /* الشفافية خفيفة جداً لكي لا تؤثر على نصوص الوجبات والأسعار */
+    z-index: -1 !important; /* تضمن بقاء الصورة خلف كروت الطعام دائماً */
+    pointer-events: none !important; /* تضمن ألا تحجب الصورة نقرات الماوس عن أزرار الطلب والواتساب */
+  }
+</style>
+
 </body>
 </html>
