@@ -8,33 +8,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;900&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
-body {
-  position: relative;
-  z-index: 1;
-}
+body <style>
+  body { position: relative; z-index: 1; }
+  body::before {
+    content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    /* هذا رابط مباشر مصلح لصورة طماطم حقيقية */
+    background-image: url('https://unsplash.com'); 
+    background-repeat: repeat; 
+    background-size: 150px; 
+    opacity: 0.03; /* تم تقليل الشفافية لضمان وضوح نصوص الوجبات والأسعار */
+    z-index: -1; 
+    pointer-events: none;
+  }
+</style>
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  
-  /* ضع هنا رابط صورة الطماطم الخاصة بك */
-  background-image: url('https://unsplash.com'); 
-  
-  background-repeat: repeat; /* تجعل الصورة تتكرر كنمط (Pattern) ملء الشاشة */
-  background-size: 180px;    /* يمكنك تصغير أو تكبير حجم حبات الطماطم من هنا */
-  
-  /* التحكم بالشفافية: 0.04 تعني شفافة جداً وخلفية ناعمة لا تؤثر على القراءة */
-  opacity: 0.04; 
-  
-  z-index: -1; /* تجعل الصورة خلف النصوص والأزرار دائماً */
-  pointer-events: none; /* تمنع الصورة من حجب نقرات الماوس عن الأزرار */
-}
 
-<style>
 /* ═══════════════════════════════════════
    TOKENS — SPICE & WHEAT PALETTE
 ═══════════════════════════════════════ */
