@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"> 
 <title>مطعم وجاتوه حلوان اخوان — قلقيلية</title>
 <meta name="description" content="مطعم وجاتوه حلوان اخوان قلقيلية — شاورما دجاج وحبش، بيتا، توست، مشروبات، جاتوهات لكافة المناسبات">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1160,8 +1160,7 @@ footer{
   <a class="foot-dl" href="https://drive.google.com" target="_blank">📲 حمّل التطبيق للأندرويد</a>
 </footer>
 
-<script>
-/* ═══════════════════════════════
+<script>/* ═══════════════════════════════
     SCROLL PROGRESS
 ═══════════════════════════════ */
 window.addEventListener('scroll', () => {
@@ -1172,11 +1171,21 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ═══════════════════════════════
-    SMOOTH SCROLL HELPER
+    SMOOTH SCROLL HELPER (تم إصلاحها وتطويرها)
 ═══════════════════════════════ */
 function scrollTo(id) {
   const el = document.querySelector(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
+  if (el) {
+    // حساب مسافة الهيدر الثابت حتى لا يغطي على القسم
+    const headerOffset = 110; 
+    const elementPosition = el.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
 }
 
 /* ═══════════════════════════════
@@ -1278,7 +1287,7 @@ const quotes = [
   "قال رسول الله ﷺ: «كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن: سبحان الله وبحمده، سبحان الله العظيم»",
   "۞ فَاذْكُرُونِي أَذْكُرْكُمْ ۞",
   "قال رسول الله ﷺ: «اتق الله حيثما كنت، وأتبع السيئة الحسنة تمحها، وخالق الناس بخلق حسن»",
-  "۞ وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ ۞",
+  "۞ وَهُВО مَعَكُمْ أَيْنَ مَا كُنتُمْ ۞",
   "قال رسول الله ﷺ: «خير الناس أنفعهم للناس»",
   "۞ سَيَجْعَلُ اللَّهُ بَعْدَ عُسْرٍ يُسْرًا ۞",
   "۞ وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ ۞"
@@ -1364,12 +1373,14 @@ document.addEventListener('touchmove', e => {
 }, { passive: true });
 
 /* ═══════════════════════════════
-    NAV fixed links
+    NAV fixed links (تم تعديلها لمنع إتلاف الروابط)
 ═══════════════════════════════ */
-document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribute('href'));
+document.querySelectorAll('.nav-links a[onclick]').forEach(a => {
+  a.style.cursor = 'pointer';
+});
 
 /* ═══════════════════════════════
-    PROMO FAB LOGIC — السحب، الإفلات، والإشعاع الدوري
+    PROMO FAB LOGIC
 ═══════════════════════════════ */
 const promoPanel  = document.getElementById('promoPanel');
 const promoFabBtn = document.getElementById('promoFabBtn');
@@ -1392,7 +1403,9 @@ function closePromo(){
 if(promoFabBtn) {
   promoFabBtn.addEventListener('click', (e)=>{
     e.stopPropagation();
-    promoOpen ? closePromo() : openPromo();
+    if(!isDragging) {
+      promoOpen ? closePromo() : openPromo();
+    }
   });
 }
 if(promoX) {
@@ -1466,9 +1479,8 @@ function dragEnd() {
   
   promoFabBtn.classList.remove('active-glow');
   
-  if (!isDragging) {
-    promoOpen ? closePromo() : openPromo();
-  }
+  // لضمان التمييز التام بين السحب والضغط
+  setTimeout(() => { isDragging = false; }, 50);
 }
 
 if(promoFabBtn) {
@@ -1504,6 +1516,7 @@ const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
   if(secsElement)  secsElement.textContent  = pad((dist % 6e4) / 1000);
   
   setTimeout(tick, 1000);
+})(); 
 })();
 </script>
 </body>
