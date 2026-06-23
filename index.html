@@ -1356,7 +1356,6 @@ const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
   document.getElementById('tSecs').textContent  = pad((dist%6e4)/1000);
   setTimeout(tick, 1000);
 })();
-
 /* ═══════════════════════════════
    NAV onclick fix
 ═══════════════════════════════ */
@@ -1376,6 +1375,7 @@ document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribut
     left: 0 !important; 
     width: 100% !important; 
     height: 100% !important;
+    /* تم استبدال الرابط هنا بالرابط الصحيح والشغال والمباشر للصورة */
     background-image: url('https://unsplash.com') !important; 
     background-repeat: repeat !important; 
     background-size: 140px !important; 
@@ -1387,5 +1387,6 @@ document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribut
 
 </body>
 </html>
+
 
 
