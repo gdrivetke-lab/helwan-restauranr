@@ -1342,7 +1342,6 @@ document.getElementById('promoCta').addEventListener('click', () => {
   promoWrap.classList.remove('show');
   scrollTo('#order-online');
 });
-
 const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
 (function tick() {
   const dist = deadline - Date.now();
@@ -1363,5 +1362,30 @@ const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
 ═══════════════════════════════ */
 document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribute('href'));
 </script>
+
+<!-- 🍅 كود حبة الطماطم الشفافة الموزون والمصلح لعدم تخريب الأزرار 🍅 -->
+<style>
+  body { 
+    position: relative !important; 
+    z-index: 1 !important; 
+  }
+  body::before {
+    content: "" !important; 
+    position: fixed !important; 
+    top: 0 !important; 
+    left: 0 !important; 
+    width: 100% !important; 
+    height: 100% !important;
+    background-image: url('https://unsplash.com') !important; 
+    background-repeat: repeat !important; 
+    background-size: 140px !important; 
+    opacity: 0.03 !important; /* درجة خفيفة جداً وأنيقة لحماية نصوص قائمة الطعام */
+    z-index: -1 !important; /* يضمن بقاء الخلفية خلف كروت الوجبات تماماً */
+    pointer-events: none !important; /* يضمن تمرير النقرات وألا تعطل أزرار الطلب والواتساب */
+  }
+</style>
+
 </body>
 </html>
+
+
