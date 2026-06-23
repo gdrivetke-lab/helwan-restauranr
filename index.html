@@ -14,20 +14,20 @@
    TOKENS — SPICE & WHEAT PALETTE
 ═══════════════════════════════════════ */
 :root {
-  --ink:        #0D0B09;
-  --charcoal:   #1C1612;
-  --mahogany:   #2E1A0E;
-  --spice:      #5C2D0A;
-  --ember:      #8B3A0F;
-  --saffron:    #C8840A;
-  --gold:       #D4A437;
-  --wheat:      #E8C97A;
-  --cream:      #FBF3E3;
-  --off-white:  #FFF9F2;
-  --mist:       rgba(212,164,55,0.12);
-  --border:     rgba(212,164,55,0.22);
-  --text-warm:  #C4A882;
-  --text-body:  #E8D8C0;
+  --ink:        #0A0000;
+  --charcoal:   #150000;
+  --mahogany:   #2A0000;
+  --spice:      #6B0000;
+  --ember:      #A00010;
+  --saffron:    #CC1122;
+  --gold:       #E53040;
+  --wheat:      #FF6677;
+  --cream:      #FFF0F0;
+  --off-white:  #FFF5F5;
+  --mist:       rgba(229,48,64,0.12);
+  --border:     rgba(229,48,64,0.25);
+  --text-warm:  #E8A0A8;
+  --text-body:  #F0C8CC;
 
   --r24: 24px;
   --r16: 16px;
@@ -72,7 +72,7 @@ body{
   animation:pulseLogo 1.2s ease-in-out infinite alternate;
   box-shadow:0 0 40px rgba(212,164,55,0.3);
 }
-@keyframes pulseLogo{from{box-shadow:0 0 20px rgba(212,164,55,0.2)}to{box-shadow:0 0 50px rgba(212,164,55,0.6)}}
+@keyframes pulseLogo{from{box-shadow:0 0 20px rgba(229,48,64,0.2)}to{box-shadow:0 0 50px rgba(229,48,64,0.6)}}
 .loader-name{
   font-family:'Noto Kufi Arabic',sans-serif;
   font-size:22px;font-weight:700;
@@ -95,7 +95,7 @@ body{
 ═══════════════════════════════════════ */
 #scroll-progress{
   position:fixed;top:0;left:0;height:2px;
-  background:linear-gradient(90deg,var(--ember),var(--gold),var(--wheat));
+  background:linear-gradient(90deg,var(--spice),var(--gold),var(--wheat));
   z-index:10000;width:0%;
   transition:width 0.1s linear;
   box-shadow:0 0 6px var(--gold);
@@ -159,7 +159,7 @@ nav{
 .nav-links a:hover{color:var(--gold);border-bottom-color:var(--gold)}
 .nav-cta{
   background:var(--gold);
-  color:var(--ink) !important;
+  color:var(--off-white) !important;
   font-weight:700 !important;
   padding:6px 16px;
   border-radius:30px;
@@ -179,8 +179,8 @@ nav{
   padding:140px 24px 80px;
   position:relative;overflow:hidden;
   background:
-    radial-gradient(ellipse 70% 50% at 20% 40%,rgba(92,45,10,0.5) 0%,transparent 60%),
-    radial-gradient(ellipse 60% 60% at 80% 60%,rgba(139,58,15,0.25) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 50% at 20% 40%,rgba(107,0,0,0.6) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 60% at 80% 60%,rgba(160,0,16,0.3) 0%,transparent 60%),
     linear-gradient(170deg,var(--ink) 0%,var(--charcoal) 50%,var(--mahogany) 100%);
 }
 
@@ -235,12 +235,12 @@ nav{
   animation:goldPulse 3s ease-in-out infinite;
 }
 @keyframes goldPulse{
-  0%,100%{text-shadow:0 0 20px rgba(212,164,55,0.3)}
-  50%{text-shadow:0 0 40px rgba(212,164,55,0.7),0 0 80px rgba(212,164,55,0.2)}
+  0%,100%{text-shadow:0 0 20px rgba(229,48,64,0.3)}
+  50%{text-shadow:0 0 40px rgba(229,48,64,0.8),0 0 80px rgba(229,48,64,0.25)}
 }
 .hero-title strong{
   font-style:normal;
-  background:linear-gradient(90deg,var(--ember),var(--saffron),var(--gold),var(--wheat),var(--gold),var(--ember));
+  background:linear-gradient(90deg,var(--spice),var(--ember),var(--gold),var(--wheat),var(--gold),var(--spice));
   background-size:300% auto;
   -webkit-background-clip:text;background-clip:text;
   color:transparent;
@@ -304,10 +304,10 @@ nav{
 
 .btn-gold{
   background:linear-gradient(135deg,var(--gold),var(--wheat));
-  color:var(--ink);
-  box-shadow:0 6px 20px rgba(212,164,55,0.35);
+  color:var(--off-white);
+  box-shadow:0 6px 20px rgba(229,48,64,0.4);
 }
-.btn-gold:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 30px rgba(212,164,55,0.5)}
+.btn-gold:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 30px rgba(229,48,64,0.6)}
 
 .btn-outline{
   background:transparent;
@@ -436,12 +436,12 @@ nav{
 .submit-btn{
   width:100%;padding:18px;
   background:linear-gradient(135deg,var(--gold),var(--wheat));
-  color:var(--ink);
+  color:var(--off-white);
   font-family:'Noto Kufi Arabic',sans-serif;font-size:17px;font-weight:900;
   border:none;border-radius:var(--r16);
   cursor:pointer;
   transition:transform 0.2s,box-shadow 0.2s;
-  box-shadow:0 8px 28px rgba(212,164,55,0.35);
+  box-shadow:0 8px 28px rgba(229,48,64,0.4);
   position:relative;overflow:hidden;
   display:flex;align-items:center;justify-content:center;gap:10px;
 }
@@ -814,8 +814,8 @@ footer{
   <div class="hero-rule"></div>
 
   <p class="hero-sub">
-    طعم مميز وخبرة طويلة في مجال الشاورما 🌯<br>
-    وأجمل الجاتوهات تناسب كل  مناسبة 🎂
+    طعم مميز يجمع بين أشهى الشاورما 🌯<br>
+    وأجمل الجاتوهات لكل مناسبة 🎂
   </p>
 
   <div class="hero-cta">
@@ -833,7 +833,7 @@ footer{
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">اطلب بسهولة</span>
-      <h2 class="sec-title">اختر وجبتك <b>من اختيارك</b></h2>
+      <h2 class="sec-title">اختر وجبتك <b>على ذوقك</b></h2>
       <div class="sec-rule"></div>
     </div>
 
@@ -845,7 +845,7 @@ footer{
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="mealType">اختر وجبتك الان</label>
+          <label class="form-label" for="mealType">اختر وجبتك الأساسية</label>
           <select id="mealType" class="form-select" required>
             <option value="" disabled selected>— اختر الوجبة —</option>
             <optgroup label="🍗 وجبات الدجاج">
@@ -857,7 +857,7 @@ footer{
               <option value="لفة دجاج دبل (25 شيكل)">لفة دجاج دبل ـ 25 ₪</option>
             </optgroup>
             <optgroup label="🦃 وجبات الحبش">
-              <option value="بيتا حبش (20 شيكل)">بيتا حبش ـ 18 ₪</option>
+              <option value="بيتا حبش (18 شيكل)">بيتا حبش ـ 18 ₪</option>
               <option value="بجيت حبش (22 شيكل)">بجيت حبش ـ 22 ₪</option>
               <option value="لفة حبش (22 شيكل)">لفة حبش ـ 22 ₪</option>
             </optgroup>
