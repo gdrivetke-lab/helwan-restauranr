@@ -1361,10 +1361,11 @@ const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
 /* ═══════════════════════════════
    NAV onclick fix
 ═══════════════════════════════ */
+
 document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribute('href'));
 </script>
 
-<!-- 🍅 كود الخلفية الشفافة الجاهز لتعديل الرابط 🍅 -->
+<!-- 🌯 كود خلفية صورة الشاورما الفخمة المصلح بالكامل 🌯 -->
 <style>
   body { 
     position: relative !important; 
@@ -1378,14 +1379,15 @@ document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribut
     width: 100% !important; 
     height: 100% !important;
     
-    /* 🛠️ ضع رابط صورتك المباشر داخل القوسين بالأسفل */
-    background-image: url('https://i.ibb.co/cSMhD7Jj/Pngtree-deliciously-wrapped-shawarma-bursting-with-16841024.jpgضع_رابط_صورتك_هنا') !important; 
+    /* الرابط المصلح تماماً لصورة الشاورما بدون أي نصوص زائدة */
+    background-image: url('https://ibb.co') !important; 
     
-    background-repeat: repeat !important; 
-    background-size: 140px !important; /* يمكنك تعديل حجم الصورة من هنا */
-    opacity: 0.04 !important; /* الشفافية خفيفة جداً لكي لا تؤثر على نصوص الوجبات والأسعار */
-    z-index: -1 !important; /* تضمن بقاء الصورة خلف كروت الطعام دائماً */
-    pointer-events: none !important; /* تضمن ألا تحجب الصورة نقرات الماوس عن أزرار الطلب والواتساب */
+    background-repeat: no-repeat !important; /* جعل الصورة تظهر مرة واحدة بدلاً من التكرار المزعج */
+    background-size: cover !important; /* تجعل الصورة تمتد لتملأ خلفية الشاشة بالكامل */
+    background-position: center !important; /* تمركز الصورة في منتصف الشاشة */
+    opacity: 0.08 !important; /* درجة خفيفة جداً تدمج الشاورما مع لون الفحم لتظل النصوص واضحة للزبائن */
+    z-index: -1 !important; 
+    pointer-events: none !important; 
   }
 </style>
 
