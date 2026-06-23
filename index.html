@@ -1144,20 +1144,53 @@ footer{
   </div>
 </div>
 
-<!-- PROMO POPUP -->
-<div class="promo-wrap" id="promoWrap">
-  <div class="promo-card">
-    <button class="promo-close-btn" id="promoClose">✖</button>
-    <img class="promo-img" src="https://i.ibb.co/pjTDskf7/1.jpg" alt="عرض خاص">
-    <div class="promo-body">
-      <div class="promo-label">🔥 عرض خاص ينتهي قريباً 🔥</div>
-      <div class="timer-row" id="timerRow">
-        <div class="t-box"><span class="num" id="tDays">00</span><span class="lbl">يوم</span></div>
-        <div class="t-box"><span class="num" id="tHours">00</span><span class="lbl">ساعة</span></div>
-        <div class="t-box"><span class="num" id="tMins">00</span><span class="lbl">دقيقة</span></div>
-        <div class="t-box"><span class="num" id="tSecs">00</span><span class="lbl">ثانية</span></div>
-      </div>
-      <button class="promo-cta" id="promoCta">اطلب الآن</button>
+/* ═══════════════════════════════
+   PROMO POPUP + COUNTDOWN + MINI BTN
+═══════════════════════════════ */
+const promoWrap = document.getElementById('promoWrap');
+const promoMiniBtn = document.getElementById('promoMiniBtn');
+const promoClose = document.getElementById('promoClose');
+
+// ظهور النافذة الكبيرة أول مرة بعد 4 ثواني
+setTimeout(() => { 
+  promoWrap.classList.add('show'); 
+  shootConfetti(); 
+}, 4000);
+
+// عند إغلاق النافذة، يختفي العرض الكبير ويظهر الزر الصغير
+promoClose.addEventListener('click', () => { 
+  promoWrap.classList.remove('show');
+  promoMiniBtn.classList.add('show');
+});
+
+// عند الضغط على "اطلب الآن" داخل العرض
+document.getElementById('promoCta').addEventListener('click', () => {
+  promoWrap.classList.remove('show');
+  promoMiniBtn.classList.add('show');
+  scrollTo('#order-online');
+});
+
+// عند الضغط على الزر الصغير، تفتح النافذة الكبيرة مرة أخرى
+promoMiniBtn.addEventListener('click', () => {
+  promoMiniBtn.classList.remove('show');
+  promoWrap.classList.add('show');
+});
+
+// العداد التنازلي (تم تمديد التاريخ إلى 30 يونيو كمثال، يمكنك تعديله)
+const deadline = new Date("Jun 30, 2026 23:59:59").getTime();
+(function tick() {
+  const dist = deadline - Date.now();
+  if (dist <= 0) {
+    document.getElementById('timerRow').innerHTML = `<span style="color:var(--gold);font-family:'Noto Kufi Arabic',sans-serif;font-size:14px;font-weight:700;">لقد انتهى العرض!</span>`;
+    return;
+  }
+  const pad = n => String(Math.floor(n)).padStart(2,'0');
+  document.getElementById('tDays').textContent  = pad(dist/(864e5));
+  document.getElementById('tHours').textContent = pad((dist%864e5)/36e5);
+  document.getElementById('tMins').textContent  = pad((dist%36e5)/6e4);
+  document.getElementById('tSecs').textContent  = pad((dist%6e4)/1000);
+  setTimeout(tick, 1000);
+})();
     </div>
   </div>
 </div>
