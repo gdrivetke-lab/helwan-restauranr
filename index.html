@@ -1356,7 +1356,8 @@ const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
   document.getElementById('tSecs').textContent  = pad((dist%6e4)/1000);
   setTimeout(tick, 1000);
 })();
-html//* ═══════════════════════════════
+html
+   //* ═══════════════════════════════
    NAV onclick fix
 ═══════════════════════════════ */
 document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribute('href'));
@@ -1384,7 +1385,6 @@ document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribut
     pointer-events: none !important; 
   }
 </style>
-
 </body>
 </html>
 
