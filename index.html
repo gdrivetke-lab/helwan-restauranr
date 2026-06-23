@@ -11,7 +11,6 @@
 
 <style>
 /* ═══════════════════════════════════════
-
    TOKENS — SPICE & WHEAT PALETTE
 ═══════════════════════════════════════ */
 :root {
@@ -63,46 +62,30 @@ body{
   0%,75%{opacity:1;visibility:visible}
   100%{opacity:0;visibility:hidden;pointer-events:none;display:none}
 }
-.loader-emblem {
-  width: 400px; 
-  height: 400px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.3);
-  border: 2px solid #FF6600;
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-  animation: pulseLogo 1.2s ease-in-out infinite alternate;
+.loader-emblem{
+  width:90px;height:90px;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--spice),var(--ink));
+  border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:38px;
+  animation:pulseLogo 1.2s ease-in-out infinite alternate;
+  box-shadow:0 0 40px rgba(212,164,55,0.3);
 }
-
-@keyframes pulseLogo {
-  from { box-shadow: 0 0 20px rgba(255, 102, 0, 0.2); }
-  to { box-shadow: 0 0 60px rgba(255, 102, 0, 0.7); }
-}
+@keyframes pulseLogo{from{box-shadow:0 0 20px rgba(229,48,64,0.2)}to{box-shadow:0 0 50px rgba(229,48,64,0.6)}}
 .loader-name{
   font-family:'Noto Kufi Arabic',sans-serif;
-  font-size:55px;font-weight:700;
-  color: #FFFFFF;
+  font-size:22px;font-weight:700;
+  color:var(--gold);
   letter-spacing:1px;
   animation:fadeUpText 0.8s 0.3s both;
 }
-.loader-bar {
-  width: 220px;
-  height: 3px;
-  background: rgba(255, 102, 0, 0.15);
-  border-radius: 3px;
-  overflow: hidden;
+.loader-bar{
+  width:160px;height:2px;background:rgba(212,164,55,0.15);border-radius:2px;overflow:hidden;
 }
-.loader-bar-fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #FF6600, #FFD700);
-  border-radius: 3px;
-  animation: barFill 2.2s ease-out forwards;
-}
-@keyframes barFill { to { width: 100%; } }
-}
-}
+.loader-bar-fill{
+  height:100%;width:0%;background:linear-gradient(90deg,var(--spice),var(--gold));border-radius:2px;
+  animation:barFill 2.2s ease-out forwards;
 }
 @keyframes barFill{to{width:100%}}
 @keyframes fadeUpText{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -126,29 +109,16 @@ body{
   border-bottom:1px solid var(--border);
   padding:9px 0;overflow:hidden;white-space:nowrap;
 }
-.ticker {
-  background: var(--mahogany);
-  border-bottom: 1px solid var(--border);
-  padding: 9px 0;
-  overflow: hidden;
-  white-space: nowrap;
+.ticker-inner{
+  display:inline-block;
+  padding-left:100%;
+  animation:ticker 28s linear infinite;
+  font-family:'Noto Kufi Arabic',sans-serif;
+  font-size:13px;font-weight:600;
+  color:var(--wheat);
+  letter-spacing:0.5px;
 }
-
-.ticker-inner {
-  display: inline-block;
-  white-space: nowrap;
-  font-family: 'Noto Kufi Arabic', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: #FFFFFF !important;
-  letter-spacing: 0.5px;
-  animation: ticker 25s linear infinite;
-}
-
-@keyframes ticker {
-  0% { transform: translateX(-100vw); } /* يبدأ من خارج الشاشة يساراً */
-  100% { transform: translateX(100%); } /* ينتهي خارج الشاشة يميناً ليعيد الكرة */
-}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(100%)}}
 
 /* ═══════════════════════════════════════
    HEADER / NAV
@@ -770,15 +740,113 @@ footer{
 @media(prefers-reduced-motion:reduce){
   *{animation:none !important;transition:none !important}
 }
+
+/* ═══════════════════════════════════════
+   PROMO FAB — زر العرض الخاص العائم
+═══════════════════════════════════════ */
+.promo-fab{
+  position:fixed;bottom:96px;right:24px;z-index:9100;
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  cursor:pointer;border:none;background:none;padding:0;
+}
+.promo-fab-ring{
+  width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,#E53040,#8B0010);
+  display:flex;align-items:center;justify-content:center;font-size:26px;
+  box-shadow:0 6px 22px rgba(229,48,64,0.6);
+  animation:promoRingPulse 2.2s infinite;
+  transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  position:relative;
+}
+.promo-fab-ring::before{
+  content:'';position:absolute;inset:-3px;border-radius:50%;
+  border:2px dashed rgba(229,48,64,0.5);
+  animation:rotateDash 6s linear infinite;
+}
+@keyframes rotateDash{to{transform:rotate(360deg)}}
+@keyframes promoRingPulse{0%,100%{box-shadow:0 6px 22px rgba(229,48,64,0.5)}50%{box-shadow:0 6px 30px rgba(229,48,64,0.9),0 0 0 12px rgba(229,48,64,0.1)}}
+.promo-fab:hover .promo-fab-ring{transform:scale(1.12) rotate(-10deg)}
+.promo-fab:active .promo-fab-ring{transform:scale(0.92)}
+/* Badge عدد */
+.promo-badge{
+  position:absolute;top:-4px;left:-4px;
+  width:18px;height:18px;border-radius:50%;
+  background:#fff;color:#E53040;
+  font-size:10px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid #E53040;
+  font-family:'Noto Kufi Arabic',sans-serif;
+}
+.promo-fab-lbl{
+  font-family:'Noto Kufi Arabic',sans-serif;font-size:10px;font-weight:700;
+  color:var(--gold);background:rgba(10,0,0,0.75);
+  padding:2px 8px;border-radius:10px;
+  border:1px solid rgba(229,48,64,0.35);white-space:nowrap;pointer-events:none;
+}
+
+/* ═══════════════════════════════════════
+   PROMO POPUP PANEL
+═══════════════════════════════════════ */
+.promo-panel{
+  position:fixed;bottom:170px;right:24px;
+  width:268px;max-width:calc(100vw - 48px);z-index:9200;
+  transform:translateX(130%) scale(0.8);opacity:0;visibility:hidden;
+  transition:transform 0.45s cubic-bezier(0.34,1.56,0.64,1),opacity 0.35s,visibility 0.35s;
+  transform-origin:bottom right;
+}
+.promo-panel.open{transform:translateX(0) scale(1);opacity:1;visibility:visible;}
+.promo-inner{
+  background:linear-gradient(150deg,#2A0000,#0A0000);
+  border:1.5px solid var(--gold);border-radius:20px;overflow:hidden;
+  box-shadow:0 20px 50px rgba(0,0,0,0.8),0 0 30px rgba(229,48,64,0.2);position:relative;
+}
+.promo-inner::after{
+  content:'';position:absolute;bottom:-10px;right:16px;
+  border-left:10px solid transparent;border-right:10px solid transparent;
+  border-top:10px solid var(--gold);
+}
+.promo-x{
+  position:absolute;top:9px;right:9px;z-index:5;
+  width:26px;height:26px;border-radius:50%;
+  background:rgba(0,0,0,0.65);border:1px solid var(--border);
+  color:var(--gold);font-size:13px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.2s,transform 0.3s;
+}
+.promo-x:hover{background:var(--ember);color:#fff;transform:rotate(90deg)}
+.promo-img-top{width:100%;height:152px;object-fit:cover;display:block;border-bottom:1.5px solid var(--gold);}
+.promo-body{padding:14px 16px 18px;text-align:center}
+.promo-title-lbl{
+  font-family:'Noto Kufi Arabic',sans-serif;font-size:13px;font-weight:900;
+  color:var(--gold);margin-bottom:10px;
+  text-shadow:0 0 10px rgba(229,48,64,0.3);
+}
+.promo-timer{display:flex;justify-content:center;gap:6px;direction:ltr;margin-bottom:14px}
+.t-box{background:rgba(0,0,0,0.5);border:1px solid var(--border);border-radius:8px;padding:6px 4px;min-width:46px;text-align:center;}
+.t-box .num{display:block;font-size:17px;font-weight:900;color:var(--gold);line-height:1.2}
+.t-box .lbl{font-size:9px;color:var(--text-warm);font-weight:600}
+.promo-go-btn{
+  display:inline-block;padding:9px 22px;
+  background:linear-gradient(135deg,var(--gold),var(--wheat));
+  color:#fff;font-family:'Noto Kufi Arabic',sans-serif;font-size:13px;font-weight:900;
+  border-radius:22px;border:none;cursor:pointer;
+  box-shadow:0 4px 14px rgba(229,48,64,0.4);transition:transform 0.2s,box-shadow 0.2s;
+}
+.promo-go-btn:hover{transform:scale(1.07);box-shadow:0 8px 22px rgba(229,48,64,0.6)}
+.promo-go-btn:active{transform:scale(0.95)}
+@media(max-width:480px){
+  .promo-panel{right:10px;bottom:158px;width:calc(100vw - 20px);max-width:280px}
+  .promo-fab{right:10px;bottom:88px}
+}
+
 </style>
 </head>
 <body>
 
 <!-- LOADER -->
 <div id="loader">
-<div class="loader-emblem">
-  <img src="https://scontent.fjrs4-1.fna.fbcdn.net/v/t39.30808-6/363053295_1040871813839782_8751074273250335184_n.png?stp=dst-png&cstp=mx2048x1138&ctp=s2048x1138&_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=eUKwAVp4YMUQ7kNvwGasmky&_nc_oc=AdoNNnVgX4zdFe7Q547hc_IPXWhwQP9PUebpzfoZkOiHMpgd9FIuGYvFaD7pS70EYgo&_nc_zt=23&_nc_ht=scontent.fjrs4-1.fna&_nc_gid=MJ1BZbsWopxo_dlBJiNtQg&_nc_ss=7b289&oh=00_Af-jg9oBq9FOmH5NzdnYmBFK-kSZDZiiex-QoqS4_gr1JQ&oe=6A403442" alt="شعار حلوان اخوان" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-</div>  <div class="loader-name">حلوان اخوان</div>
+  <div class="loader-emblem">🔥</div>
+  <div class="loader-name">حلوان اخوان</div>
   <div class="loader-bar"><div class="loader-bar-fill"></div></div>
 </div>
 
@@ -803,20 +871,54 @@ footer{
 <!-- FAB (Islamic) -->
 <button class="fab-wa" id="fabIslamicBtn" title="نفحات إيمانية">📖</button>
 
+
+<!-- ═══════════════════════════════
+   PROMO FAB — زر العرض العائم
+════════════════════════════════ -->
+<button class="promo-fab" id="promoFabBtn" title="عرض خاص">
+  <div class="promo-fab-ring">
+    🎁
+    <span class="promo-badge">1</span>
+  </div>
+  <span class="promo-fab-lbl">عرض خاص</span>
+</button>
+
+<!-- PROMO PANEL -->
+<div class="promo-panel" id="promoPanel">
+  <div class="promo-inner">
+    <button class="promo-x" id="promoX">✕</button>
+    <img class="promo-img-top" src="https://i.ibb.co/pjTDskf7/1.jpg" alt="عرض خاص">
+    <div class="promo-body">
+      <div class="promo-title-lbl">🔥 عرض خاص ينتهي قريباً! 🔥</div>
+      <div class="promo-timer" id="timerRow">
+        <div class="t-box"><span class="num" id="tDays">00</span><span class="lbl">يوم</span></div>
+        <div class="t-box"><span class="num" id="tHours">00</span><span class="lbl">ساعة</span></div>
+        <div class="t-box"><span class="num" id="tMins">00</span><span class="lbl">دقيقة</span></div>
+        <div class="t-box"><span class="num" id="tSecs">00</span><span class="lbl">ثانية</span></div>
+      </div>
+      <button class="promo-go-btn" id="promoGoBtn">🛒 اطلب الآن</button>
+    </div>
+  </div>
+</div>
+
 <!-- HEADER -->
 <header>
   <div class="ticker">
     <span class="ticker-inner">
-       أهلا وسهــلا بكـــم في مــــطعــــــم وجـــــاتوه حـــلوان اخــــوان —  &nbsp;|&nbsp;  جـــــاتوهات بتجمّل كل مناسباتكم &nbsp;|&nbsp;  شــــــــــــاورما طاـــــــــزجة يوميــــــاً   !
+      🌿 أهلاً بكم في مطعم وجاتوه حلوان اخوان — قلقيلية &nbsp;|&nbsp; 🎂 وجاتوهات بتجمّل كل مناسباتكم &nbsp;|&nbsp; 🌯 شاورما طازجة يومياً &nbsp;|&nbsp; 📲 اطلب أونلاين الآن!
     </span>
   </div>
   <nav>
     <div class="nav-logo">
-  <span>🔥</span>
-  حلوان اخوان
-  </div>
-  </div>
-    
+      <span>🔥</span>
+      حلوان اخوان
+    </div>
+    <ul class="nav-links">
+      <li class="hide-mobile"><a onclick="scrollTo('#chicken')">دجاج</a></li>
+      <li class="hide-mobile"><a onclick="scrollTo('#habash')">حبش</a></li>
+      <li class="hide-mobile"><a onclick="scrollTo('#cakes')">جاتوه</a></li>
+      <li class="hide-mobile"><a onclick="showIslamicQuote()" style="cursor:pointer">📖 نفحة</a></li>
+      <li><a onclick="scrollTo('#order-online')" class="nav-cta">🛒 اطلب</a></li>
     </ul>
   </nav>
 </header>
@@ -912,10 +1014,8 @@ footer{
             <label class="salad-chip"><input type="checkbox" name="salads" value="جزر"><div class="chip-box"></div><span class="chip-name">جزر</span></label>
             <label class="salad-chip"><input type="checkbox" name="salads" value="سلطة عربية"><div class="chip-box"></div><span class="chip-name">سلطة عربية</span></label>
             <label class="salad-chip"><input type="checkbox" name="salads" value="زيتون"><div class="chip-box"></div><span class="chip-name">زيتون</span></label>
-            <label class="salad-chip"><input type="checkbox" name="salads" value="ملفوف بالمايونيز"><div class="chip-box"></div><span class="chip-name">ملفوف بالمايونيز</span></label>
-            <label class="salad-chip"><input type="checkbox" name="salads" value="شطة"><div class="chip-box"></div><span class="chip-name">شطة</span></label>
-            <label class="salad-chip"><input type="checkbox" name="salads" value="فلفل اخضر"><div class="chip-box"></div><span class="chip-name">فلفل اخضر</span></label>
-             </div>
+            <label class="salad-chip"><input type="checkbox" name="salads" value="لفت"><div class="chip-box"></div><span class="chip-name">لفت</span></label>
+          </div>
         </div>
 
         <div class="form-group">
@@ -1145,8 +1245,7 @@ footer{
   </div>
 </div>
 
-<button class="promo-mini-btn" id="promoMiniBtn">🎁 عرض خاص</button>
-
+<!-- PROMO POPUP -->
 <div class="promo-wrap" id="promoWrap">
   <div class="promo-card">
     <button class="promo-close-btn" id="promoClose">✖</button>
@@ -1392,6 +1491,51 @@ const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
    NAV onclick fix
 ═══════════════════════════════ */
 document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribute('href'));
+
+// ═══════════════════════════════════════
+//  PROMO FAB LOGIC
+// ═══════════════════════════════════════
+const promoPanel  = document.getElementById('promoPanel');
+const promoFabBtn = document.getElementById('promoFabBtn');
+const promoX      = document.getElementById('promoX');
+const promoGoBtn  = document.getElementById('promoGoBtn');
+let promoOpen = false;
+
+function openPromo(){
+  promoPanel.classList.add('open');
+  promoFabBtn.querySelector('.promo-fab-ring').style.transform='scale(1.1) rotate(15deg)';
+  promoOpen=true;
+}
+function closePromo(){
+  promoPanel.classList.remove('open');
+  promoFabBtn.querySelector('.promo-fab-ring').style.transform='';
+  promoOpen=false;
+}
+promoFabBtn.addEventListener('click', ()=>promoOpen?closePromo():openPromo());
+promoX.addEventListener('click', closePromo);
+promoGoBtn.addEventListener('click',()=>{ closePromo(); goTo('#order-online'); });
+document.addEventListener('click', e=>{
+  if(promoOpen && !promoPanel.contains(e.target) && !promoFabBtn.contains(e.target)) closePromo();
+});
+// فتح تلقائي بعد 4 ثوان
+setTimeout(()=>{ openPromo(); shootConfetti(); }, 4000);
+
+// COUNTDOWN
+const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
+(function tick(){
+  const dist = deadline - Date.now();
+  if(dist<=0){
+    document.getElementById('timerRow').innerHTML=`<span style="color:var(--gold);font-family:'Noto Kufi Arabic',sans-serif;font-size:13px;font-weight:700;">انتهى العرض!</span>`;
+    return;
+  }
+  const pad=n=>String(Math.floor(n)).padStart(2,'0');
+  document.getElementById('tDays').textContent  = pad(dist/864e5);
+  document.getElementById('tHours').textContent = pad((dist%864e5)/36e5);
+  document.getElementById('tMins').textContent  = pad((dist%36e5)/6e4);
+  document.getElementById('tSecs').textContent  = pad((dist%6e4)/1000);
+  setTimeout(tick,1000);
+})();
+
 </script>
 </body>
 </html>
