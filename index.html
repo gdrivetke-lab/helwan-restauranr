@@ -589,46 +589,79 @@ nav{
 }
 
 /* ═══════════════════════════════════════
-    PROMO FAB & PANEL
+   PROMO FAB — زر العرض الخاص العائم المطوّر (قابل للسحب والإشعاع)
 ═══════════════════════════════════════ */
-.promo-fab{
-  position:fixed;bottom:96px;right:24px;z-index:9100;
-  display:flex;flex-direction:column;align-items:center;gap:5px;
-  cursor:pointer;border:none;background:none;padding:0;
+.promo-fab {
+  position: fixed;
+  bottom: 96px;
+  right: 24px;
+  z-index: 9100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: grab;
+  border: none;
+  background: none;
+  padding: 0;
+  user-select: none;
+  touch-action: none;
 }
-.promo-fab-ring{
-  width:58px;height:58px;border-radius:50%;
-  background:linear-gradient(135deg,#E53040,#8B0010);
-  display:flex;align-items:center;justify-content:center;font-size:26px;
-  box-shadow:0 6px 22px rgba(229,48,64,0.6);
-  animation:promoRingPulse 2.2s infinite;
-  transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  position:relative;
+.promo-fab:active {
+  cursor: grabbing;
 }
-.promo-fab-ring::before{
-  content:'';position:absolute;inset:-3px;border-radius:50%;
-  border:2px dashed rgba(229,48,64,0.5);
-  animation:rotateDash 6s linear infinite;
+.promo-fab-ring {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E53040, #8B0010);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 6px 22px rgba(229,48,64,0.6);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
 }
-@keyframes rotateDash{to{transform:rotate(360deg)}}
-@keyframes promoRingPulse{0%,100%{box-shadow:0 6px 22px rgba(229,48,64,0.5)}50%{box-shadow:0 6px 30px rgba(229,48,64,0.9),0 0 0 12px rgba(229,48,64,0.1)}}
-.promo-fab:hover .promo-fab-ring{transform:scale(1.12) rotate(-10deg)}
-.promo-fab:active .promo-fab-ring{transform:scale(0.92)}
-.promo-badge{
-  position:absolute;top:-4px;left:-4px;
-  width:18px;height:18px;border-radius:50%;
-  background:#fff;color:#E53040;
-  font-size:10px;font-weight:900;
-  display:flex;align-items:center;justify-content:center;
-  border:2px solid #E53040;
-  font-family:'Noto Kufi Arabic',sans-serif;
+.promo-fab.active-glow .promo-fab-ring {
+  animation: dynamicGlow 0.4s ease-out infinite alternate !important;
+  transform: scale(1.15);
 }
-.promo-fab-lbl{
-  font-family:'Noto Kufi Arabic',sans-serif;font-size:10px;font-weight:700;
-  color:var(--gold);background:rgba(10,0,0,0.75);
-  padding:2px 8px;border-radius:10px;
-  border:1px solid rgba(229,48,64,0.35);white-space:nowrap;pointer-events:none;
+@keyframes dynamicGlow {
+  0% {
+    box-shadow: 0 0 15px #E53040, 0 0 30px #E53040, 0 0 45px #ff6677;
+    filter: brightness(1.2);
+  }
+  100% {
+    box-shadow: 0 0 35px #E53040, 0 0 60px #E53040, 0 0 90px #ff6677;
+    filter: brightness(1.4);
+  }
 }
+.promo-fab-ring::before {
+  content: ''; position: absolute; inset: -3px; border-radius: 50%;
+  border: 2px dashed rgba(229,48,64,0.5);
+  animation: rotateDash 6s linear infinite;
+}
+@keyframes rotateDash { to { transform: rotate(360deg); } }
+.promo-badge {
+  position: absolute; top: -4px; left: -4px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #fff; color: #E53040;
+  font-size: 10px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #E53040;
+  font-family: 'Noto Kufi Arabic', sans-serif;
+}
+.promo-fab-lbl {
+  font-family: 'Noto Kufi Arabic', sans-serif; font-size: 10px; font-weight: 700;
+  color: var(--gold); background: rgba(10,0,0,0.85);
+  padding: 2px 8px; border-radius: 10px;
+  border: 1px solid rgba(212,164,55,0.35); white-space: nowrap; pointer-events: none;
+}
+
+/* ═══════════════════════════════════════
+    PROMO POPUP PANEL
+═══════════════════════════════════════ */
 .promo-panel{
   position:fixed;bottom:170px;right:24px;
   width:268px;max-width:calc(100vw - 48px);z-index:9200;
@@ -910,7 +943,7 @@ footer{
         </div>
       </div>
       <div class="food-card reveal" onclick="pickMeal('بجيت دجاج دبل (25 شيكل)')">
-        <img class="card-img img-zoom" src="https://images.deliveryhero.io/image/talabat/MenuItems/Alos_%D8%B4%D8%A7%D9%88%D8%B1%D9%85%D8%A7_%D8%AF%D8%AC%D8%A7%D8%AC_%D8%B5%D9%85%D9%88%D9%86_%D8%AA%D8%B1%D9%83638749527865695194.jpg" alt="بجيت دجاج دبل" loading="lazy">
+        <img class="card-img img-zoom" src="https://images.deliveryhero.io/image/talabat/MenuItems/Alos_%D8%B4%D8%A7%D9%8اورما_%D8%AF%D8%AC%D8%A7%D8%AC_%D8%B5%D9%85%D9%88%D9%86_%D8%AA%D8%B1%D9%83638749527865695194.jpg" alt="بجيت دجاج دبل" loading="lazy">
         <div class="card-body">
           <div class="card-name">بجيت دجاج دبل</div>
           <div class="card-desc">كمية مضاعفة لمعدتك الخاوية</div>
@@ -1310,12 +1343,12 @@ document.addEventListener('touchmove', e => {
 }, { passive: true });
 
 /* ═══════════════════════════════
-    NAV FIXED LINKS
+    NAV fixed links
 ═══════════════════════════════ */
 document.querySelectorAll('.nav-links a[onclick]').forEach(a => a.removeAttribute('href'));
 
 /* ═══════════════════════════════
-    PROMO PANEL LOGIC
+    PROMO FAB LOGIC — السحب، الإفلات، والإشعاع الدوري
 ═══════════════════════════════ */
 const promoPanel  = document.getElementById('promoPanel');
 const promoFabBtn = document.getElementById('promoFabBtn');
@@ -1326,33 +1359,16 @@ let promoOpen = false;
 function openPromo(){
   if(!promoPanel) return;
   promoPanel.classList.add('open');
-  if(promoFabBtn && promoFabBtn.querySelector('.promo-fab-ring')) {
-    promoFabBtn.querySelector('.promo-fab-ring').style.transform='scale(1.1) rotate(15deg)';
-  }
   promoOpen = true;
 }
 
 function closePromo(){
   if(!promoPanel) return;
   promoPanel.classList.remove('open');
-  if(promoFabBtn && promoFabBtn.querySelector('.promo-fab-ring')) {
-    promoFabBtn.querySelector('.promo-fab-ring').style.transform='';
-  }
   promoOpen = false;
 }
 
-if(promoFabBtn) {
-  promoFabBtn.addEventListener('click', (e)=>{
-    e.stopPropagation();
-    promoOpen ? closePromo() : openPromo();
-  });
-}
-if(promoX) {
-  promoX.addEventListener('click', (e) => {
-    e.stopPropagation();
-    closePromo();
-  });
-}
+if(promoX) promoX.addEventListener('click', (e) => { e.stopPropagation(); closePromo(); });
 if(promoGoBtn) {
   promoGoBtn.addEventListener('click', () => { 
     closePromo(); 
@@ -1363,7 +1379,70 @@ document.addEventListener('click', e => {
   if(promoOpen && promoPanel && !promoPanel.contains(e.target) && promoFabBtn && !promoFabBtn.contains(e.target)) closePromo();
 });
 
-setTimeout(() => { openPromo(); shootConfetti(); }, 4000);
+let isDragging = false;
+let startX, startY, initialX, initialY;
+
+function dragStart(e) {
+  isDragging = false;
+  startX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
+  startY = e.type === "touchstart" ? e.touches[0].clientY : e.clientY;
+  
+  const rect = promoFabBtn.getBoundingClientRect();
+  initialX = rect.left;
+  initialY = rect.top;
+  
+  promoFabBtn.style.bottom = 'auto';
+  promoFabBtn.style.right = 'auto';
+  promoFabBtn.classList.add('active-glow');
+
+  document.addEventListener(e.type === "touchstart" ? "touchmove" : "mousemove", dragMove, { passive: false });
+  document.addEventListener(e.type === "touchstart" ? "touchend" : "mouseup", dragEnd);
+}
+
+function dragMove(e) {
+  const currentX = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
+  const currentY = e.type === "touchmove" ? e.touches[0].clientY : e.clientY;
+  
+  const dx = currentX - startX;
+  const dy = currentY - startY;
+  
+  if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+    isDragging = true;
+    e.preventDefault();
+  }
+  
+  if (isDragging) {
+    let newX = initialX + dx;
+    let newY = initialY + dy;
+    
+    const maxX = window.innerWidth - promoFabBtn.offsetWidth - 10;
+    const maxY = window.innerHeight - promoFabBtn.offsetHeight - 10;
+    
+    newX = Math.max(10, Math.min(newX, maxX));
+    newY = Math.max(10, Math.min(newY, maxY));
+    
+    promoFabBtn.style.left = `${newX}px`;
+    promoFabBtn.style.top = `${newY}px`;
+  }
+}
+
+function dragEnd() {
+  document.removeEventListener("mousemove", dragMove);
+  document.removeEventListener("touchmove", dragMove);
+  document.removeEventListener("mouseup", dragEnd);
+  document.removeEventListener("touchend", dragEnd);
+  
+  promoFabBtn.classList.remove('active-glow');
+  
+  if (!isDragging) {
+    promoOpen ? closePromo() : openPromo();
+  }
+}
+
+if(promoFabBtn) {
+  promoFabBtn.addEventListener("mousedown", dragStart);
+  promoFabBtn.addEventListener("touchstart", dragStart, { passive: false });
+}
 
 /* ═══════════════════════════════
     COUNTDOWN TIMER
