@@ -1135,9 +1135,7 @@ function pickMeal(meal) {
     sel.style.boxShadow = '0 0 0 3px rgba(212,164,55,0.5)';
     setTimeout(() => sel.style.boxShadow = '', 1500);
   }
-}
-
-/* ═══════════════════════════════
+}/* ═══════════════════════════════
    ORDER FORM → WHATSAPP + GOOGLE SHEETS
 ═══════════════════════════════ */
 const orderForm = document.getElementById('orderForm');
@@ -1159,12 +1157,14 @@ if(orderForm) {
         notes: notes || 'لا يوجد'
     };
 
-    // 2. إرسال البيانات لجدول جوجل ( https://script.google.com/macros/s/AKfycbz3Sq7kZyX71TcBfbMsMoN7Q9Mn_9JEexiMo9n6s1z4lykyOSE0oZgr0WXC37KT7knR8g/exec      )
-    fetch('ضع_هنا_رابط_الـ_Web_App_الذي_أخذته_من_جوجل', {
+    // 2. إرسال البيانات لجدول جوجل
+    fetch('https://script.google.com/macros/s/AKfycbz3Sq7kZyX71TcBfbMsMoN7Q9Mn_9JEexiMo9n6s1z4lykyOSE0oZgr0WXC37KT7knR8g/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
+    });
+
     });
 
     // 3. إرسال الطلب للواتساب
