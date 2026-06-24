@@ -1231,32 +1231,6 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
   window.location.href = `https://wa.me/972599100513?text=${encodeURIComponent(msg)}`;
 });
 
-/* ═══════════════════════════════
-   ISLAMIC QUOTES
-═══════════════════════════════ */
-const quotes = [
-  "۞ إِنَّ مَعَ الْعُسْرِ يُسْرًا ۞",
-  "۞ وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَى ۞",
-  "۞ وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ ۞",
-  "قال رسول الله ﷺ: «كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن: سبحان الله وبحمده، سبحان الله العظيم»",
-  "۞ فَاذْكُرُونِي أَذْكُرْكُمْ ۞",
-  "قال رسول الله ﷺ: «اتق الله حيثما كنت، وأتبع السيئة الحسنة تمحها، وخالق الناس بخلق حسن»",
-  "۞ وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ ۞",
-  "قال رسول الله ﷺ: «خير الناس أنفعهم للناس»",
-  "۞ سَيَجْعَلُ اللَّهُ بَعْدَ عُسْرٍ يُسْرًا ۞",
-  "۞ وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ ۞"
-];
-const islamicModal = document.getElementById('islamicModal');
-const islamicText = document.getElementById('islamicText');
-
-function showIslamicQuote() {
-  islamicText.textContent = quotes[Math.floor(Math.random() * quotes.length)];
-  islamicModal.classList.add('on');
-  shootConfetti();
-}
-document.getElementById('fabIslamicBtn').addEventListener('click', showIslamicQuote);
-document.getElementById('closeModal').addEventListener('click', () => islamicModal.classList.remove('on'));
-islamicModal.addEventListener('click', e => { if (e.target === islamicModal) islamicModal.classList.remove('on'); });
 
 /* ═══════════════════════════════
    CONFETTI
