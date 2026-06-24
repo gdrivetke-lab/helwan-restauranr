@@ -110,9 +110,8 @@ body{
   animation:ticker 25s linear infinite;
   font-family:'Noto Kufi Arabic',sans-serif;
   font-size:13px;font-weight:600;
-  color: #ffffff; /* تم تغيير اللون هنا إلى الأبيض */
+  color: #ffffff;
   letter-spacing:0.5px;
-}
 }
 @keyframes ticker {
   0% { transform: translate3d(0, 0, 0); }
@@ -399,7 +398,7 @@ nav{
 .c-val a{color:var(--wheat);text-decoration:none;direction:ltr;display:inline-block}
 
 /* ═══════════════════════════════════════
-    FAB (WhatsApp) + Islamic button
+    FAB (WhatsApp)
 ═══════════════════════════════════════ */
 .fab-wa{
   position:fixed;bottom:24px;right:24px;width:58px;height:58px;border-radius:50%;
@@ -580,9 +579,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   </div>
 </div>
 
-<!-- FAB (Islamic) -->
-<button class="fab-wa" id="fabIslamicBtn" title="نفحات إيمانية">📖</button>
-
 <!-- PROMO FAB -->
 <button class="promo-fab" id="promoFabBtn" title="عرض خاص">
   <div class="promo-fab-ring">
@@ -627,7 +623,6 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
       <li class="hide-mobile"><a onclick="scrollTo('#habash')">حبش</a></li>
       <li class="hide-mobile"><a onclick="scrollTo('#toast-bashka')">توست وباشكا</a></li>
       <li class="hide-mobile"><a onclick="scrollTo('#cakes')">جاتوه</a></li>
-      <li class="hide-mobile"><a onclick="showIslamicQuote()" style="cursor:pointer">📖 نفحة</a></li>
       <li><a onclick="scrollTo('#order-online')" class="nav-cta">🛒 اطلب</a></li>
     </ul>
   </nav>
@@ -652,9 +647,7 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
     وأجمل الجاتوهات لكل مناسبة 🎂
   </p>
   <div class="hero-cta">
-    <a class="btn btn-gold" onclick="scrollTo('#order-online')">🍔 اختر طلبك الآن</a>
     <a class="btn btn-outline" href="tel:0599100513">📞 اتصل بنا</a>
-    <button class="btn btn-green" onclick="showIslamicQuote()">📖 نفحات إيمانية</button>
     <a class="btn btn-blue" href="https://drive.google.com" target="_blank">📲 حمّل التطبيق</a>
   </div>
   <div class="scroll-hint">مرر للأسفل</div>
@@ -744,9 +737,9 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
               <option value="بجيت حبش (22 شيكل)">بجيت حبش ـ 22 ₪</option>
               <option value="لفة حبش (22 شيكل)">لفة حبش ـ 22 ₪</option>
             </optgroup>
-            <optgroup label="🥪 التوست والباشكا عرض">
-              <option value="توست العرض (17 شيكل)">توست ـ 17 ₪</option>
-              <option value="باشكا العرض (17 شيكل)">باشكا ـ 17 ₪</option>
+            <optgroup label="🥪 التوست والباشكا">
+              <option value="توست (17 شيكل)">توست ـ 17 ₪</option>
+              <option value="باشكا (17 شيكل)">باشكا ـ 17 ₪</option>
             </optgroup>
             <optgroup label="🥤 المشروبات">
               <option value="كولا (3 شيكل)">كولا ـ 3 ₪</option>
@@ -923,7 +916,7 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
         <img class="card-img img-zoom" src="https://vid.alarabiya.net/images/2024/06/30/a066a729-1460-43ec-aab1-12c277fc63a6/a066a729-1460-43ec-aab1-12c277fc63a6.jpg?crop=4:3&width=1200" alt="كولا" loading="lazy">
         <div class="card-body">
           <div class="card-name">كولا</div>
-          <div class="card-desc">مشروب غازي </div>
+          <div class="card-desc">مشروب غازي بارد</div>
           <div class="card-price">3 ₪</div>
         </div>
       </div>
@@ -944,7 +937,7 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:30px 24p
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">الجاتوهات والحلويات</span>
-      <h2 class="sec-title"> <b>الجـــــاتوه المميز</b> </h2>
+      <h2 class="sec-title">صنعناه <b>بجمال</b> لأرائكم</h2>
       <div class="sec-rule"></div>
     </div>
     <div class="cake-feature reveal">
@@ -1152,37 +1145,6 @@ if(orderForm) {
     window.location.href = `https://wa.me/972599100513?text=${encodeURIComponent(msg)}`;
   });
 }
-
-/* ═══════════════════════════════
-    ISLAMIC QUOTES
-═══════════════════════════════ */
-const quotes = [
-  "۞ إِنَّ مَعَ الْعُسْرِ يُسْرًا ۞",
-  "۞ وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَى ۞",
-  "۞ وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ ۞",
-  "قال رسول الله ﷺ: «كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن: سبحان الله وبحمده، سبحان الله العظيم»",
-  "۞ فَاذْكُرُونِي أَذْكُرْكُمْ ۞",
-  "قال رسول الله ﷺ: «اتق الله حيثما كنت، وأتبع السيئة الحسنة تمحها، وخالق الناس بخلق حسن»",
-  "۞ وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ ۞",
-  "قال رسول الله ﷺ: «خير الناس أنفعهم للناس»",
-  "۞ سَيَجْعَلُ اللَّهُ بَعْدَ عُسْرٍ يُسْرًا ۞",
-  "۞ وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ ۞"
-];
-const islamicModal = document.getElementById('islamicModal');
-const islamicText = document.getElementById('islamicText');
-const closeModal = document.getElementById('closeModal');
-const fabIslamicBtn = document.getElementById('fabIslamicBtn');
-
-function showIslamicQuote() {
-  if(islamicText && islamicModal) {
-    islamicText.textContent = quotes[Math.floor(Math.random() * quotes.length)];
-    islamicModal.classList.add('on');
-    shootConfetti();
-  }
-}
-if(fabIslamicBtn) fabIslamicBtn.addEventListener('click', showIslamicQuote);
-if(closeModal) closeModal.addEventListener('click', () => islamicModal.classList.remove('on'));
-if(islamicModal) islamicModal.addEventListener('click', e => { if (e.target === islamicModal) islamicModal.classList.remove('on'); });
 
 /* ═══════════════════════════════
     CONFETTI
