@@ -1138,19 +1138,38 @@ function pickMeal(meal) {
 }
 
 /* ═══════════════════════════════
-   ORDER FORM → WHATSAPP
+   ORDER FORM → WHATSAPP + GOOGLE SHEETS
 ═══════════════════════════════ */
 const orderForm = document.getElementById('orderForm');
 if(orderForm) {
   orderForm.addEventListener('submit', function(e) {
     e.preventDefault();
+    
+    // 1. جمع البيانات
     const name = document.getElementById('custName').value;
     const meal = document.getElementById('mealType').value;
     const notes = document.getElementById('orderNotes').value.trim();
     const salads = [...document.querySelectorAll('input[name="salads"]:checked')].map(c => c.value);
     const saladsText = salads.length ? salads.join('، ') : 'بدون إضافات';
-    const notesText = notes || 'لا يوجد';
-    const msg = `🔥 *طلب جديد من الموقع* 🔥\n\n👤 *الاسم:* ${name}\n🍔 *الوجبة:* ${meal}\n🥗 *الإضافات:* ${saladsText}\n📝 *ملاحظات:* ${notesText}`;
+    
+    const formData = {
+        name: name,
+        meal: meal,
+        salads: saladsText,
+        notes: notes || 'لا يوجد'
+    };
+
+    // 2. إرسال البيانات لجدول جوجل ( https://script.google.com/macros/s/AKfycbz3Sq7kZyX71TcBfbMsMoN7Q9Mn_9JEexiMo9n6s1z4lykyOSE0oZgr0WXC37KT7knR8g/exec      )
+    fetch('ضع_هنا_رابط_الـ_Web_App_الذي_أخذته_من_جوجل', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    });
+
+    // 3. إرسال الطلب للواتساب
+    const msg = `🔥 *طلب جديد من الموقع* 🔥\n\n👤 *الاسم:* ${formData.name}\n🍔 *الوجبة:* ${formData.meal}\n🥗 *الإضافات:* ${formData.salads}\n📝 *ملاحظات:* ${formData.notes}`;
+    
     shootConfetti();
     window.location.href = `https://wa.me/972599100513?text=${encodeURIComponent(msg)}`;
   });
