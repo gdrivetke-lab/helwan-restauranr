@@ -70,37 +70,27 @@ body{
   pointer-events: none;
 }
 
+/* ═══════════════════════════════════════
+   تنسيق الدائرة والصورة الموحد
+═══════════════════════════════════════ */
 .loader-emblem {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--spice), var(--ink));
+  width: 200px;           /* يمكنك تغيير الرقم 200 إلى أي حجم تريده للدائرة */
+  height: 200px;          /* اجعله دائماً مساوياً للـ width */
+  border-radius: 50%;     /* هذا هو المسؤول عن جعل الشكل دائرة */
+  background: var(--ink); 
   border: 3px solid var(--gold);
   display: flex;
   align-items: center;    
   justify-content: center; 
-  overflow: hidden;       
-  animation: pulseLogo 1.2s ease-in-out infinite alternate;
-  box-shadow: 0 0 50px rgba(212,164,55,0.4);
-}
-.loader-emblem {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%; /* هذه هي الـ 50% التي تجعل الشكل دائرة */
-  background: var(--ink); /* خلفية الدائرة */
-  border: 3px solid var(--gold);
-  display: flex;
-  align-items: center;    
-  justify-content: center; 
-  overflow: hidden;       /* هذا أهم سطر: هو الذي يقص أي شيء يخرج عن الدائرة */
+  overflow: hidden;       /* يقص أي جزء من الصورة يخرج عن حدود الدائرة */
   animation: pulseLogo 1.2s ease-in-out infinite alternate;
   box-shadow: 0 0 50px rgba(212,164,55,0.4);
 }
 
 .loader-emblem img {
-  width: 100%;            /* الصورة تأخذ كامل عرض الدائرة */
-  height: 100%;           /* الصورة تأخذ كامل طول الدائرة */
-  object-fit: cover;      /* هذا السطر يمنع الصورة من أن تظهر ناقصة أو ممطوطة */
+  width: 100%;            /* الصورة تغطي عرض الدائرة */
+  height: 100%;           /* الصورة تغطي طول الدائرة */
+  object-fit: cover;      /* يمنع تشوه الصورة ويملأها بالكامل */
   pointer-events: none;
 }
 }
