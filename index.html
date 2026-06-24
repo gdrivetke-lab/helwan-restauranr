@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>مطعم وجاتوه حلوان اخوان — قلقيلية</title>
-<meta name="description" content="مطــــعــــم وجــــــــاتوه حــــــــلوان اخــــــوان قــلقــيلـــية شـــارع الـــحديــــقــــة — شاورما دجاج وحبش، بيتا، توست، مشروبات، جاتوهات لكافة المناسبات"> 
+<meta name="description" content="مطــــعــــم وجــــــــاتوه حــــــــلوان اخــــــوان قــلقــيلـــية شـــارع الـــحديــــقــــة — شاورما دجاج وحبش، بيتا، توست، مشروبات، جاتوهات لكافة المناسبات">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;900&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1134,42 +1134,28 @@ function pickMeal(meal) {
     sel.style.transition = 'box-shadow 0.3s';
     sel.style.boxShadow = '0 0 0 3px rgba(212,164,55,0.5)';
     setTimeout(() => sel.style.boxShadow = '', 1500);
-  }/* ═══════════════════════════════
-   ORDER FORM → WHATSAPP + GOOGLE SHEETS
+  }
+}
+
+/* ═══════════════════════════════
+   ORDER FORM → WHATSAPP
 ═══════════════════════════════ */
 const orderForm = document.getElementById('orderForm');
 if(orderForm) {
   orderForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    
-    // 1. جمع البيانات
     const name = document.getElementById('custName').value;
     const meal = document.getElementById('mealType').value;
     const notes = document.getElementById('orderNotes').value.trim();
     const salads = [...document.querySelectorAll('input[name="salads"]:checked')].map(c => c.value);
     const saladsText = salads.length ? salads.join('، ') : 'بدون إضافات';
-    
-    const formData = {
-        name: name,
-        meal: meal,
-        salads: saladsText,
-        notes: notes || 'لا يوجد'
-    };
-
-    // 2. إرسال البيانات للجدول (رابطك)
-    fetch('https://script.google.com/macros/s/AKfycbz3Sq7kZyX71TcBfbMsMoN7Q9Mn_9JEexiMo9n6s1z4lykyOSE0oZgr0WXC37KT7knR8g/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-    });
-
-    // 3. إرسال للواتساب
-    const msg = `🔥 *طلب جديد:* 🔥\n👤 *الاسم:* ${name}\n🍔 *الوجبة:* ${meal}\n🥗 *الإضافات:* ${saladsText}\n📝 *ملاحظات:* ${notes || 'لا يوجد'}`;
+    const notesText = notes || 'لا يوجد';
+    const msg = `🔥 *طلب جديد من الموقع* 🔥\n\n👤 *الاسم:* ${name}\n🍔 *الوجبة:* ${meal}\n🥗 *الإضافات:* ${saladsText}\n📝 *ملاحظات:* ${notesText}`;
     shootConfetti();
     window.location.href = `https://wa.me/972599100513?text=${encodeURIComponent(msg)}`;
   });
 }
+
 /* ═══════════════════════════════
    CONFETTI
 ═══════════════════════════════ */
