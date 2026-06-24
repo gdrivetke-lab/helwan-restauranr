@@ -47,27 +47,39 @@ body{
 }
 
 /* ═══════════════════════════════════════
-    LOADER
+    
 ═══════════════════════════════════════ */
-#loader{
+#{
   position:fixed;inset:0;z-index:99999;
   background:var(--ink);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
-  animation:loaderOut 2.8s forwards;
+  animation:Out 2.8s forwards;
   pointer-events:none;
 }
-@keyframes loaderOut{
+@keyframes Out{
   0%,75%{opacity:1;visibility:visible}
   100%{opacity:0;visibility:hidden;pointer-events:none;display:none}
 }
-.loader-emblem{
-  width:160px;height:160px;border-radius: 50%;
-  background:radial-gradient(circle,var(--spice),var(--ink));
-  border:3px solid var(--gold);
-  display:flex;align-items:center;justify-content:center;
-  font-size:64px;
-  animation:pulseLogo 1.2s ease-in-out infinite alternate;
-  box-shadow:0 0 50px rgba(212,164,55,0.4);
+.loader-emblem {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--spice), var(--ink));
+  border: 3px solid var(--gold);
+  display: flex;
+  align-items: center;    /* لضبط تمركز الصورة عمودياً */
+  justify-content: center; /* لضبط تمركز الصورة أفقياً */
+  overflow: hidden;       /* لمنع خروج أي جزء من الصورة خارج الدائرة */
+  animation: pulseLogo 1.2s ease-in-out infinite alternate;
+  box-shadow: 0 0 50px rgba(212,164,55,0.4);
+}
+
+.loader-emblem img {
+  width: 70%;             /* حجم الصورة بالنسبة للدائرة */
+  height: 70%;            /* الحفاظ على النسبة */
+  object-fit: contain;    /* عرض الصورة كاملة دون قص */
+  pointer-events: none;
+}
 }
 @keyframes pulseLogo{from{box-shadow:0 0 20px rgba(229,48,64,0.2)}to{box-shadow:0 0 60px rgba(229,48,64,0.6)}}
 .loader-name{
