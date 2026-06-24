@@ -28,7 +28,6 @@
   --border:     rgba(229,48,64,0.25);
   --text-warm:  #E8A0A8;
   --text-body:  #F0C8CC;
-
   --r24: 24px;
   --r16: 16px;
   --r8:  8px;
@@ -72,8 +71,8 @@ body{
   align-items: center; 
   justify-content: center;
   animation: pulseLogo 1.2s ease-in-out infinite alternate;
+  overflow: hidden;
 }
-
 @keyframes pulseLogo {
   from { box-shadow: 0 0 20px rgba(255, 102, 0, 0.2); }
   to { box-shadow: 0 0 60px rgba(255, 102, 0, 0.7); }
@@ -99,10 +98,6 @@ body{
   border-radius: 3px;
   animation: barFill 2.2s ease-out forwards;
 }
-@keyframes barFill { to { width: 100%; } }
-}
-}
-}
 @keyframes barFill{to{width:100%}}
 @keyframes fadeUpText{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
@@ -120,11 +115,6 @@ body{
 /* ═══════════════════════════════════════
    TICKER / MARQUEE
 ═══════════════════════════════════════ */
-.ticker{
-  background:var(--mahogany);
-  border-bottom:1px solid var(--border);
-  padding:9px 0;overflow:hidden;white-space:nowrap;
-}
 .ticker {
   background: var(--mahogany);
   border-bottom: 1px solid var(--border);
@@ -132,7 +122,6 @@ body{
   overflow: hidden;
   white-space: nowrap;
 }
-
 .ticker-inner {
   display: inline-block;
   white-space: nowrap;
@@ -143,10 +132,9 @@ body{
   letter-spacing: 0.5px;
   animation: ticker 25s linear infinite;
 }
-
 @keyframes ticker {
-  0% { transform: translateX(-100vw); } /* يبدأ من خارج الشاشة يساراً */
-  100% { transform: translateX(100%); } /* ينتهي خارج الشاشة يميناً ليعيد الكرة */
+  0% { transform: translateX(-100vw); }
+  100% { transform: translateX(100%); } 
 }
 
 /* ═══════════════════════════════════════
@@ -212,16 +200,12 @@ nav{
     radial-gradient(ellipse 60% 60% at 80% 60%,rgba(160,0,16,0.3) 0%,transparent 60%),
     linear-gradient(170deg,var(--ink) 0%,var(--charcoal) 50%,var(--mahogany) 100%);
 }
-
-/* Texture overlay */
 .hero::before{
   content:'';position:absolute;inset:0;
   background-image:
     url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8840A' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   pointer-events:none;opacity:0.6;
 }
-
-/* Floating spice dots */
 .hero-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .spark{
   position:absolute;border-radius:50%;
@@ -234,7 +218,6 @@ nav{
   90%{opacity:0.3}
   100%{transform:translateY(-120px) scale(0);opacity:0}
 }
-
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(212,164,55,0.1);
@@ -247,7 +230,6 @@ nav{
   position:relative;z-index:2;
   font-family:'Noto Kufi Arabic',sans-serif;
 }
-
 .hero-title{
   font-family:'Noto Kufi Arabic',sans-serif;
   font-size:clamp(36px,9vw,72px);
@@ -276,33 +258,27 @@ nav{
   animation:shineText 4s linear infinite;
 }
 @keyframes shineText{0%{background-position:0%}100%{background-position:300%}}
-
 .hero-location{
   font-size:14px;color:var(--text-warm);margin-top:14px;
   position:relative;z-index:2;
 }
 .hero-location a{color:var(--wheat);text-decoration:none;transition:color 0.2s}
 .hero-location a:hover{color:var(--gold)}
-
 .hero-rule{
   width:80px;height:1px;
   background:linear-gradient(90deg,transparent,var(--gold),transparent);
   margin:26px auto;position:relative;z-index:2;
 }
-
 .hero-sub{
   font-size:17px;color:rgba(255,255,255,0.75);
   line-height:1.9;position:relative;z-index:2;
   font-weight:300;
   max-width:480px;
 }
-
 .hero-cta{
   margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;
   justify-content:center;position:relative;z-index:2;
 }
-
-/* Scroll indicator */
 .scroll-hint{
   position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
   z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;
@@ -330,21 +306,18 @@ nav{
   white-space:nowrap;
 }
 .btn:active{transform:scale(0.93)}
-
 .btn-gold{
   background:linear-gradient(135deg,var(--gold),var(--wheat));
   color:var(--off-white);
   box-shadow:0 6px 20px rgba(229,48,64,0.4);
 }
 .btn-gold:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 30px rgba(229,48,64,0.6)}
-
 .btn-outline{
   background:transparent;
   color:var(--gold);
   border:1.5px solid var(--gold);
 }
 .btn-outline:hover{background:var(--gold);color:var(--ink);transform:translateY(-3px) scale(1.03)}
-
 .btn-green{
   background:linear-gradient(135deg,#2e7d32,#1b5e20);
   color:#fff;
@@ -353,15 +326,12 @@ nav{
 }
 @keyframes greenPulse{0%,100%{box-shadow:0 6px 20px rgba(46,125,50,0.4)}50%{box-shadow:0 6px 30px rgba(46,125,50,0.7),0 0 0 8px rgba(46,125,50,0.1)}}
 .btn-green:hover{transform:translateY(-3px) scale(1.03)}
-
 .btn-blue{
   background:linear-gradient(135deg,#1565c0,#0d47a1);
   color:#fff;
   box-shadow:0 6px 20px rgba(21,101,192,0.35);
 }
 .btn-blue:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 30px rgba(21,101,192,0.55)}
-
-/* Ripple */
 .ripple-spawn{position:absolute;border-radius:50%;background:rgba(255,255,255,0.25);transform:scale(0);animation:rippleGo 0.55s linear;pointer-events:none}
 @keyframes rippleGo{to{transform:scale(5);opacity:0}}
 
@@ -372,10 +342,7 @@ nav{
 .section-wrap.dark{background:var(--ink)}
 .section-wrap.charcoal{background:var(--charcoal)}
 .section-wrap.mahogany{background:var(--mahogany)}
-
 .container{max-width:980px;margin:0 auto;padding:0 24px}
-
-/* Section header */
 .sec-head{text-align:center;margin-bottom:52px}
 .eyebrow{
   display:inline-block;
@@ -435,8 +402,6 @@ nav{
 .form-select optgroup{background:#2E1A0E;color:var(--wheat);font-weight:700}
 .form-select option{background:#1C1612;color:var(--off-white);font-weight:400}
 .form-select option:disabled{color:rgba(255,255,255,0.3)}
-
-/* Salad checkboxes */
 .salads-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
 .salad-chip{
   display:flex;align-items:center;gap:8px;
@@ -461,7 +426,6 @@ nav{
 .salad-chip input:checked + .chip-box::after{content:'✓';color:var(--ink);font-size:13px;font-weight:900}
 .salad-chip input:checked ~ .chip-name{color:var(--gold);font-weight:600}
 .chip-name{font-size:13px;color:var(--text-warm);transition:color 0.2s}
-
 .submit-btn{
   width:100%;padding:18px;
   background:linear-gradient(135deg,var(--gold),var(--wheat));
@@ -490,13 +454,11 @@ nav{
   color:var(--gold);
   white-space:nowrap;
 }
-
 .cards-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
   gap:22px;
 }
-
 .food-card{
   background:linear-gradient(160deg,rgba(60,28,8,0.5),rgba(20,12,6,0.85));
   border:1px solid rgba(212,164,55,0.14);
@@ -510,10 +472,8 @@ nav{
   box-shadow:0 20px 45px rgba(0,0,0,0.5),0 0 20px rgba(200,132,10,0.15);
 }
 .food-card:active{transform:scale(0.96)}
-
 .card-img{width:100%;height:180px;object-fit:cover;display:block;filter:brightness(0.88);transition:transform 0.6s ease,filter 0.4s}
 .food-card:hover .card-img{transform:scale(1.1);filter:brightness(1)}
-
 .card-body{padding:16px 14px 18px;text-align:center}
 .card-name{
   font-family:'Noto Kufi Arabic',sans-serif;font-size:16px;font-weight:700;
@@ -601,24 +561,6 @@ nav{
 .c-label{font-size:11px;color:var(--text-warm);margin-bottom:4px;font-weight:500}
 .c-val{font-family:'Noto Kufi Arabic',sans-serif;font-size:14px;font-weight:700;color:var(--off-white)}
 .c-val a{color:var(--wheat);text-decoration:none;direction:ltr;display:inline-block}
-
-
-.fab-wa{
-  position:fixed;bottom:24px;right:24px;
-  width:58px;height:58px;border-radius:50%;
-  background:linear-gradient(135deg,#25D366,#128C7E);
-  display:flex;align-items:center;justify-content:center;
-  font-size:26px;cursor:pointer;border:none;z-index:9000;
-  box-shadow:0 6px 20px rgba(37,211,102,0.45);
-  animation:waPulse 2.5s infinite;
-  transition:transform 0.2s;color:#fff;
-}
-.fab-wa:hover{transform:scale(1.1) rotate(-8deg)}
-.fab-wa:active{transform:scale(0.9)}
-@keyframes waPulse{0%,100%{box-shadow:0 6px 20px rgba(37,211,102,0.45)}50%{box-shadow:0 6px 30px rgba(37,211,102,0.75),0 0 0 10px rgba(37,211,102,0.1)}}
-
-/* Islamic modal */
-}
 
 /* ═══════════════════════════════════════
    PROMO POPUP
@@ -741,9 +683,10 @@ footer{
 
 <!-- LOADER -->
 <div id="loader">
-<div class="loader-emblem">
-  <img src="https://scontent.fjrs4-1.fna.fbcdn.net/v/t39.30808-6/363053295_1040871813839782_8751074273250335184_n.png?stp=dst-png&cstp=mx2048x1138&ctp=s2048x1138&_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=eUKwAVp4YMUQ7kNvwGasmky&_nc_oc=AdoNNnVgX4zdFe7Q547hc_IPXWhwQP9PUebpzfoZkOiHMpgd9FIuGYvFaD7pS70EYgo&_nc_zt=23&_nc_ht=scontent.fjrs4-1.fna&_nc_gid=MJ1BZbsWopxo_dlBJiNtQg&_nc_ss=7b289&oh=00_Af-jg9oBq9FOmH5NzdnYmBFK-kSZDZiiex-QoqS4_gr1JQ&oe=6A403442" alt="شعار حلوان اخوان" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-</div>  <div class="loader-name">حلوان اخوان</div>
+  <div class="loader-emblem">
+    <img src="https://scontent.fjrs4-1.fna.fbcdn.net/v/t39.30808-6/363053295_1040871813839782_8751074273250335184_n.png?stp=dst-png&cstp=mx2048x1138&ctp=s2048x1138&_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=eUKwAVp4YMUQ7kNvwGasmky&_nc_oc=AdoNNnVgX4zdFe7Q547hc_IPXWhwQP9PUebpzfoZkOiHMpgd9FIuGYvFaD7pS70EYgo&_nc_zt=23&_nc_ht=scontent.fjrs4-1.fna&_nc_gid=MJ1BZbsWopxo_dlBJiNtQg&_nc_ss=7b289&oh=00_Af-jg9oBq9FOmH5NzdnYmBFK-kSZDZiiex-QoqS4_gr1JQ&oe=6A403442" alt="شعار حلوان اخوان" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+  </div>
+  <div class="loader-name">حلوان اخوان</div>
   <div class="loader-bar"><div class="loader-bar-fill"></div></div>
 </div>
 
@@ -756,12 +699,6 @@ footer{
   <img src="" alt="" class="zoom-img-big" id="zoomBig">
 </div>
 
-<!-- ISLAMIC MODAL -->
-
-
-<!-- FAB (Islamic) -->
-<button class="fab-wa" id="fabIslamicBtn" title="نفحات إيمانية">📖</button>
-
 <!-- HEADER -->
 <header>
   <div class="ticker">
@@ -771,46 +708,34 @@ footer{
   </div>
   <nav>
     <div class="nav-logo">
-  <span>🔥</span>
-  حلوان اخوان
-  </div>
-  </div>
-    
-    </ul>
+      <span>🔥</span> حلوان اخوان
+    </div>
   </nav>
 </header>
 
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-particles" id="heroParticles"></div>
-
   <div class="hero-badge">✦ قلقيلية — شارع الملعب ✦</div>
-
   <h1 class="hero-title">
     مطعم <em>وجاتوه</em><br>
     <strong>حلوان</strong> اخوان
   </h1>
-
   <p class="hero-location">
     <a href="https://www.google.com/maps/search/?api=1&query=32.192059732330684,34.966379284951145" target="_blank">
       📍 بجانب الشنطي للمحروقات &nbsp;·&nbsp; اضغط للوصول
     </a>
   </p>
-
   <div class="hero-rule"></div>
-
   <p class="hero-sub">
     طعم مميز يجمع بين أشهى الشاورما 🌯<br>
     وأجمل الجاتوهات لكل مناسبة 🎂
   </p>
-
   <div class="hero-cta">
     <a class="btn btn-gold" onclick="scrollTo('#order-online')">🍔 اختر طلبك الآن</a>
     <a class="btn btn-outline" href="tel:0599100513">📞 اتصل بنا</a>
-    <button class="btn btn-green" onclick="showIslamicQuote()">📖 نفحات إيمانية</button>
     <a class="btn btn-blue" href="https://drive.google.com/file/d/1dMU2WZPqDjvboACaJFvgJWqPl-9UBt_U/view?usp=drive_link" target="_blank">📲 حمّل التطبيق</a>
   </div>
-
   <div class="scroll-hint">مرر للأسفل</div>
 </section>
 
@@ -822,14 +747,12 @@ footer{
       <h2 class="sec-title">اختر وجبتك <b>على ذوقك</b></h2>
       <div class="sec-rule"></div>
     </div>
-
     <div class="order-shell reveal">
       <form id="orderForm">
         <div class="form-group">
           <label class="form-label" for="custName">الاسم الكريم</label>
           <input type="text" id="custName" class="form-input" placeholder="اكتب اسمك هنا..." required>
         </div>
-
         <div class="form-group">
           <label class="form-label" for="mealType">اختر وجبتك الأساسية</label>
           <select id="mealType" class="form-select" required>
@@ -857,7 +780,6 @@ footer{
             </optgroup>
           </select>
         </div>
-
         <div class="form-group">
           <label class="form-label">السلطات والإضافات</label>
           <div class="salads-grid">
@@ -874,17 +796,13 @@ footer{
             <label class="salad-chip"><input type="checkbox" name="salads" value="ملفوف بالمايونيز"><div class="chip-box"></div><span class="chip-name">ملفوف بالمايونيز</span></label>
             <label class="salad-chip"><input type="checkbox" name="salads" value="شطة"><div class="chip-box"></div><span class="chip-name">شطة</span></label>
             <label class="salad-chip"><input type="checkbox" name="salads" value="فلفل اخضر"><div class="chip-box"></div><span class="chip-name">فلفل اخضر</span></label>
-             </div>
+          </div>
         </div>
-
         <div class="form-group">
           <label class="form-label" for="orderNotes">ملاحظات إضافية</label>
           <textarea id="orderNotes" class="form-textarea" rows="2" placeholder="مثال: بدون شطة، محمص زيادة..."></textarea>
         </div>
-
-        <button type="submit" class="submit-btn">
-          📲 تأكيد وإرسال الطلب على واتساب
-        </button>
+        <button type="submit" class="submit-btn">📲 تأكيد وإرسال الطلب على واتساب</button>
       </form>
     </div>
   </div>
@@ -1131,7 +1049,214 @@ footer{
   </a>
 </footer>
 
+<script>
+/* ═══════════════════════════════
+   SCROLL PROGRESS
+═══════════════════════════════ */
 window.addEventListener('scroll', () => {
+  const scrolled = document.documentElement.scrollTop || document.body.scrollTop;
+  const total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress = document.getElementById('scroll-progress');
+  if(progress) progress.style.width = (scrolled / total * 100) + '%';
+}, { passive: true });
+
+/* ═══════════════════════════════
+   SMOOTH SCROLL HELPER
+═══════════════════════════════ */
+function scrollTo(id) {
+  const el = document.querySelector(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ═══════════════════════════════
+   HERO PARTICLES
+═══════════════════════════════ */
+(function(){
+  const container = document.getElementById('heroParticles');
+  if(!container) return;
+  const colors = ['#D4A437','#C8840A','#8B3A0F','#E8C97A','#5C2D0A'];
+  for (let i = 0; i < 36; i++) {
+    const p = document.createElement('div');
+    p.className = 'spark';
+    const size = 2 + Math.random() * 4;
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      bottom:${Math.random()*20}%;
+      width:${size}px; height:${size}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${2+Math.random()*3}s;
+      animation-delay:${Math.random()*4}s;
+      border-radius:50%;
+    `;
+    container.appendChild(p);
+  }
+})();
+
+/* ═══════════════════════════════
+   REVEAL ON SCROLL
+═══════════════════════════════ */
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!els.length) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(el => obs.observe(el));
+})();
+
+/* ═══════════════════════════════
+   ZOOM OVERLAY
+═══════════════════════════════ */
+const zoomOverlay = document.getElementById('zoomOverlay');
+const zoomBig = document.getElementById('zoomBig');
+if(zoomOverlay && zoomBig) {
+  document.querySelectorAll('.img-zoom').forEach(img => {
+    img.addEventListener('click', e => {
+      e.stopPropagation();
+      zoomBig.src = img.src;
+      zoomOverlay.classList.add('on');
+    });
+  });
+  const zoomClose = document.getElementById('zoomClose');
+  if(zoomClose) zoomClose.addEventListener('click', () => zoomOverlay.classList.remove('on'));
+  zoomOverlay.addEventListener('click', e => { if (e.target === zoomOverlay) zoomOverlay.classList.remove('on'); });
+}
+
+/* ═══════════════════════════════
+   PICK MEAL → SCROLL TO ORDER
+═══════════════════════════════ */
+function pickMeal(meal) {
+  const sel = document.getElementById('mealType');
+  if(sel) {
+    sel.value = meal;
+    scrollTo('#order-online');
+    sel.style.transition = 'box-shadow 0.3s';
+    sel.style.boxShadow = '0 0 0 3px rgba(212,164,55,0.5)';
+    setTimeout(() => sel.style.boxShadow = '', 1500);
+  }
+}
+
+/* ═══════════════════════════════
+   ORDER FORM → WHATSAPP
+═══════════════════════════════ */
+const orderForm = document.getElementById('orderForm');
+if(orderForm) {
+  orderForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('custName').value;
+    const meal = document.getElementById('mealType').value;
+    const notes = document.getElementById('orderNotes').value.trim();
+    const salads = [...document.querySelectorAll('input[name="salads"]:checked')].map(c => c.value);
+    const saladsText = salads.length ? salads.join('، ') : 'بدون إضافات';
+    const notesText = notes || 'لا يوجد';
+    const msg = `🔥 *طلب جديد من الموقع* 🔥\n\n👤 *الاسم:* ${name}\n🍔 *الوجبة:* ${meal}\n🥗 *الإضافات:* ${saladsText}\n📝 *ملاحظات:* ${notesText}`;
+    shootConfetti();
+    window.location.href = `https://wa.me/972599100513?text=${encodeURIComponent(msg)}`;
+  });
+}
+
+/* ═══════════════════════════════
+   CONFETTI
+═══════════════════════════════ */
+function shootConfetti() {
+  const colors = ['#D4A437','#E8C97A','#8B3A0F','#ffffff','#2e7d32'];
+  for (let i = 0; i < 70; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    c.style.cssText = `
+      left:${Math.random()*100}vw;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${1.5+Math.random()*2}s;
+      animation-delay:${Math.random()*0.5}s;
+      border-radius:${Math.random()>0.5?'50%':'2px'};
+    `;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3500);
+  }
+}
+
+/* ═══════════════════════════════
+   RIPPLE ON BUTTONS
+═══════════════════════════════ */
+function makeRipple(e) {
+  const btn = e.currentTarget;
+  const circle = document.createElement('span');
+  const d = Math.max(btn.clientWidth, btn.clientHeight);
+  const r = d / 2;
+  const rect = btn.getBoundingClientRect();
+  const cx = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left - r;
+  const cy = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top - r;
+  circle.className = 'ripple-spawn';
+  circle.style.cssText = `width:${d}px;height:${d}px;left:${cx}px;top:${cy}px`;
+  btn.appendChild(circle);
+  setTimeout(() => circle.remove(), 600);
+}
+document.querySelectorAll('.btn, .submit-btn, .promo-cta').forEach(b => {
+  b.addEventListener('mousedown', makeRipple);
+  b.addEventListener('touchstart', makeRipple, { passive: true });
+});
+
+/* ═══════════════════════════════
+   HAPTIC VIBRATION
+═══════════════════════════════ */
+document.querySelectorAll('.btn, .food-card, .submit-btn, .salad-chip').forEach(el => {
+  el.addEventListener('touchstart', () => { if (navigator.vibrate) navigator.vibrate(30); }, { passive: true });
+});
+
+/* ═══════════════════════════════
+   TOUCH SPARKS
+═══════════════════════════════ */
+let lastTouchTime = 0;
+document.addEventListener('touchmove', e => {
+  const now = Date.now();
+  if (now - lastTouchTime < 60) return;
+  lastTouchTime = now;
+  const t = e.touches[0];
+  const dot = document.createElement('div');
+  dot.className = 'touch-dot';
+  dot.style.cssText = `left:${t.clientX}px;top:${t.clientY + window.scrollY}px`;
+  document.body.appendChild(dot);
+  setTimeout(() => dot.remove(), 700);
+}, { passive: true });
+
+/* ═══════════════════════════════
+   PROMO POPUP + COUNTDOWN
+═══════════════════════════════ */
+const promoWrap = document.getElementById('promoWrap');
+if(promoWrap) {
+  setTimeout(() => { promoWrap.classList.add('show'); shootConfetti(); }, 4000);
+  const promoClose = document.getElementById('promoClose');
+  if(promoClose) promoClose.addEventListener('click', () => promoWrap.classList.remove('show'));
+  const promoCta = document.getElementById('promoCta');
+  if(promoCta) promoCta.addEventListener('click', () => {
+    promoWrap.classList.remove('show');
+    scrollTo('#order-online');
+  });
+}
+
+const deadline = new Date("Jun 25, 2026 23:59:59").getTime();
+(function tick() {
+  const dist = deadline - Date.now();
+  const timerRow = document.getElementById('timerRow');
+  if(timerRow) {
+    if (dist <= 0) {
+      timerRow.innerHTML = `<span style="color:var(--gold);font-family:'Noto Kufi Arabic',sans-serif;font-size:14px;font-weight:700;">لقد انتهى العرض!</span>`;
+      return;
+    }
+    const pad = n => String(Math.floor(n)).padStart(2,'0');
+    const tDays = document.getElementById('tDays');
+    const tHours = document.getElementById('tHours');
+    const tMins = document.getElementById('tMins');
+    const tSecs = document.getElementById('tSecs');
+    if(tDays) tDays.textContent  = pad(dist/(864e5));
+    if(tHours) tHours.textContent = pad((dist%864e5)/36e5);
+    if(tMins) tMins.textContent  = pad((dist%36e5)/6e4);
+    if(tSecs) tSecs.textContent  = pad((dist%6e4)/1000);
+  }
+  setTimeout(tick, 1000);
+})();
 
 /* ═══════════════════════════════
    NAV onclick fix
