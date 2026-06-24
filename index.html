@@ -83,41 +83,25 @@ body{
   animation: pulseLogo 1.2s ease-in-out infinite alternate;
   box-shadow: 0 0 50px rgba(212,164,55,0.4);
 }
+.loader-emblem {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%; /* هذه هي الـ 50% التي تجعل الشكل دائرة */
+  background: var(--ink); /* خلفية الدائرة */
+  border: 3px solid var(--gold);
+  display: flex;
+  align-items: center;    
+  justify-content: center; 
+  overflow: hidden;       /* هذا أهم سطر: هو الذي يقص أي شيء يخرج عن الدائرة */
+  animation: pulseLogo 1.2s ease-in-out infinite alternate;
+  box-shadow: 0 0 50px rgba(212,164,55,0.4);
+}
 
 .loader-emblem img {
-  width: 70%;            
-  height: 70%;           
-  object-fit: contain;   
+  width: 100%;            /* الصورة تأخذ كامل عرض الدائرة */
+  height: 100%;           /* الصورة تأخذ كامل طول الدائرة */
+  object-fit: cover;      /* هذا السطر يمنع الصورة من أن تظهر ناقصة أو ممطوطة */
   pointer-events: none;
-}
-
-@keyframes pulseLogo {
-  from { box-shadow: 0 0 20px rgba(229,48,64,0.2); }
-  to { box-shadow: 0 0 60px rgba(229,48,64,0.6); }
-}
-
-.loader-name {
-  font-family: 'Noto Kufi Arabic', sans-serif;
-  font-size: 36px; font-weight: 900;
-  color: var(--gold); letter-spacing: 2px; margin-top: 10px;
-  text-shadow: 0 4px 15px rgba(229, 48, 64, 0.4);
-  animation: fadeUpText 0.8s 0.3s both;
-}
-
-.loader-bar {
-  width: 160px; height: 2px; background: rgba(212,164,55,0.15); border-radius: 2px; overflow: hidden;
-}
-
-.loader-bar-fill {
-  height: 100%; width: 0%; background: linear-gradient(90deg, var(--spice), var(--gold)); border-radius: 2px;
-  animation: barFill 2.2s ease-out forwards;
-}
-
-@keyframes barFill { to { width: 100%; } }
-@keyframes fadeUpText { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes loaderOut {
-  0%, 75% { opacity: 1; visibility: visible; }
-  100% { opacity: 0; visibility: hidden; pointer-events: none; display: none; }
 }
 }
 @keyframes pulseLogo{from{box-shadow:0 0 20px rgba(229,48,64,0.2)}to{box-shadow:0 0 60px rgba(229,48,64,0.6)}}
